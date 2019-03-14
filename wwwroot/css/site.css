@@ -1,0 +1,131 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+.contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  text-align: center;
+  width: 500px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form {
+  border: solid 1px black;
+}
+
+.login_btn {
+  width: 377px;
+  background-color: #d2691e;
+  border: none;
+  height: 33px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.4);
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login_btn:hover {
+  opacity: 0.9;
+}
+
+.error_msg {
+  width: 100%;
+}
+
+.theme_color {
+  background-color: #d2691e;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+
+table th {
+  border-bottom: solid 2px #fb5144;
+  padding: 10px 0;
+}
+
+
+table td {
+  border-bottom: solid 2px #ddd;
+  text-align: center;
+  padding: 10px 0;
+}
+
+
+
+.select_btn {
+  background-color: #fa8072;
+  color: white;
+  border: none;
+  width: 80px;
+  height: 30px;
+}
+
+.select_btn:hover {
+  opacity: 0.8;
+}
