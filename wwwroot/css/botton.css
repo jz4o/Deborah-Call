@@ -1,0 +1,97 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+.login_btn {
+  width: 377px;
+  background-color: #d2691e;
+  border: none;
+  height: 33px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.4);
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.login_btn:hover {
+  opacity: 0.8;
+}
+
+.select_btn {
+  background-color: #fa8072;
+  color: white;
+  border: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.select_btn:hover {
+  opacity: 0.8;
+}
+
+.new_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fa8072;
+  padding: 5px 7px;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  width: 130px;
+  margin-left: auto;
+  margin-right: 30px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.new_btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+  border-radius: 3px;
+}
+
+.edit_btn {
+  background-color: #cd5c5c;
+  color: white;
+  border: none;
+  width: 65px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.edit_btn:hover {
+  opacity: 0.8;
+}
+
+.show_btn {
+  background-color: #d2691e;
+  color: white;
+  border: none;
+  width: 65px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.show_btn:hover {
+  opacity: 0.8;
+}
+
+.copy_btn {
+  background-color: #8b4513;
+  color: white;
+  border: none;
+  width: 65px;
+  height: 30px;
+  border-radius: 3px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.copy_btn:hover {
+  opacity: 0.8;
+}

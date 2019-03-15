@@ -19,7 +19,6 @@ namespace TopController
         [Route("Top/Login")]
         public IActionResult Login()
         {
-            ViewBag.nav = true;
             return View();
         }
 

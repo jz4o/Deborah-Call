@@ -1,0 +1,36 @@
+<div class="main_contents">
+    <h4 class="page_title">お問合せ一覧</h4>
+    <div class="main">
+        <div class="btn_line">
+            <a asp-controller="Inqury" asp-action="" class="new_btn">
+                <img src="../images/new.png" width=22px style="margin-right: 3px;">
+                 新規登録
+            </a>
+        </div><br>
+
+        <table>
+            <tr>
+                <th>着信日時</th>
+                <th>会社名</th>
+                <th>電話番号</th>
+                <th>回答者</th>
+                <th>質問</th>
+                <th>操作</th>
+            </tr>
+            <tr>
+                <td>10/1 10:00</td>
+                <td>テスト</td>
+                <td>000-0000-0000</td>
+                <td>上田</td>
+                <td>このシステムはどのような操作をすればよいのでしょうか。</td>
+                <td>
+                    <input type="button" value="SHOW" class="show_btn">
+                    <input type="button" value="EDIT" class="edit_btn">
+                    <input type="button" value="COPY" class="copy_btn">
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
