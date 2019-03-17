@@ -59,5 +59,7 @@ namespace Deborah.Models
         public long Answer { get; set; }
         public long Cause { get; set; }
         public bool Incomplate_Flag { get; set; }
+        public DateTime Entry_Time { get; set; }
+        public DateTime End_Time { get; set; }
     }
 }
