@@ -21,5 +21,12 @@ namespace InquryController
         {
             return View();
         }
+
+        [Route("Inqury/New")]
+        public IActionResult New()
+        {
+            Console.WriteLine(DateTime.Now);
+            return View();
+        }
     }
 }

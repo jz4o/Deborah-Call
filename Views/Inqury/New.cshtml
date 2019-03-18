@@ -1,0 +1,63 @@
+@{
+    ViewData["datetime"] = DateTime.Now.ToString("yyyy-MM-ddThh:mm");
+}
+<h4 class="page_title">お問合せ新規登録</h4>
+<form method=post>
+    <table class="new_form">
+        <tr class="new_row">
+            <th class="new_title">着信日時</th>
+            <td><input type="datetime-local" value=@ViewData["datetime"] autocomplete="off"></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">着信終了日時</th>
+            <td><input type="datetime" name="datetime"></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">システム名</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">連絡方法</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">会社名</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">担当者名</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">電話番号</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">回答者</th>
+            <td></td>
+        </tr>
+
+        <tr class="new_row">
+            <th class="new_title">お問合せ内容</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">回答内容</th>
+            <td></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">問合せ分類</th>
+            <td></td>
+        </tr>
+    </table><br>
+    <button type="submit" class="submit_btn">
+        <img src="../images/touroku.png" width=22px style="margin-right: 3px;">
+        登録
+    </button>
+</button>
+</form>
+<a asp-controller="Inqury" asp-action="Index" class="bk_btn">
+    <img src="../images/back.png" width=22px style="margin-right: 3px;">
+        戻る
+</a>
+

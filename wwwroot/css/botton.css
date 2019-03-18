@@ -95,3 +95,52 @@ for details on configuring this project to bundle and minify static web assets. 
 .copy_btn:hover {
   opacity: 0.8;
 }
+
+
+.submit_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a52a2a;
+  padding: 5px 7px;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  width: 130px;
+  margin-left: auto;
+  border: none;
+  margin-right: 30px;
+  margin-bottom: 15px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.submit_btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+  border-radius: 3px;
+}
+
+.bk_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #696969;
+  padding: 5px 7px;
+  font-size: 18px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  width: 130px;
+  margin-left: auto;
+  margin-right: 30px;
+  box-shadow:2px 2px 2px #555;
+}
+
+.bk_btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+  border-radius: 3px;
+}
