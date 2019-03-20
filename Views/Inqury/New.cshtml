@@ -19,7 +19,14 @@
         </tr>
         <tr class="new_row">
             <th class="new_title">システム</th>
-            <td></td>
+            <td>
+                <select name="system">
+                    @foreach (KeyValuePair<int, string> sys in ViewBag.system)
+                    {
+                        <option value=@sys.Key>@sys.Value</option>
+                    }
+                </select>
+            </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">連絡方法</th>
@@ -27,15 +34,15 @@
         </tr>
         <tr class="new_row">
             <th class="new_title">会社名</th>
-            <td></td>
+            <td><input type="text" size=50></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">担当者名</th>
-            <td></td>
+            <td><input type="text" size=50></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">電話番号</th>
-            <td></td>
+            <td><input type="text" size=50></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">回答者</th>
@@ -54,8 +61,8 @@
             <th class="new_title">受注者／発注者</th>
             <td>
                 <select name="juhachuu">
-                    <option value="0">受注者</option>
-                    <option value="1">発注者</option>
+                    <option value=false>受注者</option>
+                    <option value=true>発注者</option>
                 </select>
             </td>
         </tr>
