@@ -1,19 +1,24 @@
 @{
-    ViewData["datetime"] = DateTime.Now.ToString("yyyy-MM-ddThh:mm");
+    ViewData["date"] = DateTime.Now.ToString("yyyy-MM-dd");
+    ViewData["time"] = DateTime.Now.ToString("t");
 }
 <h4 class="page_title">お問合せ新規登録</h4>
+<p>　以下の項目はすべて必須項目となります。</p>
 <form method=post>
     <table class="new_form">
         <tr class="new_row">
-            <th class="new_title">着信日時</th>
-            <td><input type="datetime-local" value=@ViewData["datetime"] autocomplete="off"></td>
+            <th class="new_title">着信日付</th>
+            <td><input type="date" value=@ViewData["date"]></td>
         </tr>
         <tr class="new_row">
-            <th class="new_title">着信終了日時</th>
-            <td><input type="datetime" name="datetime"></td>
+            <th class="new_title">着信時間</th>
+            <td><input type="time" name="datetime" value=@ViewData["time"]></td>
+        </tr>
+            <th class="new_title">終了時間</th>
+            <td><input type="time" name="datetime"  value=@ViewData["time"]></td>
         </tr>
         <tr class="new_row">
-            <th class="new_title">システム名</th>
+            <th class="new_title">システム</th>
             <td></td>
         </tr>
         <tr class="new_row">
@@ -39,11 +44,20 @@
 
         <tr class="new_row">
             <th class="new_title">お問合せ内容</th>
-            <td></td>
+            <td><textarea rows=3 cols=85></textarea></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">回答内容</th>
-            <td></td>
+            <td><textarea rows=3 cols=85></textarea></td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">受注者／発注者</th>
+            <td>
+                <select name="juhachuu">
+                    <option value="0">受注者</option>
+                    <option value="1">発注者</option>
+                </select>
+            </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">問合せ分類</th>
