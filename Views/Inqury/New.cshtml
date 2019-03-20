@@ -30,7 +30,14 @@
         </tr>
         <tr class="new_row">
             <th class="new_title">連絡方法</th>
-            <td></td>
+            <td>
+                <select name="communication">
+                    @foreach (KeyValuePair<int, string> com in ViewBag.com)
+                    {
+                        <option value=@com.Key>@com.Value</option>
+                    }
+                </select>
+            </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">会社名</th>
@@ -46,7 +53,21 @@
         </tr>
         <tr class="new_row">
             <th class="new_title">回答者</th>
-            <td></td>
+            <td>
+                <select name="user">
+                    @foreach (KeyValuePair<int, string> user in ViewBag.user)
+                    {
+                        if (ViewBag.login == @user.Value)
+                        {
+                            <option value=@user.Key selected>@user.Value</option>
+                        }
+                        else
+                        {
+                            <option value=@user.Key>@user.Value</option>
+                        }
+                    }
+                </select>
+            </td>
         </tr>
 
         <tr class="new_row">
@@ -68,7 +89,14 @@
         </tr>
         <tr class="new_row">
             <th class="new_title">問合せ分類</th>
-            <td></td>
+            <td>
+                <select name="type">
+                    @foreach (KeyValuePair<int, string> com in ViewBag.type)
+                    {
+                        <option value=@com.Key>@com.Value</option>
+                    }
+                </select>
+            </td>
         </tr>
     </table><br>
     <button type="submit" class="submit_btn">
