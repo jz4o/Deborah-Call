@@ -29,6 +29,7 @@ namespace Deborah.Models
     public class Mst_User
     {
         public int Id { get; set; }
+        public string Login_Id {get; set;}
         public string User_Name { get; set; }
         public string Password { get; set; }
         public string Hostname { get; set; }
@@ -58,7 +59,8 @@ namespace Deborah.Models
         public long Inqury { get; set; }
         public long Answer { get; set; }
         public long Cause { get; set; }
-        public bool Incomplate_Flag { get; set; }
+        public bool Complate_Flag { get; set; }
+        public bool Hachu_Flag { get; set;}
         public DateTime Entry_Time { get; set; }
         public DateTime End_Time { get; set; }
     }
