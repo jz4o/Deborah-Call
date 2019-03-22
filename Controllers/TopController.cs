@@ -23,9 +23,9 @@ namespace TopController
         }
 
         [HttpPost]
-        public IActionResult Create(string username, string password)
+        public IActionResult Create(string login, string password)
         {
-            if (Certification(username, password))
+            if (Certification(login, password))
             {
                 return Redirect("Menu");
             }
