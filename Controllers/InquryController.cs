@@ -81,6 +81,7 @@ namespace InquryController
             }
             return dic;
         }
+        //User_Nemeを取得します
         public string Get_User_Name()
         {
             var _result = this._context.Mst_User.Where(r => r.Login_Id == HttpContext.Session.GetString("login"));
