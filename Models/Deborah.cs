@@ -69,9 +69,9 @@ namespace Deborah.Models
         public string Company_Name { get; set; }
         public string Tan_Name { get; set; }
         public string Tel_No { get; set; }
+        public int Login_Id { get; set; }
         public long Inqury { get; set; }
         public long Answer { get; set; }
-        public long Cause { get; set; }
         public bool Complate_Flag { get; set; }
         public DateTime Entry_Time { get; set; }
         public DateTime End_Time { get; set; }

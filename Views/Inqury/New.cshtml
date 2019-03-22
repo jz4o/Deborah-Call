@@ -4,23 +4,23 @@
 }
 <h4 class="page_title">お問合せ新規登録</h4>
 <p>　以下の項目はすべて必須項目となります。</p>
-<form method=post>
+<form method=post action="/Inqury/Create">
     <table class="new_form">
         <tr class="new_row">
             <th class="new_title">着信日付</th>
-            <td><input type="date" value=@ViewData["date"]></td>
+            <td><input type="date" name＝"Entry_Time" value=@ViewData["date"]></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">着信時間</th>
-            <td><input type="time" name="datetime" value=@ViewData["time"]></td>
+            <td><input type="time" name="Entry_Time" value=@ViewData["time"]></td>
         </tr>
             <th class="new_title">終了時間</th>
-            <td><input type="time" name="datetime"  value=@ViewData["time"]></td>
+            <td><input type="time" name="End_Time"  value=@ViewData["time"]></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">システム</th>
             <td>
-                <select name="system">
+                <select name="System_Id">
                     @foreach (KeyValuePair<int, string> sys in ViewBag.system)
                     {
                         <option value=@sys.Key>@sys.Value</option>
@@ -31,7 +31,7 @@
         <tr class="new_row">
             <th class="new_title">連絡方法</th>
             <td>
-                <select name="communication">
+                <select name="Com_Id">
                     @foreach (KeyValuePair<int, string> com in ViewBag.com)
                     {
                         <option value=@com.Key>@com.Value</option>
@@ -41,20 +41,20 @@
         </tr>
         <tr class="new_row">
             <th class="new_title">会社名</th>
-            <td><input type="text" size=50></td>
+            <td><input type="text" name="Company_Name" size=50></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">担当者名</th>
-            <td><input type="text" size=50></td>
+            <td><input type="text" name="Tan_Name" size=50></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">電話番号</th>
-            <td><input type="text" size=50></td>
+            <td><input type="text" name="Tel_No" size=50></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">回答者</th>
             <td>
-                <select name="user">
+                <select name="Login_Id">
                     @foreach (KeyValuePair<int, string> user in ViewBag.user)
                     {
                         if (ViewBag.name == @user.Value)
@@ -72,16 +72,16 @@
 
         <tr class="new_row">
             <th class="new_title">お問合せ内容</th>
-            <td><textarea rows=3 cols=85></textarea></td>
+            <td><textarea rows=3 cols=85 name="Inqury"></textarea></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">回答内容</th>
-            <td><textarea rows=3 cols=85></textarea></td>
+            <td><textarea rows=3 cols=85 name="Answer"></textarea></td>
         </tr>
         <tr class="new_row">
             <th class="new_title">受注者／発注者</th>
             <td>
-                <select name="juhachuu">
+                <select name="Staff_Flag">
                     <option value=false>受注者</option>
                     <option value=true>発注者</option>
                 </select>
@@ -90,7 +90,7 @@
         <tr class="new_row">
             <th class="new_title">問合せ分類</th>
             <td>
-                <select name="type">
+                <select name="Type_Id">
                     @foreach (KeyValuePair<int, string> com in ViewBag.type)
                     {
                         <option value=@com.Key>@com.Value</option>

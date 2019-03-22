@@ -33,6 +33,13 @@ namespace InquryController
             ViewBag.name = Get_User_Name();
             return View();
         }
+        [Route("Inqury/Create")]
+        public IActionResult Create(Dictionary<string, string> _param)
+        {
+            Console.WriteLine("あいうれろ");
+            Console.WriteLine(_param);
+            return RedirectToAction("Index");
+        }
 
         //システム名をディクショナリ型で生成します。
         public Dictionary<int, string> Fetch_System()
