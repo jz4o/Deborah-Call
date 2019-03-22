@@ -30,6 +30,7 @@ namespace InquryController
             ViewBag.user = Fetch_User();
             ViewBag.type = Fetch_Type();
             ViewBag.login = HttpContext.Session.GetString("login");
+            ViewBag.name = Get_User_Name();
             return View();
         }
 
@@ -64,7 +65,7 @@ namespace InquryController
             var _result = this._context.Mst_User.OrderBy(r => r.Id);
             foreach (var item in _result)
             {
-                dic.Add(item.Id, item.Login_Id);
+                dic.Add(item.Id, item.User_Name);
             }
             return dic;
         }
@@ -79,6 +80,16 @@ namespace InquryController
                 dic.Add(item.Id, item.Type_Name);
             }
             return dic;
+        }
+        public string Get_User_Name()
+        {
+            var _result = this._context.Mst_User.Where(r => r.Login_Id == HttpContext.Session.GetString("login"));
+            string _username = "";
+            foreach (var n in _result)
+            {
+                _username = n.User_Name;
+            }
+            return _username;
         }
     }
 }

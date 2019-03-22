@@ -57,7 +57,7 @@
                 <select name="user">
                     @foreach (KeyValuePair<int, string> user in ViewBag.user)
                     {
-                        if (ViewBag.login == @user.Value)
+                        if (ViewBag.name == @user.Value)
                         {
                             <option value=@user.Key selected>@user.Value</option>
                         }
