@@ -64,7 +64,7 @@ namespace InquryController
             var _result = this._context.Mst_User.OrderBy(r => r.Id);
             foreach (var item in _result)
             {
-                dic.Add(item.Id, item.User_Name);
+                dic.Add(item.Id, item.Login_Id);
             }
             return dic;
         }

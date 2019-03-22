@@ -43,12 +43,12 @@ namespace TopController
             return View();
         }
 
-        public bool Certification(string username, string password)
+        public bool Certification(string login, string password)
         {
-            var result = this._context.Mst_User.Where(r => r.User_Name == username).Where(r => r.Password == password).ToList();
+            var result = this._context.Mst_User.Where(r => r.Login_Id == login).Where(r => r.Password == password).ToList();
             if (result.Any())
             {
-                HttpContext.Session.SetString("login", username);
+                HttpContext.Session.SetString("login", login);
                 return true;
             }
             return false;
