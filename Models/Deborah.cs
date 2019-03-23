@@ -6,6 +6,7 @@ namespace Deborah.Models
 {
     public class Mst_System
     {
+        [Key]
         public int Id {  get; set; }
         [Required]
         [StringLength(30)]
@@ -14,6 +15,7 @@ namespace Deborah.Models
 
     public class Mst_Status
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [StringLength(20)]
@@ -22,6 +24,7 @@ namespace Deborah.Models
 
     public class Mst_Communication
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [StringLength(10)]
@@ -30,6 +33,7 @@ namespace Deborah.Models
 
     public class Mst_Type
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [StringLength(20)]
@@ -38,22 +42,32 @@ namespace Deborah.Models
 
     public class Mst_User
     {
+        [Key]
         public int Id { get; set; }
+        [Required]
         [StringLength(10)]
         public string Login_Id {get; set;}
+        [Required]
         public string User_Name { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
         public string Hostname { get; set; }
     }
 
     public class Tra_Entry
     {
+        [Key]
         public int Id { get; set; }
         [Required]
-        [Phone]
+        [DataType(DataType.PhoneNumber)]
         public string Tel_No { get; set; }
         public string Hostname { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Entry_day { get; set; }
+        [DataType(DataType.Time)]
         public DateTime Entry_Time { get; set; }
+        [DataType(DataType.Time)]
         public DateTime End_Time { get; set; }
     }
 
@@ -68,12 +82,19 @@ namespace Deborah.Models
         public bool Staff_Flag { get; set; }
         public string Company_Name { get; set; }
         public string Tan_Name { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string Tel_No { get; set; }
         public int Login_Id { get; set; }
-        public long Inqury { get; set; }
-        public long Answer { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Inqury { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Answer { get; set; }
         public bool Complate_Flag { get; set; }
-        public DateTime Entry_Time { get; set; }
-        public DateTime End_Time { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Start_day { get; set; }
+        [DataType(DataType.Time)]
+        public DateTime Start_Time { get; set; }
+        [DataType(DataType.Time)]
+        public DateTime Fin_Time { get; set; }
     }
 }

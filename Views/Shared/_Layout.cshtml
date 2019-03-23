@@ -20,7 +20,7 @@
 </head>
 <body>
     <header>
-        @if (!(Context.Request.Path.ToString().Contains("Login") || Context.Request.Path.ToString().Contains("Create") || Context.Request.Path.ToString().Contains("Logout")))
+        @if (!(Context.Request.Path.ToString().Contains("Login") || Context.Request.Path.ToString().Contains("Top/Create") || Context.Request.Path.ToString().Contains("Logout")))
         {
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light theme_color border-bottom box-shadow mb-3">
                 <div class="container">

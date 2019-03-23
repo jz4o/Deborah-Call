@@ -33,12 +33,26 @@ namespace InquryController
             ViewBag.name = Get_User_Name();
             return View();
         }
-        [Route("Inqury/Create")]
-        public IActionResult Create(Dictionary<string, string> _param)
+        //データ登録を行います（insert）    
+        [Route("Inqury/Registrate")]
+        public IActionResult Registrate(Tra_Inqury _param)
         {
-            Console.WriteLine("あいうれろ");
-            Console.WriteLine(_param);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                this._context.Tra_Inqury.Add(_param);
+                this._context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.system = Fetch_System();
+                ViewBag.com = Fetch_Communication();
+                ViewBag.user = Fetch_User();
+                ViewBag.type = Fetch_Type();
+                ViewBag.login = HttpContext.Session.GetString("login");
+                ViewBag.name = Get_User_Name();
+                return View("New");
+            }
         }
 
         //システム名をディクショナリ型で生成します。
