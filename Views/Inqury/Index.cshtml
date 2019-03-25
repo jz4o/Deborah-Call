@@ -1,3 +1,5 @@
+@model IEnumerable<Deborah.Models.Tra_Inqury>
+
 <div class="main_contents">
     <h4 class="page_title">お問合せ一覧</h4>
     <div class="main">
@@ -17,19 +19,21 @@
                 <th>質問</th>
                 <th>操作</th>
             </tr>
-            <tr>
-                <td>10/1 10:00</td>
-                <td>テスト</td>
-                <td>000-0000-0000</td>
-                <td>上田</td>
-                <td>このシステムはどのような操作をすればよいのでしょうか。</td>
-                <td>
-                    <input type="button" value="SHOW" class="show_btn">
-                    <input type="button" value="EDIT" class="edit_btn">
-                    <input type="button" value="COPY" class="copy_btn">
-                </td>
-            </tr>
-
+            @foreach (var data in ViewBag.list)
+            {
+                <tr>
+                    <td>@data.Start_Time</td>
+                    <td>@data.Company_Name</td>
+                    <td>@data.Tel_No</td>
+                    <td>@data.User_Name</td>
+                    <td>@data.Inqury</td>
+                    <td>
+                        <input type="button" value="SHOW" class="show_btn">
+                        <input type="button" value="EDIT" class="edit_btn">
+                        <input type="button" value="COPY" class="copy_btn">
+                    </td>
+                </tr>
+            }
         </table>
     </div>
 </div>

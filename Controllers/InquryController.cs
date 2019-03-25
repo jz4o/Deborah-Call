@@ -8,6 +8,17 @@ using Microsoft.AspNetCore.Http;
 
 namespace InquryController
 {
+    public class MyList
+    {
+        public int Id { get; set; }
+        public DateTime Start_Time { get; set; }
+        public string Company_Name { get; set; }
+        public string Tel_No { get; set; }
+        public string User_Name { get; set; }
+        public string Inqury { get; set; }
+        public bool Staff_Flag { get; set; }
+        public bool Complate_Flag { get; set; }
+    }
     public class InquryController : Controller
     {
         private readonly MyContext _context;
@@ -19,7 +30,23 @@ namespace InquryController
         [Route("Inqury/Index")]
         public IActionResult Index()
         {
-            return View();
+            var inqury_list = from tr in this._context.Tra_Inqury
+                                    join usr in this._context.Mst_User
+                                    on  tr.Login_Id equals usr.Id
+                                    orderby(tr.Start_Time)
+                                    select new MyList
+                                    {
+                                        Id = tr.Id,
+                                        Start_Time = tr.Start_Time,
+                                        Company_Name = tr.Company_Name,
+                                        Tel_No = tr.Tel_No,
+                                        User_Name = usr.User_Name,
+                                        Inqury = tr.Inqury,
+                                        Staff_Flag = tr.Staff_Flag,
+                                        Complate_Flag = tr.Complate_Flag
+                                    };
+            ViewBag.list = inqury_list;
+            return View(this._context.Tra_Inqury);
         }
 
         [Route("Inqury/New")]
@@ -33,7 +60,7 @@ namespace InquryController
             ViewBag.name = Get_User_Name();
             return View();
         }
-        //データ登録を行います（insert）    
+        //データ登録を行います（insert）
         [Route("Inqury/Registrate")]
         public IActionResult Registrate(Tra_Inqury _param)
         {
