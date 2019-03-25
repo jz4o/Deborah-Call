@@ -44,6 +44,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  
 }
 
 .footer {
@@ -94,6 +95,7 @@ table {
 
 table th {
   border-bottom: solid 2px #fb5144;
+  text-align: center;
   padding: 5px 0;
 }
 

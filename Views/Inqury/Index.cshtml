@@ -22,7 +22,7 @@
             @foreach (var data in ViewBag.list)
             {
                 <tr>
-                    <td>@data.Start_Time</td>
+                    <td>@data.Start_Time.ToString("MM/dd HH:mm")</td>
                     <td>@data.Company_Name</td>
                     <td>@data.Tel_No</td>
                     <td>@data.User_Name</td>
