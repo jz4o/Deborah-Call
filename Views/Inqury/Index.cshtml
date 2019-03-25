@@ -17,6 +17,7 @@
                 <th>電話番号</th>
                 <th>回答者</th>
                 <th>質問</th>
+                <th>確認</th>
                 <th>操作</th>
             </tr>
             @foreach (var data in ViewBag.list)
@@ -27,6 +28,14 @@
                     <td>@data.Tel_No</td>
                     <td>@data.User_Name</td>
                     <td>@data.Inqury</td>
+                    @if (data.Complate_Flag)
+                    {
+                        <td>済</td>
+                    }
+                    else
+                    {
+                        <td>未</td>
+                    }
                     <td>
                         <input type="button" value="SHOW" class="show_btn">
                         <input type="button" value="EDIT" class="edit_btn">
