@@ -61,6 +61,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 500px;
 }
 
 .login-form {
@@ -70,6 +71,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 30px;
+  background-color: #c49a6a;
 }
 
 .login_form {
