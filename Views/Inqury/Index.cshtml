@@ -5,38 +5,38 @@
     <div class="main">
         <div class="btn_line">
             <a asp-controller="Inqury" asp-action="New" class="new_btn">
-                <img src="../images/new.png" width=22px style="margin-right: 3px;">
+                <img src="../images/new.png" width=18px style="margin-right: 3px;">
                  新規登録
             </a>
         </div><br>
 
-        <table>
-            <tr>
-                <th>着信日時</th>
-                <th>会社名</th>
-                <th>電話番号</th>
-                <th>回答者</th>
-                <th>質問</th>
-                <th>確認</th>
-                <th>操作</th>
+        <table class="table table-bordered table-sm table-font">
+            <tr class="heading">
+                <th style="width:100px;">着信日時</th>
+                <th style="width:150px">会社名</th>
+                <th style="width:110px">電話番号</th>
+                <th style="width:70px">回答者</th>
+                <th style="width:400px">質問</th>
+                <th style="width:40px">確認</th>
+                <th style="width:200px">操作</th>
             </tr>
             @foreach (var data in ViewBag.list)
             {
-                <tr>
-                    <td>@data.Start_Time.ToString("MM/dd HH:mm")</td>
+                <tr class="table_back">
+                    <td style="text-align:center;">@data.Start_Time.ToString("MM/dd HH:mm")</td>
                     <td>@data.Company_Name</td>
-                    <td>@data.Tel_No</td>
-                    <td>@data.User_Name</td>
+                    <td style="text-align:center;">@data.Tel_No</td>
+                    <td style="text-align:center;">@data.User_Name</td>
                     <td>@data.Inqury</td>
                     @if (data.Complate_Flag)
                     {
-                        <td>済</td>
+                        <td style="text-align:center;">済</td>
                     }
                     else
                     {
-                        <td>未</td>
+                        <td style="text-align:center;">未</td>
                     }
-                    <td>
+                    <td style="text-align:center;">
                         <input type="button" value="SHOW" class="show_btn">
                         <input type="button" value="EDIT" class="edit_btn">
                         <input type="button" value="COPY" class="copy_btn">

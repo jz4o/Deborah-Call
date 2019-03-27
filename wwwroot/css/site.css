@@ -87,22 +87,8 @@ body {
 }
 
 
-/* 一覧画面 */
-table {
-  width: 100%;
-  border-spacing: 0;
-}
-
-table th {
-  border-bottom: solid 2px #fb5144;
-  text-align: center;
-  padding: 5px 0;
-}
-
-table td {
-  border-bottom: solid 2px #ddd;
-  text-align: center;
-  padding: 5px 0;
+.table-font {
+  font-size: 15px;
 }
 
 .page_title {
@@ -132,7 +118,7 @@ table td {
   position: relative;
   text-align: left;
   width: 20%;
-  background-color: #8b4513;
+  background-color: #946c45;
   color: white;
   text-align: center;
 }
@@ -145,7 +131,7 @@ table td {
   position: absolute;
   top:calc(50% - 10px);
   right:-10px;
-  border-left: 10px solid #8b4513;
+  border-left: 10px solid #946c45;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
@@ -155,4 +141,14 @@ table td {
   width: 70%;
   background-color: #eee;
   padding: 10px 40px;
+}
+
+.heading {
+  background-color: #946c45;
+  color: white;
+  text-align: center;
+}
+
+.table_back {
+  background-color: #f8f4e6;
 }
