@@ -62,7 +62,6 @@ C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.Vie
 C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.dll
 C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.pdb
 C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.csproj.CopyComplete
-C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\Razor\Views\Inpury\Index.g.cshtml.cs
 C:\Users\uepyon\Documents\GitHub\deborah\bin\Debug\netcoreapp2.2\DeborahCall.deps.json
 C:\Users\uepyon\Documents\GitHub\deborah\bin\Debug\netcoreapp2.2\DeborahCall.runtimeconfig.json
 C:\Users\uepyon\Documents\GitHub\deborah\bin\Debug\netcoreapp2.2\DeborahCall.runtimeconfig.dev.json
@@ -129,3 +128,5 @@ C:\work\作業\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.Views.pdb
 C:\work\作業\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.dll
 C:\work\作業\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.pdb
 C:\work\作業\DeborahCall\obj\Debug\netcoreapp2.2\DeborahCall.csproj.CopyComplete
+C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\Razor\Views\Inqury\Index.g.cshtml.cs
+C:\Users\uepyon\source\repos\DeborahCall\obj\Debug\netcoreapp2.2\Razor\Views\Inqury\New.g.cshtml.cs
