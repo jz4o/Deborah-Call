@@ -1,6 +1,13 @@
 @model IEnumerable<Deborah.Models.Tra_Entry>
-<p>未登録お知らせが○○件あります</p>
 
+@if (ViewBag.cnt == 0)
+{
+    <p>未登録はありません。</p>
+}
+else
+{
+    <p>未登録お知らせが@ViewBag.cnt件あります</p>
+}
 <table class="table table-bordered table-sm table-font" style="text-align:center;">
     <tr class="heading">
         <th>会社名</th>

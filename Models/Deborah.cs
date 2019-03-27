@@ -59,12 +59,12 @@ namespace Deborah.Models
     {
         [Key]
         public int Id { get; set; }
+        public string Company_Name { get; set; }
+        public string Tan_Name { get; set; }
         [Required]
         [DataType(DataType.PhoneNumber)]
         public string Tel_No { get; set; }
         public string Hostname { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime Entry_day { get; set; }
         [DataType(DataType.Time)]
         public DateTime Entry_Time { get; set; }
         [DataType(DataType.Time)]
