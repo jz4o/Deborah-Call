@@ -8,6 +8,16 @@ using Microsoft.AspNetCore.Http;
 
 namespace TopController
 {
+    public class Entry
+    {
+        public int Id { get; set; }
+        public string Tel_No { get; set; }
+        public DateTime Entry_Time { get; set; }
+        public DateTime End_Time { get; set; }
+        public string Login_Id { get; set; }
+        public string Company_Name { get; set; }
+        public string Tan_Name { get; set; }
+    }
     public class TopController : Controller
     {
         private readonly MyContext _context;
@@ -40,6 +50,37 @@ namespace TopController
         public IActionResult Menu()
         {
             ViewData["login"] = HttpContext.Session.GetString("login");
+            var inqury = (from data in this._context.Tra_Inqury
+                        where data.Tel_No != "0不明"
+                        where data.Tel_No != ""
+                        where data.Tan_Name != "不明"
+                        where data.Tan_Name != ""
+                        where data.Company_Name != "不明"
+                        where data.Company_Name != "0"
+                        select new
+                        {
+                            Tel_No = data.Tel_No,
+                            Tan_Name = data.Tan_Name,
+                            Company_Name = data.Company_Name
+                        }).Distinct();
+
+            var _result = from ent in this._context.Tra_Entry
+                                join usr in this._context.Mst_User
+                                on ent.Hostname equals usr.Hostname
+                                join inq in inqury
+                                on ent.Tel_No equals inq.Tel_No
+                                where usr.Login_Id == HttpContext.Session.GetString("login")
+                                select new Entry
+                                {
+                                    Id = ent.Id,
+                                    Tel_No = ent.Tel_No,
+                                    Entry_Time = ent.Entry_Time,
+                                    End_Time = ent.End_Time,
+                                    Login_Id = usr.Login_Id,
+                                    Company_Name = inq.Company_Name,
+                                    Tan_Name = inq.Tan_Name
+                                };
+            ViewBag.entry = _result;
             return View();
         }
 
