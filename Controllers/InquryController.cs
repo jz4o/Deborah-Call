@@ -49,6 +49,14 @@ namespace InquryController
             return View(this._context.Tra_Inqury);
         }
 
+        [Route("Inqury/Show/{id}")]
+        [HttpGet("{id}")]
+        public IActionResult Show(int id)
+        {
+            var show_data = this._context.Tra_Inqury.Where(x => x.Id == id).First();
+            return View(show_data);
+        }
+
         [Route("Inqury/New")]
         public IActionResult New()
         {

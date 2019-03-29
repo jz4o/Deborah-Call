@@ -1,12 +1,14 @@
 @model IEnumerable<Deborah.Models.Tra_Entry>
 
+<h5 class="page_title">トップ画面</h5><br>
+
 @if (ViewBag.cnt == 0)
 {
-    <p>未登録はありません。</p>
+    <p>未登録のお問合せはありません。</p>
 }
 else
 {
-    <p>未登録お知らせが@ViewBag.cnt件あります</p>
+    <p>未登録のお問合せがあります。</p>
 }
 <table class="table table-bordered table-sm table-font" style="text-align:center;">
     <tr class="heading">
