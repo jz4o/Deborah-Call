@@ -1,0 +1,101 @@
+@model Deborah.Models.Tra_Inqury;
+
+<h5 class="page_title">お問合せ新規登録</h5>
+<br>
+<table class="new_form">
+    <tr class="new_row">
+        <th class="new_title">確認状態</th>
+        <td>
+            <label asp-for="Complate_Flag"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">着信日付</th>
+        <td>
+            <label asp-for="Start_day"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">着信時間</th>
+        <td>
+            <label asp-for="Start_Time"></label>
+        </td>
+    </tr>
+        <th class="new_title">終了時間</th>
+        <td>
+            <label asp-for="Fin_Time"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">システム</th>
+        <td>
+            <label asp-for="System_Id"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">連絡方法</th>
+        <td>
+            <label asp-for="Com_Id"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">会社名</th>
+        <td>
+            <label asp-for="Company_Name"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">担当者名</th>
+        <td>
+            <label asp-for="Tan_Name"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">電話番号</th>
+        <td>
+            <label asp-for="Tel_No"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">回答者</th>
+        <td>
+            <label asp-for="Login_Id"></label>
+        </td>
+    </tr>
+
+    <tr class="new_row">
+        <th class="new_title">お問合せ内容</th>
+        <td>
+            <label asp-for="Inqury"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">回答内容</th>
+        <td>
+            <label asp-for="Answer"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">受注者／発注者</th>
+        <td>
+            <label asp-for="Staff_Flag"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">問合せ分類</th>
+        <td>
+            <label asp-for="Type_Id"></label>
+        </td>
+    </tr>
+    <tr class="new_row">
+        <th class="new_title">関連お問合せＩＤ</th>
+        <td>
+            <label asp-for="Relation_Id"></label>
+        </td>
+    </tr>
+</table><br>
+
+<a asp-controller="Inqury" asp-action="Index" class="bk_btn">
+    <img src="../images/back.png" width=22px style="margin-right: 3px;">
+        戻る
+</a>
