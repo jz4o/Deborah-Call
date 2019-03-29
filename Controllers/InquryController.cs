@@ -50,14 +50,10 @@ namespace InquryController
         }
 
         [Route("Inqury/Show/{id}")]
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Show(int id)
         {
-
-            var show_data = this._context.Tra_Inqury.Where(x => x.Id == id).ToList();
-            Console.WriteLine("メカ誤字ら");
-            Console.WriteLine(id);
-            Console.WriteLine(show_data);
+            var show_data = this._context.Tra_Inqury.Where(x => x.Id == id).First();
             return View(show_data);
         }
 
