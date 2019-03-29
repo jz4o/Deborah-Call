@@ -5,20 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Inqury.Models;
 
 namespace TopController
 {
-    public class Entry
-    {
-        public int Id { get; set; }
-        public string Tel_No { get; set; }
-        public DateTime Entry_Time { get; set; }
-        public DateTime End_Time { get; set; }
-        public string Login_Id { get; set; }
-        public string Company_Name { get; set; }
-        public string Tan_Name { get; set; }
-    }
-
     public class TopController : Controller
     {
         private readonly MyContext _context;
