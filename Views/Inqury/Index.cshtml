@@ -37,9 +37,9 @@
                         <td style="text-align:center;">未</td>
                     }
                     <td style="text-align:center;">
-                        <input type="button" value="SHOW" class="show_btn">
-                        <input type="button" value="EDIT" class="edit_btn">
-                        <input type="button" value="COPY" class="copy_btn">
+                        <a asp-action="Show" asp-route-id="@data.Id" class="show_btn">詳細</a>
+                        <a asp-action="Update" asp-route-id="@data.Id" class="edit_btn">編集</a>
+                        <a asp-action="Update" asp-route-id="@data.Id"  class="copy_btn">引用</a>
                     </td>
                 </tr>
             }
