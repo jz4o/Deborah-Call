@@ -55,7 +55,7 @@ namespace InquryController
                             where inq.Id == id
                             select new Show_List
                             {
-                                id = inq.Id,
+                                Id = inq.Id,
                                 System_Name = sys.System_name,
                                 Com_Name = com.Com_Name,
                                 Type_Name = type.Type_Name,
@@ -74,6 +74,18 @@ namespace InquryController
                             }).First();
             Console.WriteLine(show_data.Inqury);
             return View(show_data);
+        }
+
+        [Route("Inqury/Complate/{id}")]
+        [HttpGet("{id}")]
+        public IActionResult Complate(int id)
+        {
+            var _result = this._context.Tra_Inqury
+                           .Where(x => x.Id == id)
+                           .Where(x => x.Complate_Flag == false).First();
+            _result.Complate_Flag = true;
+            this._context.SaveChanges();
+            return Redirect("Index");
         }
 
         [Route("Inqury/New")]

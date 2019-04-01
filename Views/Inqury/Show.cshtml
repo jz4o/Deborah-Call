@@ -118,7 +118,7 @@
 </table><br>
 @if (!@Model.Complate_Flag)
 {
-    <a asp-controller="Inqury" asp-action="Index" class="submit_btn">
+    <a asp-controller="Inqury" asp-action="Complate" asp-route-id="@Model.Id" class="submit_btn">
         <img src="../../images/good.png" width=22px style="margin-right: 3px;">
             確認
     </a>

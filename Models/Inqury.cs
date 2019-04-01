@@ -28,7 +28,7 @@ namespace Inqury.Models
     }
     public class Show_List
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string System_Name { get; set; }
         public string Com_Name { get; set; }
         public string Type_Name { get; set; }
