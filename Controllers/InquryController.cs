@@ -76,16 +76,15 @@ namespace InquryController
             return View(show_data);
         }
 
-        [Route("Inqury/Complate/{id}")]
-        [HttpGet("{id}")]
+        [HttpGet]
         public IActionResult Complate(int id)
         {
             var _result = this._context.Tra_Inqury
-                           .Where(x => x.Id == id)
-                           .Where(x => x.Complate_Flag == false).First();
+                            .Where(x => x.Id == id)
+                            .Where(x => x.Complate_Flag == false).First();
             _result.Complate_Flag = true;
             this._context.SaveChanges();
-            return Redirect("Index");
+            return RedirectToAction("Index", "Inqury");
         }
 
         [Route("Inqury/New")]
