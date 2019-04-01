@@ -82,8 +82,11 @@ namespace InquryController
             var _result = this._context.Tra_Inqury
                             .Where(x => x.Id == id)
                             .Where(x => x.Complate_Flag == false).First();
-            _result.Complate_Flag = true;
-            this._context.SaveChanges();
+            if (_result.Id == id)
+            {
+                _result.Complate_Flag = true;
+                this._context.SaveChanges();
+            }
             return RedirectToAction("Index", "Inqury");
         }
 
