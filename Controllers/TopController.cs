@@ -44,7 +44,7 @@ namespace TopController
             var _result = from ent in this._context.Tra_Entry
                                 join usr in this._context.Mst_User
                                 on ent.Hostname equals usr.Hostname
-                                where usr.Login_Id == HttpContext.Session.GetString("login") || usr.Login_Id == null
+                                where usr.Login_Id == HttpContext.Session.GetString("login") || ent.Hostname == null
                                 orderby (ent.Id)
                                 orderby (ent.Entry_Time)
                                 select new Entry
