@@ -18,7 +18,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .select_btn {
-  background-color: #fa8072;
+  background-color: #98605e;
   color: white;
   border: none;
   width: 80px;
@@ -35,7 +35,7 @@ for details on configuring this project to bundle and minify static web assets. 
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fa8072;
+  background-color: #98605e;
   padding: 6px 5px;
   font-size: 15px;
   text-decoration: none;
@@ -55,7 +55,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .edit_btn {
-  background-color: #cd5c5c;
+  background-color: #e29676;
   color: white;
   border: none;
   font-size: 15px;
@@ -73,7 +73,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .show_btn {
-  background-color: #32cd32;
+  background-color: #e29676;
   color: white;
   border: none;
   font-size: 15px;
@@ -92,7 +92,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .copy_btn {
-  background-color: #8b4513;
+  background-color: #e29676;
   color: white;
   border: none;
   font-size: 15px;
