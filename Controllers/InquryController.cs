@@ -23,7 +23,7 @@ namespace InquryController
             var inqury_list = from tr in this._context.Tra_Inqury
                                     join usr in this._context.Mst_User
                                     on  tr.Login_Id equals usr.Id
-                                    orderby(tr.Start_Time)
+                                    orderby tr.Id descending
                                     select new MyList
                                     {
                                         Id = tr.Id,
@@ -120,22 +120,24 @@ namespace InquryController
         [Route("Inqury/Registrate")]
         public IActionResult Registrate(Tra_Inqury _param)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
+                Console.WriteLine(_param);
+                _param.Start_day = DateTime.Now;
                 this._context.Tra_Inqury.Add(_param);
                 this._context.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            else
-            {
-                ViewBag.system = Fetch_System();
-                ViewBag.com = Fetch_Communication();
-                ViewBag.user = Fetch_User();
-                ViewBag.type = Fetch_Type();
-                ViewBag.login = HttpContext.Session.GetString("login");
-                ViewBag.name = Get_User_Name();
-                return View("New");
-            }
+            //}
+            //else
+            //{
+            //    ViewBag.system = Fetch_System();
+            //   ViewBag.com = Fetch_Communication();
+            //    ViewBag.user = Fetch_User();
+            //    ViewBag.type = Fetch_Type();
+            //    ViewBag.login = HttpContext.Session.GetString("login");
+            //    ViewBag.name = Get_User_Name();
+            //    return View("New");
+            //}
         }
 
         //システム名をディクショナリ型で生成します。

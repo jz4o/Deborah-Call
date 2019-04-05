@@ -4,6 +4,7 @@
     ViewData["time"] = DateTime.Now.ToString("t");
 }
 
+
 <h5 class="page_title">お問合せ新規登録</h5>
 <br>
 <form method=post action="/Inqury/Registrate">
@@ -11,7 +12,7 @@
         <tr class="new_row">
             <th class="new_title">着信日付</th>
             <td>
-                <input type="date" asp-for＝"Start_day" value=@ViewData["date"] required>
+                <input type="text" asp-for＝"Start_day" value=@ViewData["date"] required>
             </td>
         </tr>
         <tr class="new_row">

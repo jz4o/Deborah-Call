@@ -13,20 +13,20 @@
         <table class="table table-bordered table-sm table-font">
             <tr class="heading">
                 <th style="width:60px;">ID</th>
-                <th style="width:100px;">着信日時</th>
+                <th style="width:120px;">着信日時</th>
                 <th style="width:150px">会社名</th>
                 <th style="width:110px">電話番号</th>
                 <th style="width:70px">回答者</th>
-                <th style="width:350px">質問</th>
+                <th style="width:340px">質問</th>
                 <th style="width:40px">確認</th>
-                <th style="width:170px">操作</th>
+                <th style="width:160px">操作</th>
             </tr>
             @foreach (var data in ViewBag.list)
             {
                 <tr class="table_back">
-                    <td>@data.Id</td>
+                    <td style="text-align:center;">@data.Id</td>
                     <td style="text-align:center;">@data.Start_Time.ToString("yy/MM/dd HH:mm")</td>
-                    <td>@data.Company_Name</td>
+                    <td style="text-align:center;">@data.Company_Name</td>
                     <td style="text-align:center;">@data.Tel_No</td>
                     <td style="text-align:center;">@data.User_Name</td>
                     <td>@data.Inqury</td>
