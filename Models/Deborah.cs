@@ -65,6 +65,7 @@ namespace Deborah.Models
         [DataType(DataType.PhoneNumber)]
         public string Tel_No { get; set; }
         public string Hostname { get; set; }
+        public bool Del_Flag { get; set; }
         [DataType(DataType.Time)]
         public DateTime Entry_Time { get; set; }
         [DataType(DataType.Time)]
@@ -91,7 +92,7 @@ namespace Deborah.Models
         public string Answer { get; set; }
         public bool Complate_Flag { get; set; }
         [DataType(DataType.Date)]
-         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Start_day { get; set; }
         [DataType(DataType.Time)]
         public DateTime Start_Time { get; set; }

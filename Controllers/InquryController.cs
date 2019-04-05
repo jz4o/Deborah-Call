@@ -39,6 +39,7 @@ namespace InquryController
             return View(this._context.Tra_Inqury);
         }
 
+        
         [Route("Inqury/Edit/{id}")]
         [HttpGet("{id}")]
         public IActionResult Edit(int id)
@@ -53,6 +54,29 @@ namespace InquryController
             return View(_result);
         }
 
+        [Route("Inqury/Update")]
+        [HttpPost]
+        public IActionResult Update(Tra_Inqury _params)
+        {
+            var _target = this._context.Tra_Inqury.Single(x => x.Id == _params.Id);
+            _target.Inqury = _params.Inqury;
+            _target.Login_Id = _params.Login_Id;
+            _target.Relation_Id = _params.Relation_Id;
+            _target.Staff_Flag = _params.Staff_Flag;
+            _target.Start_Time = _params.Start_Time;
+            _target.Start_day = _params.Start_day;
+            _target.System_Id = _params.System_Id;
+            _target.Tan_Name = _params.Tan_Name;
+            _target.Tel_No = _params.Tel_No;
+            _target.Type_Id = _params.Type_Id;
+            _target.Answer = _params.Answer;
+            _target.Com_Id = _params.Com_Id;
+            _target.Company_Name = _params.Company_Name;
+            _target.Complate_Flag = _params.Complate_Flag;
+            _target.Fin_Time = _params.Fin_Time;
+            this._context.SaveChanges();
+            return RedirectToAction("Index", "Inqury");
+        }
 
         [Route("Inqury/Show/{id}")]
         [HttpGet("{id}")]
