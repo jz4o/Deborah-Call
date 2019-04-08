@@ -1,0 +1,162 @@
+@model Deborah.Models.Tra_Inqury;
+
+<h5 class="page_title">お問合せ登録</h5>
+<br>
+<form method=post action="/Inqury/Update">
+    <table class="new_form">
+        <tr class="new_row">
+            <th class="new_title">着信日付</th>
+            <td>
+                <input type="date" asp-for="Start_day" value=@Model.Start_day.ToString("yyyy-MM-dd") required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">着信時刻</th>
+            <td>
+                <input type="time" asp-for="Start_Time" value=@Model.Start_Time.ToString("hh:mm") required>
+            </td>
+        </tr>
+            <th class="new_title">終了時刻</th>
+            <td>
+                <input type="time" asp-for="Fin_Time"  value=@Model.Fin_Time.ToString("hh:mm") required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">システム</th>
+            <td>
+                <select asp-for="System_Id">
+                    @foreach (KeyValuePair<int, string> sys in ViewBag.system)
+                    {
+                        @if (@sys.Key == Model.System_Id)
+                        {
+                            <option value=@sys.Key selected>@sys.Value</option>
+                        }
+                        else
+                        {
+                            <option value=@sys.Key>@sys.Value</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">連絡方法</th>
+            <td>
+                <select asp-for="Com_Id">
+                    @foreach (KeyValuePair<int, string> com in ViewBag.com)
+                    {
+                        @if (@com.Key == Model.Com_Id)
+                        {
+                            <option value=@com.Key selected>@com.Value</option>
+                        }
+                        else
+                        {
+                            <option value=@com.Key>@com.Value</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">会社名</th>
+            <td>
+                <input type="text" asp-for="Company_Name" size=50 required value=@Model.Company_Name>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">担当者名</th>
+            <td>
+                <input type="text" asp-for="Tan_Name" size=50 required value=@Model.Tan_Name>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">電話番号</th>
+            <td>
+                <input type="text" asp-for="Tel_No" size=50 required value=@Model.Tel_No>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">回答者</th>
+            <td>
+                <select asp-for="Login_Id">
+                    @foreach (KeyValuePair<int, string> user in ViewBag.user)
+                    {
+                        @if (@user.Key == Model.Login_Id)
+                        {
+                            <option value=@user.Key selected>@user.Value</option>
+                        }
+                        else
+                        {
+                            <option value=@user.Key>@user.Value</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+
+        <tr class="new_row">
+            <th class="new_title">お問合せ内容</th>
+            <td>
+                <textarea rows=3 cols=85 asp-for="Inqury" required value=@Model.Inqury></textarea>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">回答内容</th>
+            <td>
+                <textarea rows=3 cols=85 asp-for="Answer" required value=@Model.Answer></textarea>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">受注者／発注者</th>
+            <td>
+                <select asp-for="Staff_Flag">
+                    @if (Model.Staff_Flag)
+                    {
+                        <option value=false>受注者</option>
+                        <option value=true selected>発注者</option>
+                    }
+                    else
+                    {
+                        <option value=false selected>受注者</option>
+                        <option value=true>発注者</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">問合せ分類</th>
+            <td>
+                <select asp-for="Type_Id">
+                    @foreach (KeyValuePair<int, string> com in ViewBag.type)
+                    {
+                        @if (@com.Key == Model.Type_Id)
+                        {
+                            <option value=@com.Key selected>@com.Value</option>
+                        }
+                        else
+                        {
+                            <option value=@com.Key>@com.Value</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">関連お問合せＩＤ</th>
+            <td>
+                <input type='text' asp-for='Relation_Id' id='Relation_Id' value=@Model.Relation_Id>
+                <input type='button' class="relation_btn" value="ＩＤ追加" onClick="relation(@Model.Id)">
+            </td>
+        </tr>
+    </table><br>
+    <input type='hidden' asp-for='Id' value=@Model.Id>
+    <input type='hidden' asp-for='Complate_Flag' value="false0">
+    <button type="submit" class="submit_btn">
+        <img src="../../images/touroku.png" width=22px style="margin-right: 3px;">
+        登録
+    </button>
+</form>
+<a asp-controller="Inqury" asp-action="Index" class="bk_btn">
+    <img src="../../images/back.png" width=22px style="margin-right: 3px;">
+        戻る
+</a>

@@ -39,7 +39,21 @@ namespace InquryController
             return View(this._context.Tra_Inqury);
         }
 
-        
+        [Route("Inqury/Copy/{id}")]
+        [HttpGet("{id}")]
+        public IActionResult Copy(int id)
+        {
+            ViewBag.system = Fetch_System();
+            ViewBag.com = Fetch_Communication();
+            ViewBag.user = Fetch_User();
+            ViewBag.type = Fetch_Type();
+            ViewBag.login = HttpContext.Session.GetString("login");
+            ViewBag.name = Get_User_Name();
+            var _result = this._context.Tra_Inqury.Where(x => x.Id == id).First();
+            return View(_result);
+        }
+
+
         [Route("Inqury/Edit/{id}")]
         [HttpGet("{id}")]
         public IActionResult Edit(int id)
