@@ -27,6 +27,7 @@ namespace InquryController
                                     select new MyList
                                     {
                                         Id = tr.Id,
+                                        Start_day = tr.Start_day,
                                         Start_Time = tr.Start_Time,
                                         Company_Name = tr.Company_Name,
                                         Tel_No = tr.Tel_No,

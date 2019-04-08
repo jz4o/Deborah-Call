@@ -7,6 +7,7 @@ namespace Inqury.Models
     public class MyList
     {
         public int Id { get; set; }
+        public DateTime Start_day { get; set; }
         public DateTime Start_Time { get; set; }
         public string Company_Name { get; set; }
         public string Tel_No { get; set; }

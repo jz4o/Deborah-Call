@@ -25,7 +25,10 @@
             {
                 <tr class="table_back">
                     <td style="text-align:center;">@data.Id</td>
-                    <td style="text-align:center;">@data.Start_Time.ToString("yy/MM/dd HH:mm")</td>
+                    <td style="text-align:center;">
+                        @data.Start_day.ToString("yy/MM/dd")
+                        @data.Start_Time.ToString("HH:mm")
+                    </td>
                     <td style="text-align:center;">@data.Company_Name</td>
                     <td style="text-align:center;">@data.Tel_No</td>
                     <td style="text-align:center;">@data.User_Name</td>
