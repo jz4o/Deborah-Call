@@ -146,8 +146,6 @@ namespace InquryController
         {
             //if (ModelState.IsValid)
             //{
-                Console.WriteLine(_param);
-                _param.Start_day = DateTime.Now;
                 this._context.Tra_Inqury.Add(_param);
                 this._context.SaveChanges();
                 return RedirectToAction("Index");

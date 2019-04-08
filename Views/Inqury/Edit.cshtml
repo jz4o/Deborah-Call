@@ -7,18 +7,18 @@
         <tr class="new_row">
             <th class="new_title">着信日付</th>
             <td>
-                <input type="date" asp-for＝"Start_day" value=@Model.Start_day.ToString("yyyy-MM-dd") required>
+                <input type="date" asp-for="Start_day" value=@Model.Start_day.ToString("yyyy-MM-dd") required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">着信時刻</th>
             <td>
-                <input type="time" asp-for="Start_Time" value=@Model.Start_Time.ToString("t") required>
+                <input type="time" asp-for="Start_Time" value=@Model.Start_Time.ToString("hh:mm") required>
             </td>
         </tr>
             <th class="new_title">終了時刻</th>
             <td>
-                <input type="time" asp-for="Fin_Time"  value=@Model.Fin_Time.ToString("t") required>
+                <input type="time" asp-for="Fin_Time"  value=@Model.Fin_Time.ToString("hh:mm") required>
             </td>
         </tr>
         <tr class="new_row">
@@ -147,6 +147,7 @@
         </tr>
     </table><br>
     <input type='hidden' asp-for='Id' value=@Model.Id>
+    <input type='hidden' asp-for='Complate_Flag' value=@Model.Complate_Flag>
     <button type="submit" class="submit_btn">
         <img src="../../images/edit.png" width=22px style="margin-right: 3px;">
         更新
