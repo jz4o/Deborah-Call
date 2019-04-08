@@ -2,7 +2,7 @@
 
 <h5 class="page_title">お問合せ登録</h5>
 <br>
-<form method=post action="/Inqury/Update">
+<form method=post action="/Inqury/Registrate">
     <table class="new_form">
         <tr class="new_row">
             <th class="new_title">着信日付</th>
@@ -149,7 +149,6 @@
             </td>
         </tr>
     </table><br>
-    <input type='hidden' asp-for='Id' value=@Model.Id>
     <input type='hidden' asp-for='Complate_Flag' value="false0">
     <button type="submit" class="submit_btn">
         <img src="../../images/touroku.png" width=22px style="margin-right: 3px;">
