@@ -179,7 +179,11 @@ namespace InquryController
                 this._context.SaveChanges();
                 if (Request.Headers["Referer"].ToString().Contains("Entry"))
                 {
-                    Console.WriteLine("ガンダム");
+                    if (Del_Entry(_param.Entry_Id))
+                    {
+                        return RedirectToAction("Menu", "Top");
+                    }
+                    ViewBag.error = "更新に失敗しました。";
                 }
                 return RedirectToAction("Index");
             //}
@@ -252,6 +256,19 @@ namespace InquryController
                 _username = n.User_Name;
             }
             return _username;
+        }
+
+        public bool Del_Entry(int id)
+        {
+            bool kekka = false;
+            var _result = this._context.Tra_Entry.Where(x => x.Id == id).First();
+            if (!_result.Del_Flag)
+            {
+                _result.Del_Flag = true;
+                this._context.SaveChanges();
+                kekka = true;
+            }
+            return kekka;
         }
     }
 }
