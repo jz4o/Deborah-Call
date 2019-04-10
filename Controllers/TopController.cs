@@ -43,8 +43,9 @@ namespace TopController
             ViewData["login"] = HttpContext.Session.GetString("login");
             var _result = from ent in this._context.Tra_Entry
                                 join usr in this._context.Mst_User
-                                on ent.Hostname equals usr.Hostname
-                                where usr.Login_Id == HttpContext.Session.GetString("login") || ent.Hostname == null
+                                on ent.Hostname equals usr.Hostname into entrys
+                                from usr in entrys.DefaultIfEmpty()
+                                where (usr.Login_Id == HttpContext.Session.GetString("login") || ent.Hostname == null)
                                 where ent.Del_Flag == false
                                 orderby (ent.Id)
                                 orderby (ent.Entry_Time)
@@ -59,8 +60,7 @@ namespace TopController
                                     Tan_Name = ent.Tan_Name
                                 };
             ViewBag.cnt = _result.Count();
-            ViewBag.entry = _result;
-            return View();
+            return View(_result);
         }
 
         public bool Certification(string login, string password)

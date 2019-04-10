@@ -175,16 +175,16 @@ namespace InquryController
         {
             //if (ModelState.IsValid)
             //{
-                this._context.Tra_Inqury.Add(_param);
-                this._context.SaveChanges();
                 if (Request.Headers["Referer"].ToString().Contains("Entry"))
                 {
-                    if (Del_Entry(_param.Entry_Id))
+                    if (Del_Entry(_param.Entry_Id) == false)
                     {
+                        ViewBag.error = "更新に失敗しました。";
                         return RedirectToAction("Menu", "Top");
-                    }
-                    ViewBag.error = "更新に失敗しました。";
+                    }  
                 }
+                this._context.Tra_Inqury.Add(_param);
+                this._context.SaveChanges();
                 return RedirectToAction("Index");
             //}
             //else
@@ -262,7 +262,7 @@ namespace InquryController
         {
             bool kekka = false;
             var _result = this._context.Tra_Entry.Where(x => x.Id == id).First();
-            if (!_result.Del_Flag)
+            if (_result.Del_Flag == false)
             {
                 _result.Del_Flag = true;
                 this._context.SaveChanges();

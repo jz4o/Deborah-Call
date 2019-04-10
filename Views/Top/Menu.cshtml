@@ -1,4 +1,4 @@
-@model IEnumerable<Deborah.Models.Tra_Entry>
+@model IEnumerable<Inqury.Models.Entry>
 
 <h5 class="page_title">トップ画面</h5><br>
 
@@ -20,7 +20,7 @@ else
         <th>登録</th>
     </tr>
 
-    @foreach (var data in ViewBag.entry)
+    @foreach (var data in Model)
     {
         <tr class="table_back">
             <td>@data.Company_Name</td>
