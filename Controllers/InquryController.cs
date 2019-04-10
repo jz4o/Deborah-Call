@@ -177,6 +177,10 @@ namespace InquryController
             //{
                 this._context.Tra_Inqury.Add(_param);
                 this._context.SaveChanges();
+                if (Request.Headers["Referer"].ToString().Contains("Entry"))
+                {
+                    Console.WriteLine("ガンダム");
+                }
                 return RedirectToAction("Index");
             //}
             //else
