@@ -1,0 +1,124 @@
+@model Deborah.Models.Tra_Entry;
+
+<h5 class="page_title">お問合せ新規登録</h5>
+<br>
+<form method=post action="/Inqury/Registrate">
+    <table class="new_form">
+        <tr class="new_row">
+            <th class="new_title">着信日付</th>
+            <td>
+                <input type="date" name="Start_day" value=@Model.Entry_Time.ToString("yyyy-MM-dd") required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">着信時刻</th>
+            <td>
+                <input type="time" name="Start_Time" value=@Model.Entry_Time.ToString("hh:mm") required>
+            </td>
+        </tr>
+            <th class="new_title">終了時刻</th>
+            <td>
+                <input type="time" name="Fin_Time"  value=@Model.End_Time.ToString("hh:mm") required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">システム</th>
+            <td>
+                <select name="System_Id">
+                    @foreach (KeyValuePair<int, string> sys in ViewBag.system)
+                    {
+                        <option value=@sys.Key>@sys.Value</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">連絡方法</th>
+            <td>
+                <select name="Com_Id">
+                    @foreach (KeyValuePair<int, string> com in ViewBag.com)
+                    {
+                        <option value=@com.Key>@com.Value</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">会社名</th>
+            <td>
+                <input type="text" name="Company_Name" value=@Model.Company_Name size=50 required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">担当者名</th>
+            <td>
+                <input type="text" name="Tan_Name" value=@Model.Tan_Name size=50 required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">電話番号</th>
+            <td>
+                <input type="text" name="Tel_No" value=@Model.Tel_No size=50 required>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">回答者</th>
+            <td>
+                <select name="Login_Id">
+                    @foreach (KeyValuePair<int, string> user in ViewBag.user)
+                    {
+                        <option value=@user.Key>@user.Value</option>
+                    }
+                </select>   
+            </td>
+        </tr>
+
+        <tr class="new_row">
+            <th class="new_title">お問合せ内容</th>
+            <td>
+                <textarea rows=3 cols=85 name="Inqury" required></textarea>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">回答内容</th>
+            <td>
+                <textarea rows=3 cols=85 name="Answer" required></textarea>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">受注者／発注者</th>
+            <td>
+                <select name="Staff_Flag">
+                        <option value=false>受注者</option>
+                        <option value=true>発注者</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">問合せ分類</th>
+            <td>
+                <select name="Type_Id">
+                    @foreach (KeyValuePair<int, string> com in ViewBag.type)
+                    {
+                        <option value=@com.Key>@com.Value</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">関連お問合せＩＤ</th>
+            <td>
+                <input type='text' name='Relation_Id' id='Relation_Id'>
+            </td>
+        </tr>
+    </table><br>
+    <input type='hidden' name='Complate_Flag' value="false0">
+    <button type="submit" class="submit_btn">
+        <img src="../../images/touroku.png" width=22px style="margin-right: 3px;">
+        登録
+    </button>
+</form>
+<a asp-controller="Inqury" asp-action="Index" class="bk_btn">
+    <img src="../../images/back.png" width=22px style="margin-right: 3px;">
+        戻る
+</a>

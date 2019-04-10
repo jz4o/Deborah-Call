@@ -28,7 +28,7 @@ else
             <td>@data.Tel_No</td>
             <td>@data.Entry_Time</td>
             <td>@data.End_Time</td>
-            <td><input type="button" value="SELECT" class="select_btn"></td>
+            <td><a asp-route="Entry" asp-route-id="@data.Id" class="select_btn">SELECT</a></td>
         </tr>
     }
 </table>

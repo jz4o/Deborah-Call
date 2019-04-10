@@ -18,17 +18,19 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .select_btn {
-  background-color: #98605e;
+  background-color: #79c06e;
   color: white;
   border: none;
-  width: 80px;
-  height: 30px;
+  padding: 3px 7px;
   border-radius: 3px;
+  text-decoration: none;
   box-shadow:2px 2px 2px #555;
 }
 
 .select_btn:hover {
   opacity: 0.8;
+  color: white;
+  text-decoration: none;
 }
 
 .new_btn {

@@ -40,6 +40,20 @@ namespace InquryController
             return View(this._context.Tra_Inqury);
         }
 
+        [Route("Inqury/Entry/{id}", Name="Entry") ]
+        [HttpGet("{id}")]
+        public IActionResult Entry(int id)
+        {
+            ViewBag.system = Fetch_System();
+            ViewBag.com = Fetch_Communication();
+            ViewBag.user = Fetch_User();
+            ViewBag.type = Fetch_Type();
+            ViewBag.login = HttpContext.Session.GetString("login");
+            ViewBag.name = Get_User_Name();
+            var _result = this._context.Tra_Entry.Where(x => x.Id == id).Where(x => x.Del_Flag == false).First();
+            return View(_result);
+        }
+
         [Route("Inqury/Copy/{id}")]
         [HttpGet("{id}")]
         public IActionResult Copy(int id)
