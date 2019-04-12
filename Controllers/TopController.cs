@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Deborah.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 
@@ -17,6 +18,7 @@ namespace TopController
             this._context = context;
         }
 
+        [AllowAnonymous]
         [Route("Top/Login")]
         public IActionResult Login()
         {
@@ -73,6 +75,7 @@ namespace TopController
             }
             return false;
         }
+        [AllowAnonymous]
         public IActionResult Logout()
         {
             HttpContext.Session.SetString("login", "");

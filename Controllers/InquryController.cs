@@ -6,6 +6,7 @@ using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
+using Login.Filters;
 
 namespace InquryController
 {
