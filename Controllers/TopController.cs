@@ -18,7 +18,7 @@ namespace TopController
             this._context = context;
         }
 
-        [AllowAnonymous]
+        
         [Route("Top/Login")]
         public IActionResult Login()
         {

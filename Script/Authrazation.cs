@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Deborah.Models;
+using Microsoft.AspNetCore.HttpsPolicy;
 
 namespace Login.Filters
 {
@@ -12,11 +13,13 @@ namespace Login.Filters
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var session = context.HttpContext.Session.GetString("login");
-            //context.Result = new StatusCodeResult(StatusCodes.Status403Forbidden);
+            Console.WriteLine(session);
+            Console.WriteLine("こここここここここここ");
             if (session == "")
             {
-                context.Result = new RedirectToActionResult("Login", "Top", null);
+                context.Result = new RedirectResult();
             }
+            return;
         }
     }
 }
