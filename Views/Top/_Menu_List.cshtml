@@ -1,0 +1,12 @@
+
+@foreach (var data in Model)
+{
+    <tr class="table_back">
+        <td>@data.Company_Name</td>
+        <td>@data.Tan_Name</td>
+        <td>@data.Tel_No</td>
+        <td>@data.Entry_Time</td>
+        <td>@data.End_Time</td>
+        <td><a asp-route="Entry" asp-route-id="@data.Id" class="select_btn">SELECT</a></td>
+    </tr>
+}
