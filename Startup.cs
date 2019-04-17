@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Login.Filters;
 using Deborah.Models;
 
 namespace DeborahCall
@@ -38,9 +37,7 @@ namespace DeborahCall
             services.AddSession(options => {
                 options.Cookie.Name = "session";
             });
-            services.AddMvc(options =>
-                options.Filters.Add(new AuthorizationFilter())
-            ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<MyContext>(options => options.UseNpgsql(Configuration.GetConnectionString("MyContext")));
         }
 

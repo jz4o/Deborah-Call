@@ -8,16 +8,20 @@ using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
 
+
 namespace InquryController
 {
     public class InquryController : Controller
     {
+        
         private readonly MyContext _context;
+        
         public InquryController(MyContext context)
         {
             this._context = context;
         }
-
+        
+        [AuthorizationFilter]
         [Route("Inqury/Index")]
         public IActionResult Index()
         {
@@ -40,7 +44,8 @@ namespace InquryController
             ViewBag.list = inqury_list;
             return View(this._context.Tra_Inqury);
         }
-
+        
+        [AuthorizationFilter]
         [Route("Inqury/Entry/{id}", Name="Entry") ]
         [HttpGet("{id}")]
         public IActionResult Entry(int id)
@@ -55,6 +60,7 @@ namespace InquryController
             return View(_result);
         }
 
+        [AuthorizationFilter]
         [Route("Inqury/Copy/{id}")]
         [HttpGet("{id}")]
         public IActionResult Copy(int id)
@@ -69,7 +75,7 @@ namespace InquryController
             return View(_result);
         }
 
-
+        [AuthorizationFilter]
         [Route("Inqury/Edit/{id}")]
         [HttpGet("{id}")]
         public IActionResult Edit(int id)
@@ -84,6 +90,7 @@ namespace InquryController
             return View(_result);
         }
 
+        [AuthorizationFilter]
         [Route("Inqury/Update")]
         [HttpPost]
         public IActionResult Update(Tra_Inqury _params)
@@ -108,6 +115,7 @@ namespace InquryController
             return RedirectToAction("Index", "Inqury");
         }
 
+        [AuthorizationFilter]
         [Route("Inqury/Show/{id}")]
         [HttpGet("{id}")]
         public IActionResult Show(int id)
@@ -145,6 +153,7 @@ namespace InquryController
             return View(show_data);
         }
 
+        [AuthorizationFilter]
         [HttpGet]
         public IActionResult Complate(int id)
         {
@@ -159,6 +168,7 @@ namespace InquryController
             return RedirectToAction("Index", "Inqury");
         }
 
+        [AuthorizationFilter]
         [Route("Inqury/New")]
         public IActionResult New()
         {
@@ -170,7 +180,9 @@ namespace InquryController
             ViewBag.name = Get_User_Name();
             return View();
         }
+        
         //データ登録を行います（insert）
+        [AuthorizationFilter]
         [Route("Inqury/Registrate")]
         public IActionResult Registrate(Tra_Inqury _param)
         {

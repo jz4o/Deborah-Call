@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
+using Login.Filters;
 
 namespace TopController
 {
@@ -20,8 +21,12 @@ namespace TopController
 
         
         [Route("Top/Login")]
-        public IActionResult Login()
+        public IActionResult Login(int code=0)
         {
+            if (code == 1)
+            {
+                ViewBag.error = "この先はログインが必要です";
+            }
             return View();
         }
 
@@ -39,6 +44,7 @@ namespace TopController
             }
         }
 
+        [AuthorizationFilter]
         [Route("Top/Menu")]
         public IActionResult Menu()
         {
@@ -75,7 +81,7 @@ namespace TopController
             }
             return false;
         }
-        [AllowAnonymous]
+
         public IActionResult Logout()
         {
             HttpContext.Session.SetString("login", "");
