@@ -1,13 +1,35 @@
 @model IEnumerable<Deborah.Models.Tra_Inqury>
 
+@{
+    ViewData["date"] = DateTime.Now.ToString("yyyy-MM-dd");
+    ViewData["time"] = DateTime.Now.ToString("t");
+}
+
 <div class="main_contents">
     <h5 class="page_title">お問合せ一覧</h5>
     <div class="main">
-        <div class="btn_line">
-            <a asp-controller="Inqury" asp-action="New" class="new_btn">
-                <img src="../images/new.png" width=18px style="margin-right: 3px;">
-                 新規登録
-            </a>
+        <div class="search_area">
+            <input type="date" value=@ViewData["date"]> ～ <input type="date" value=@ViewData["date"]>　
+            <input type="checkbox" name="riyu" value="1"> 未確認のみ　
+            <input type="text" size="40" placeholder="フリーワード">
+            <button type="submit" class="search_btn">Search</button>
+        </div>
+
+        <div class="centering">
+            <div class="btn_line">
+                <a asp-controller="Inqury" asp-action="Download" class="dl_e_btn">
+                    <img src="../images/download.png" width=18px style="margin-right: 3px;">
+                    Excel Download
+                </a>
+                <a asp-controller="Inqury" asp-action="Download" class="dl_c_btn">
+                    <img src="../images/download.png" width=18px style="margin-right: 3px;">
+                    CSV Download
+                </a>
+                <a asp-controller="Inqury" asp-action="New" class="new_btn">
+                    <img src="../images/new.png" width=18px style="margin-right: 3px;">
+                    新規登録
+                </a>
+            </div>
         </div><br>
 
         <table class="table table-bordered table-sm table-font">
