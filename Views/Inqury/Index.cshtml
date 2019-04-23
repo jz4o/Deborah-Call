@@ -1,18 +1,15 @@
 @model IEnumerable<Deborah.Models.Tra_Inqury>
 
-@{
-    ViewData["date"] = DateTime.Now.ToString("yyyy-MM-dd");
-    ViewData["time"] = DateTime.Now.ToString("t");
-}
-
 <div class="main_contents">
     <h5 class="page_title">お問合せ一覧</h5>
     <div class="main">
         <div class="search_area">
-            <input type="date" value=@ViewData["date"]> ～ <input type="date" value=@ViewData["date"]>　
-            <input type="checkbox" name="riyu" value="1"> 未確認のみ　
-            <input type="text" size="40" placeholder="フリーワード">
-            <button type="submit" class="search_btn">Search</button>
+            <form method=post action="/Inqury/Search">
+                <input type="date" name="Start_day" value=@ViewData["date"]> ～ <input type="date" name="End_day" value=@ViewData["date"]>　
+                <input type="checkbox" name="Check" value=false> 未確認のみ　
+                <input type="text" size="40" name="Word" placeholder="フリーワード">
+                <button type="submit" class="search_btn">Search</button>
+            </form>
         </div>
 
         <div class="centering">

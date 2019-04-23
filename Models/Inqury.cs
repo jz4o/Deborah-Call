@@ -46,4 +46,12 @@ namespace Inqury.Models
         public DateTime Start_Time { get; set; }
         public DateTime Fin_Time { get; set; }
     }
+
+    public class Search_param
+    {
+        public DateTime Start_day { get; set; }
+        public DateTime End_day { get; set; }
+        public bool Check { get; set; }
+        public string Word { get; set; }
+    }
 }

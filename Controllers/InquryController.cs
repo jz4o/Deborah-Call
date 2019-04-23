@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
+
 
 
 namespace InquryController
@@ -282,6 +285,27 @@ namespace InquryController
                 kekka = true;
             }
             return kekka;
+        }
+
+        [AuthorizationFilter]
+        [Route("Inqury/Search")]
+        public IActionResult Search(Search_param _params)
+        {
+            var _result = this._context.Tra_Inqury
+                                    //.Where(x => x.Inqury.Contains(_params.Word))
+                                    //.Where(x => x.Answer.Contains(_params.Word))
+                                    //.Where(x => x.Company_Name.Contains(_params.Word))
+                                    //.Where(x => x.Tan_Name.Contains(_params.Word))
+                                    //.Where(x => x.Tel_No.Contains(_params.Word));
+
+                                    //.Where(x => x.Start_day >= _params.Start_day)
+                                    //.Where(x => x.Start_day <= _params.End_day)
+                                    //.Where(x => x.Complate_Flag == _params.Check)
+
+                                    .OrderByDescending(x => x.Id);
+            _result = _result.Where(x => x.Inqury.Contains(_params.Word));
+            ViewBag.list = _result;
+            return View("Index", this._context.Tra_Inqury);
         }
     }
 }
