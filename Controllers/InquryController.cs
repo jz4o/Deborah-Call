@@ -28,24 +28,23 @@ namespace InquryController
         [Route("Inqury/Index")]
         public IActionResult Index()
         {
-            var inqury_list = from tr in this._context.Tra_Inqury
-                                    join usr in this._context.Mst_User
-                                    on  tr.Login_Id equals usr.Id
-                                    orderby tr.Id descending
-                                    select new MyList
-                                    {
-                                        Id = tr.Id,
-                                        Start_day = tr.Start_day,
-                                        Start_Time = tr.Start_Time,
-                                        Company_Name = tr.Company_Name,
-                                        Tel_No = tr.Tel_No,
-                                        User_Name = usr.User_Name,
-                                        Inqury = tr.Inqury,
-                                        Staff_Flag = tr.Staff_Flag,
-                                        Complate_Flag = tr.Complate_Flag
-                                    };
-            ViewBag.list = inqury_list;
-            return View(this._context.Tra_Inqury);
+            var _result = from tr in this._context.Tra_Inqury
+                                join usr in this._context.Mst_User
+                                on tr.Login_Id equals usr.Id
+                                orderby tr.Id descending
+                                select new MyList
+                                {
+                                    Id = tr.Id,
+                                    Start_day = tr.Start_day,
+                                    Start_Time = tr.Start_Time,
+                                    Company_Name = tr.Company_Name,
+                                    Tel_No = tr.Tel_No,
+                                    User_Name = usr.User_Name,
+                                    Inqury = tr.Inqury,
+                                    Staff_Flag = tr.Staff_Flag,
+                                    Complate_Flag = tr.Complate_Flag
+                                };
+            return View(_result);
         }
         
         [AuthorizationFilter]
@@ -152,7 +151,6 @@ namespace InquryController
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time
                             }).First();
-            Console.WriteLine(show_data.Inqury);
             return View(show_data);
         }
 
@@ -291,21 +289,24 @@ namespace InquryController
         [Route("Inqury/Search")]
         public IActionResult Search(Search_param _params)
         {
-            var _result = this._context.Tra_Inqury
-                                    //.Where(x => x.Inqury.Contains(_params.Word))
-                                    //.Where(x => x.Answer.Contains(_params.Word))
-                                    //.Where(x => x.Company_Name.Contains(_params.Word))
-                                    //.Where(x => x.Tan_Name.Contains(_params.Word))
-                                    //.Where(x => x.Tel_No.Contains(_params.Word));
-
-                                    //.Where(x => x.Start_day >= _params.Start_day)
-                                    //.Where(x => x.Start_day <= _params.End_day)
-                                    //.Where(x => x.Complate_Flag == _params.Check)
-
-                                    .OrderByDescending(x => x.Id);
+            IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
+                                    join usr in this._context.Mst_User
+                                    on  tr.Login_Id equals usr.Id
+                                    orderby tr.Id descending
+                                    select new MyList
+                                    {
+                                        Id = tr.Id,
+                                        Start_day = tr.Start_day,
+                                        Start_Time = tr.Start_Time,
+                                        Company_Name = tr.Company_Name,
+                                        Tel_No = tr.Tel_No,
+                                        User_Name = usr.User_Name,
+                                        Inqury = tr.Inqury,
+                                        Staff_Flag = tr.Staff_Flag,
+                                        Complate_Flag = tr.Complate_Flag
+                                    };
             _result = _result.Where(x => x.Inqury.Contains(_params.Word));
-            ViewBag.list = _result;
-            return View("Index", this._context.Tra_Inqury);
+            return View("Index", _result);
         }
     }
 }

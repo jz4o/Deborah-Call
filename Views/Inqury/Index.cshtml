@@ -1,11 +1,11 @@
-@model IEnumerable<Deborah.Models.Tra_Inqury>
+@model IEnumerable<Inqury.Models.MyList>
 
 <div class="main_contents">
     <h5 class="page_title">お問合せ一覧</h5>
     <div class="main">
         <div class="search_area">
             <form method=post action="/Inqury/Search">
-                <input type="date" name="Start_day" value=@ViewData["date"]> ～ <input type="date" name="End_day" value=@ViewData["date"]>　
+                <input type="date" name="Start_day" > ～ <input type="date" name="End_day">　
                 <input type="checkbox" name="Check" value=false> 未確認のみ　
                 <input type="text" size="40" name="Word" placeholder="フリーワード">
                 <button type="submit" class="search_btn">Search</button>
@@ -40,7 +40,7 @@
                 <th style="width:40px">確認</th>
                 <th style="width:160px">操作</th>
             </tr>
-            @foreach (var data in ViewBag.list)
+            @foreach (var data in Model)
             {
                 <tr class="table_back">
                     <td style="text-align:center;">@data.Id</td>
