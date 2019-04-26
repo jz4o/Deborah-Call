@@ -291,6 +291,29 @@ namespace InquryController
         [Route("Inqury/Search")]
         public IActionResult Search(Search_param _params)
         {
+            if (_params.Start_day.ToString("yyyy") == "0001")
+            {
+                HttpContext.Session.SetString("date1", _params.Start_day.ToString("yyyy-MM-dd"));
+                ViewBag.date1 = HttpContext.Session.GetString("date1");
+            }
+            else
+            {
+                ViewBag.date1 = "yyyy-MM-dd";
+            }
+            if (_params.End_day.ToString("yyyy") == "0001")
+            {
+                HttpContext.Session.SetString("date2", _params.End_day.ToString("yyyy-MM-dd"));
+                ViewBag.date2 = HttpContext.Session.GetString("date2");
+            }
+            else
+            {
+                ViewBag.date2 = "yyyy-MM-dd";
+            }
+            if (_params.Word != null)
+            {
+                HttpContext.Session.SetString("freeword", _params.Word);
+                ViewBag.freeword = HttpContext.Session.GetString("freeword");
+            }
             IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
                                     join usr in this._context.Mst_User
                                     on  tr.Login_Id equals usr.Id
