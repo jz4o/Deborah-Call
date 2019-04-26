@@ -6,7 +6,7 @@
         <div class="search_area">
             <form method=post action="/Inqury/Search">
                 <input type="date" name="Start_day" > ～ <input type="date" name="End_day">　
-                <input type="checkbox" name="Check" value=false> 未確認のみ　
+                <input type="checkbox" name="Check" value=true> 未確認のみ　
                 <input type="text" size="40" name="Word" placeholder="フリーワード">
                 <button type="submit" class="search_btn">Search</button>
             </form>
@@ -28,7 +28,6 @@
                 </a>
             </div>
         </div><br>
-
         <table class="table table-bordered table-sm table-font">
             <tr class="heading">
                 <th style="width:60px;">ID</th>
@@ -40,32 +39,35 @@
                 <th style="width:40px">確認</th>
                 <th style="width:160px">操作</th>
             </tr>
-            @foreach (var data in Model)
+            @if (Model.Count() >= 1)
             {
-                <tr class="table_back">
-                    <td style="text-align:center;">@data.Id</td>
-                    <td style="text-align:center;">
-                        @data.Start_day.ToString("yy/MM/dd")
-                        @data.Start_Time.ToString("HH:mm")
-                    </td>
-                    <td style="text-align:center;">@data.Company_Name</td>
-                    <td style="text-align:center;">@data.Tel_No</td>
-                    <td style="text-align:center;">@data.User_Name</td>
-                    <td>@data.Inqury</td>
-                    @if (data.Complate_Flag)
-                    {
-                        <td style="text-align:center;">済</td>
-                    }
-                    else
-                    {
-                        <td style="text-align:center;">未</td>
-                    }
-                    <td style="text-align:center;">
-                        <a asp-action="Show" asp-route-id="@data.Id" class="show_btn">詳細</a>
-                        <a asp-action="Edit" asp-route-id="@data.Id" class="edit_btn">編集</a>
-                        <a asp-action="Copy" asp-route-id="@data.Id"  class="copy_btn">引用</a>
-                    </td>
-                </tr>
+                @foreach (var data in Model)
+                {
+                    <tr class="table_back">
+                        <td style="text-align:center;">@data.Id</td>
+                        <td style="text-align:center;">
+                            @data.Start_day.ToString("yy/MM/dd")
+                            @data.Start_Time.ToString("HH:mm")
+                        </td>
+                        <td style="text-align:center;">@data.Company_Name</td>
+                        <td style="text-align:center;">@data.Tel_No</td>
+                        <td style="text-align:center;">@data.User_Name</td>
+                        <td>@data.Inqury</td>
+                        @if (data.Complate_Flag)
+                        {
+                            <td style="text-align:center;">済</td>
+                        }
+                        else
+                        {
+                            <td style="text-align:center;">未</td>
+                        }
+                        <td style="text-align:center;">
+                            <a asp-action="Show" asp-route-id="@data.Id" class="show_btn">詳細</a>
+                            <a asp-action="Edit" asp-route-id="@data.Id" class="edit_btn">編集</a>
+                            <a asp-action="Copy" asp-route-id="@data.Id"  class="copy_btn">引用</a>
+                        </td>
+                    </tr>
+                }
             }
         </table>
     </div>

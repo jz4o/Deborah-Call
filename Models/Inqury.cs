@@ -12,7 +12,9 @@ namespace Inqury.Models
         public string Company_Name { get; set; }
         public string Tel_No { get; set; }
         public string User_Name { get; set; }
+        public string Tan_Name { get; set; }
         public string Inqury { get; set; }
+        public string Answer { get; set; }
         public bool Staff_Flag { get; set; }
         public bool Complate_Flag { get; set; }
     }

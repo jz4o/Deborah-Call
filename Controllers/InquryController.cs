@@ -41,6 +41,8 @@ namespace InquryController
                                     Tel_No = tr.Tel_No,
                                     User_Name = usr.User_Name,
                                     Inqury = tr.Inqury,
+                                    Answer = tr.Answer,
+                                    Tan_Name = tr.Tan_Name,
                                     Staff_Flag = tr.Staff_Flag,
                                     Complate_Flag = tr.Complate_Flag
                                 };
@@ -302,10 +304,23 @@ namespace InquryController
                                         Tel_No = tr.Tel_No,
                                         User_Name = usr.User_Name,
                                         Inqury = tr.Inqury,
+                                        Answer = tr.Answer,
+                                        Tan_Name = tr.Tan_Name,
                                         Staff_Flag = tr.Staff_Flag,
                                         Complate_Flag = tr.Complate_Flag
                                     };
-            _result = _result.Where(x => x.Inqury.Contains(_params.Word));
+            _result = (_params.Check) ? _result.Where(x => x.Complate_Flag == false) : _result;
+            _result = (_params.Start_day.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day >= (_params.Start_day));
+            _result = (_params.End_day.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day <= (_params.End_day));
+            if (_params.Word != null)
+            {
+                _result = _result.Where(x => x.Inqury.Contains(_params.Word)
+                                                || x.Answer.Contains(_params.Word)
+                                                || x.Company_Name.Contains(_params.Word)
+                                                || x.Tan_Name.Contains(_params.Word)
+                                                || x.Tel_No.Contains(_params.Word)
+                                        );
+            }
             return View("Index", _result);
         }
     }
