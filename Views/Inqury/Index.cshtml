@@ -5,7 +5,7 @@
     <div class="main">
         <div class="search_area">
             <form method=post action="/Inqury/Search">
-                <input type="date" name="Start_day" value=@ViewBag.date1 > ～ <input type="date" name="End_day" value=@ViewBag.date2>　
+                <input type="date" name="Start_day" value=@ViewBag.date1>  ～  <input type="date" name="End_day" value=@ViewBag.date2>
                 <input type="checkbox" name="Check" value=true> 未確認のみ
                 <input type="text" size="40" name="Word" placeholder="フリーワード" value=@ViewBag.freeword>
                 <button type="submit" class="search_btn">Search</button>
