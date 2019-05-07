@@ -28,6 +28,7 @@ namespace InquryController
         [Route("Inqury/Index")]
         public IActionResult Index()
         {
+            ViewBag.Check = false;
             var _result = from tr in this._context.Tra_Inqury
                                 join usr in this._context.Mst_User
                                 on tr.Login_Id equals usr.Id
@@ -308,12 +309,13 @@ namespace InquryController
             else
             {
                 ViewBag.date2 = "yyyy-MM-dd";
-            } 
+            }
             if (_params.Word != null)
             {
                 HttpContext.Session.SetString("freeword", _params.Word);
                 ViewBag.freeword = HttpContext.Session.GetString("freeword");
             }
+            ViewBag.Check = _params.Check ? true : false;
             IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
                                     join usr in this._context.Mst_User
                                     on  tr.Login_Id equals usr.Id
