@@ -16,5 +16,6 @@ namespace Deborah.Models
         public DbSet<Mst_User> Mst_User { get; set; }
         public DbSet<Tra_Entry> Tra_Entry { get; set; }
         public DbSet<Tra_Inqury> Tra_Inqury { get; set; }
+        public DbSet<Mst_Download> Mst_Download { get; set; }
     }
 }

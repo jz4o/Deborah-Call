@@ -348,5 +348,10 @@ namespace InquryController
             }
             return View("Index", _result);
         }
+
+        //public IActionResult Export(Search_param _params)
+        //{
+        //    var _result = 
+        //}
     }
 }

@@ -99,4 +99,16 @@ namespace Deborah.Models
         [DataType(DataType.Time)]
         public DateTime Fin_Time { get; set; }
     }
+
+    public class Mst_Download
+    {
+        public int Id { get; set; }
+        public string Column_Name { get; set; }
+        // Tra_Inquryから取得したいカラム名を設定する。
+        // null設定がある場合は、空の値となります。
+        public string Set_Inqury { get; set; }
+        //日付データのみ適用されるフォーマット（例： yyyy/MM/ddなど）
+        public string Set_Format { get; set; }
+        public int Order_No { get; set; }
+    }
 }
