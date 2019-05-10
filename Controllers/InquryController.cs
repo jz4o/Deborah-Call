@@ -9,7 +9,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
-
+using System.Text;
+using Deborah_Downloder;
 
 
 namespace InquryController
@@ -349,9 +350,17 @@ namespace InquryController
             return View("Index", _result);
         }
 
-        //public IActionResult Export(Search_param _params)
-        //{
-        //    var _result = 
-        //}
+        public ContentResult Export(Search_param _params)
+        {
+            var list = new List<string>();
+            Downloader _downloader = new Downloader(this._context);
+            var _column = _downloader.Get_Column();
+            foreach (var header in _column)
+            {
+                list.Append(header);
+            }
+            var _data = _downloader.Get_Inqury();
+            return Content(list.ToString(), "text/csv", Encoding.GetEncoding("Shift_JIS"));
+        }
     }
 }

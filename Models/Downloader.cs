@@ -60,7 +60,6 @@ namespace Deborah_Downloder
                                 Start_day = inq.Start_day,
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
-                                
                             };
             return _result;
         }
