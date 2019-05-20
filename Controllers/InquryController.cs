@@ -10,7 +10,6 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
-using System.Text;
 using Deborah_Downloder;
 
 
@@ -360,10 +359,9 @@ namespace InquryController
             {
                 list = string.Join(",", header);
             }
-            list = "ガンダム";
-            list = string.Join(",", "ザク");
-            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(list);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var _data = _downloader.Get_Inqury();
+            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(_data);
             return File(result, "text/csv", "test.csv");
         }
     }

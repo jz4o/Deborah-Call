@@ -28,7 +28,7 @@ namespace Deborah_Downloder
             return _result;
         }
 
-        public IQueryable Get_Inqury()
+        public string Get_Inqury()
         {
             var _result = from inq in this._context.Tra_Inqury
                             join usr in this._context.Mst_User
@@ -61,7 +61,20 @@ namespace Deborah_Downloder
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
-            return _result;
+            string list = "";
+            var csv = _result.ToArray();
+            foreach(var item in csv)
+            {
+                if (list.Count() == 0)
+                {
+                    list = list + item.System_Name;
+                }
+                else
+                {
+                    list = list + "," + item.System_Name;
+                }
+            }
+            return list;
         }
     }
     public class Download_List
