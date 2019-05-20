@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -350,17 +351,20 @@ namespace InquryController
             return View("Index", _result);
         }
 
-        public ContentResult Export(Search_param _params)
+        public IActionResult Export(Search_param _params)
         {
-            var list = new List<string>();
+            string list = "";
             Downloader _downloader = new Downloader(this._context);
             var _column = _downloader.Get_Column();
             foreach (var header in _column)
             {
-                list.Append(header);
+                list = string.Join(",", header);
             }
+            list = "ガンダム";
+            list = string.Join(",", "ザク");
+            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(list);
             var _data = _downloader.Get_Inqury();
-            return Content(list.ToString(), "text/csv", Encoding.GetEncoding("Shift_JIS"));
+            return File(result, "text/csv", "test.csv");
         }
     }
 }
