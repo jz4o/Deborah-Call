@@ -352,12 +352,11 @@ namespace InquryController
 
         public IActionResult Export(Search_param _params)
         {
-            string list = "";
             Downloader _downloader = new Downloader(this._context);
-            var _column = _downloader.Get_Column();
-            foreach (var header in _column)
+            var column = _downloader.Get_Column();
+            foreach(var v in column)
             {
-                list = string.Join(",", header);
+                Console.WriteLine(v);
             }
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var _data = _downloader.Get_Inqury();

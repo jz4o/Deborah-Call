@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -22,9 +23,16 @@ namespace Deborah_Downloder
 
         public IQueryable Get_Column()
         {
-            var _result = this._context.Mst_Download
-                                .OrderBy(x => x.Order_No)
-                                .OrderBy(x => x.Id);
+            var _result = from dwn in this._context.Mst_Download
+                            orderby dwn.Order_No
+                            orderby dwn.Id
+                            select new Mst_Download
+                            {
+                                Id = dwn.Id,
+                                Column_Name = dwn.Column_Name,
+                                Set_Inqury = dwn.Set_Inqury,
+                                Set_Format = dwn.Set_Format
+                            };
             return _result;
         }
 
@@ -61,20 +69,11 @@ namespace Deborah_Downloder
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
-            string list = "";
-            var csv = _result.ToArray();
-            foreach(var item in csv)
+            StringBuilder list = new StringBuilder("");
+            foreach(var item in _result)
             {
-                if (list.Count() == 0)
-                {
-                    list = list + item.System_Name;
-                }
-                else
-                {
-                    list = list + "," + item.System_Name;
-                }
             }
-            return list;
+            return list.ToString();
         }
     }
     public class Download_List
