@@ -353,10 +353,13 @@ namespace InquryController
         public IActionResult Export(Search_param _params)
         {
             Downloader _downloader = new Downloader(this._context);
-            var column = _downloader.Get_Column();
-            foreach(var v in column)
+            //var _data = _downloader.Get_Column();
+            var header = this._context.Mst_Download
+                            .OrderBy(x => x.Order_No)
+                            .OrderBy(x => x.Id);
+            foreach(var v in header)
             {
-                Console.WriteLine(v);
+                Console.WriteLine(v.Column_Name);
             }
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var _data = _downloader.Get_Inqury();

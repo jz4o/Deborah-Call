@@ -21,21 +21,6 @@ namespace Deborah_Downloder
             this._context = context;
         }
 
-        public IQueryable Get_Column()
-        {
-            var _result = from dwn in this._context.Mst_Download
-                            orderby dwn.Order_No
-                            orderby dwn.Id
-                            select new Mst_Download
-                            {
-                                Id = dwn.Id,
-                                Column_Name = dwn.Column_Name,
-                                Set_Inqury = dwn.Set_Inqury,
-                                Set_Format = dwn.Set_Format
-                            };
-            return _result;
-        }
-
         public string Get_Inqury()
         {
             var _result = from inq in this._context.Tra_Inqury
