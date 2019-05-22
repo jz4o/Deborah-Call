@@ -352,18 +352,19 @@ namespace InquryController
 
         public IActionResult Export(Search_param _params)
         {
+            StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
-            //var _data = _downloader.Get_Column();
             var header = this._context.Mst_Download
                             .OrderBy(x => x.Order_No)
-                            .OrderBy(x => x.Id);
+                            .OrderBy(x => x.Id).AsQueryable();
             foreach(var v in header)
             {
-                Console.WriteLine(v.Column_Name);
+                csv.Append(v.Column_Name);
             }
+            csv.Append("\r\n");
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var _data = _downloader.Get_Inqury();
-            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(_data);
+            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString());
             return File(result, "text/csv", "test.csv");
         }
     }
