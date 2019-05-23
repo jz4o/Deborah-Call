@@ -21,7 +21,7 @@ namespace Deborah_Downloder
             this._context = context;
         }
 
-        public string Get_Inqury()
+        public string Get_Inqury(IQueryable<Mst_Download> header, int _length)
         {
             var _result = from inq in this._context.Tra_Inqury
                             join usr in this._context.Mst_User
@@ -54,9 +54,32 @@ namespace Deborah_Downloder
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
+            int i = 0; //カウンタ
             StringBuilder list = new StringBuilder("");
             foreach(var item in _result)
             {
+                foreach(var clm in header)
+                {
+                    if(i >= 1)
+                    {
+                        list.Append(",");
+                    }
+                    try
+                    {
+                        list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                    }
+                    catch(NullReferenceException) //Nullの場合は、半角スぺ―スを入れる。
+                    {
+                        list.Append(" ");
+                    }
+                    finally
+                    {
+                        
+                    }
+                    i++;
+                }
+                i = 0;
+                list.Append("\r\n");
             }
             return list.ToString();
         }

@@ -352,20 +352,26 @@ namespace InquryController
 
         public IActionResult Export(Search_param _params)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする
             StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
+            //CSVのヘッダー情報を取得する。
             var header = this._context.Mst_Download
                             .OrderBy(x => x.Order_No)
                             .OrderBy(x => x.Id).AsQueryable();
+            int _length = header.Select(x => x.Column_Name).Count(); //要素数を取得する。
             foreach(var v in header)
             {
+                if(csv.Length >= 1)
+                {
+                    csv.Append(",");
+                }
                 csv.Append(v.Column_Name);
             }
             csv.Append("\r\n");
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            var _data = _downloader.Get_Inqury();
+            csv.Append(_downloader.Get_Inqury(header, _length));
             var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString());
-            return File(result, "text/csv", "test.csv");
+            return File(result, "text/csv", "inquiry.csv");
         }
     }
 }
