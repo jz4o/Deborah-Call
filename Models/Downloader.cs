@@ -60,6 +60,7 @@ namespace Deborah_Downloder
             {
                 foreach(var clm in header)
                 {
+                    //先頭列であれば、カンマは入れない。
                     if(i >= 1)
                     {
                         list.Append(",");
