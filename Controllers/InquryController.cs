@@ -370,7 +370,7 @@ namespace InquryController
             }
             csv.Append("\r\n");
             csv.Append(_downloader.Get_Inqury(header, _length));
-            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString());
+            var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString()); //文字列をバイナリ化
             return File(result, "text/csv", "inquiry.csv");
         }
     }
