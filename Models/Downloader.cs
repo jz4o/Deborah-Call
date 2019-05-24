@@ -54,7 +54,7 @@ namespace Deborah_Downloder
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
-            int i = 0; //カウンタ
+            int i = 0; //列カウンタ
             StringBuilder list = new StringBuilder("");
             foreach(var item in _result)
             {
@@ -72,9 +72,9 @@ namespace Deborah_Downloder
                     {
                         list.Append(" ");
                     }
-                    finally
+                    catch(Exception)
                     {
-                        
+                        list.Append(clm.Set_Inqury.ToString());
                     }
                     i++;
                 }
