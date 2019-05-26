@@ -67,13 +67,17 @@ namespace Deborah_Downloder
                     }
                     try
                     {
-                        list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                        Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                        if (typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString() != "")
+                        {
+                            list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                        }
+                        else
+                        {
+                            list.Append(clm.Set_Inqury);
+                        }
                     }
                     catch(NullReferenceException) //Nullの場合は、半角スぺ―スを入れる。
-                    {
-                        list.Append(" ");
-                    }
-                    catch(Exception)
                     {
                         list.Append(clm.Set_Inqury.ToString());
                     }
