@@ -79,7 +79,14 @@ namespace Deborah_Downloder
                     }
                     catch(NullReferenceException) //Nullの場合は、半角スぺ―スを入れる。
                     {
-                        list.Append(clm.Set_Inqury.ToString());
+                        if (clm.Set_Inqury == null)
+                        {
+                            list.Append(" ");
+                        }
+                        else
+                        {
+                            list.Append(clm.Set_Inqury.ToString());
+                        }
                     }
                     i++;
                 }
