@@ -54,23 +54,41 @@ namespace Deborah_Downloder
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
+            //var _search_result = Search_CsvData(_result);
             int i = 0; //列カウンタ
             StringBuilder list = new StringBuilder("");
             foreach(var item in _result)
             {
                 foreach(var clm in header)
                 {
-                    //先頭列であれば、カンマは入れない。
+                    //先頭列であれば、カンマを入れない。
                     if(i >= 1)
                     {
                         list.Append(",");
                     }
                     try
                     {
-                        Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
                         if (typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString() != "")
                         {
-                            list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                            if (clm.Set_Format != null) //Set_Forrmatにデータが入っている場合は、その形式を使用する。
+                            {
+                                list.Append(Convert.ToDateTime(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item)).ToString(clm.Set_Format));
+                            }
+                            else
+                            {
+                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                            }
+                            if (clm.Column_Name == "Staf_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
+                            {
+                                if (item.Staff_Flag)
+                                {
+                                    list.Append("発注者");
+                                }
+                                else
+                                {
+                                    list.Append("受注者");
+                                }
+                            }
                         }
                         else
                         {
@@ -85,17 +103,18 @@ namespace Deborah_Downloder
                         }
                         else
                         {
-                            list.Append(clm.Set_Inqury.ToString());
+                            list.Append(clm.Set_Inqury.ToString()); //Null以外だった場合は、Set_Inquryの内容をそのまま追加する。
                         }
                     }
-                    i++;
+                    i++; //列カウントを１つづつ増やす。
                 }
-                i = 0;
+                i = 0; //１行のCSV成形が終了後、ゼロクリア（再度１列目から開始させる）。
                 list.Append("\r\n");
             }
             return list.ToString();
         }
     }
+
     public class Download_List
     {
         public int Id { get; set; }

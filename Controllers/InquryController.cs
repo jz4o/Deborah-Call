@@ -29,6 +29,7 @@ namespace InquryController
         [Route("Inqury/Index")]
         public IActionResult Index()
         {
+            clear_session(); //検索結果Sessionを削除する。
             ViewBag.Check = false;
             var _result = from tr in this._context.Tra_Inqury
                                 join usr in this._context.Mst_User
@@ -317,6 +318,10 @@ namespace InquryController
                 ViewBag.freeword = HttpContext.Session.GetString("freeword");
             }
             ViewBag.Check = _params.Check ? true : false;
+            if (_params.Check)
+            {
+                HttpContext.Session.SetString("check", "Checked");
+            }
             IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
                                     join usr in this._context.Mst_User
                                     on  tr.Login_Id equals usr.Id
@@ -352,7 +357,7 @@ namespace InquryController
 
         public IActionResult Export(Search_param _params)
         {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする。
             StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
             //CSVのヘッダー情報を取得する。
@@ -372,6 +377,16 @@ namespace InquryController
             csv.Append(_downloader.Get_Inqury(header, _length));
             var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString()); //文字列をバイナリ化
             return File(result, "text/csv", "inquiry.csv");
+        }
+
+        //sessionに入っている値をクリアします。
+        public void clear_session()
+        {
+            HttpContext.Session.Remove("date1");
+            HttpContext.Session.Remove("date2");
+            HttpContext.Session.Remove("freeword");
+            HttpContext.Session.Remove("check");
+            return;
         }
     }
 }
