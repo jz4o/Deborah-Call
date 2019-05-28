@@ -4,7 +4,7 @@
     <h5 class="page_title">お問合せ一覧</h5>
     <div class="main">
         <div class="search_area">
-            <form method=post action="/Inqury/Search">
+            <form method="post" action="/Inqury/Search">
                 <input type="date" name="Start_day" value=@ViewBag.date1>  ～  <input type="date" name="End_day" value=@ViewBag.date2>
                 @if (ViewBag.Check)
                 {
@@ -26,7 +26,7 @@
                     <img src="../images/download.png" width=18px style="margin-right: 3px;">
                     Excel Download
                 </a>
-                <a asp-controller="Inqury" asp-action="Export" asp-route-start_day="Start_day" class="dl_c_btn">
+                <a asp-controller="Inqury" asp-action="Export" class="dl_c_btn">
                     <img src="../images/download.png" width=18px style="margin-right: 3px;">
                     CSV Download
                 </a>

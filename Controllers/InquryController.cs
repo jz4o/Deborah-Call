@@ -350,7 +350,6 @@ namespace InquryController
             return View("Index", _result);
         }
 
-        [HttpGet]
         public IActionResult Export(Search_param _params)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする
