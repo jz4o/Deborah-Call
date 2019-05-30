@@ -294,6 +294,7 @@ namespace InquryController
         [Route("Inqury/Search")]
         public IActionResult Search(Search_param _params)
         {
+            clear_session(); //Sessionのクリア
             if (_params.Start_day.ToString("yyyy") != null)
             {
                 HttpContext.Session.SetString("date1", _params.Start_day.ToString("yyyy-MM-dd"));
@@ -357,6 +358,11 @@ namespace InquryController
 
         public IActionResult Export(Search_param _params)
         {
+            // Sessionに保持している値を変数に格納する。（後にサブルーチンに渡します）
+            var check = HttpContext.Session.GetString("check");
+            var date1 = Convert.ToDateTime(HttpContext.Session.GetString("date1"));
+            var date2 = Convert.ToDateTime(HttpContext.Session.GetString("date2"));
+            var word = HttpContext.Session.GetString("freeword");
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする。
             StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
@@ -374,7 +380,7 @@ namespace InquryController
                 csv.Append(v.Column_Name);
             }
             csv.Append("\r\n");
-            csv.Append(_downloader.Get_Inqury(header, _length));
+            csv.Append(_downloader.Get_Inqury(header, _length, date1, date2, check, word));
             var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString()); //文字列をバイナリ化
             return File(result, "text/csv", "inquiry.csv");
         }

@@ -21,7 +21,7 @@ namespace Deborah_Downloder
             this._context = context;
         }
 
-        public string Get_Inqury(IQueryable<Mst_Download> header, int _length)
+        public string Get_Inqury(IQueryable<Mst_Download> header, int _length, DateTime date1, DateTime date2, string check="", string word="")
         {
             var _result = from inq in this._context.Tra_Inqury
                             join usr in this._context.Mst_User
@@ -54,7 +54,18 @@ namespace Deborah_Downloder
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
-            //var _search_result = Search_CsvData(_result);
+            _result = check=="Checked" ? _result.Where(x => x.Complate_Flag == false) : _result;
+            _result = date1.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day >= date1);
+            _result = date2.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day <= date2);
+            if (word != null)
+            {
+                _result = _result.Where(x => x.Inqury.Contains(word)
+                                                || x.Answer.Contains(word)
+                                                || x.Company_Name.Contains(word)
+                                                || x.Tan_Name.Contains(word)
+                                                || x.Tel_No.Contains(word)
+                                        );
+            }
             int i = 0; //列カウンタ
             StringBuilder list = new StringBuilder("");
             foreach(var item in _result)
@@ -108,7 +119,7 @@ namespace Deborah_Downloder
                     }
                     i++; //列カウントを１つづつ増やす。
                 }
-                i = 0; //１行のCSV成形が終了後、ゼロクリア（再度１列目から開始させる）。
+                i = 0; //１行のCSV成形が終了後、ゼロクリアする（再度１列目から開始させる）
                 list.Append("\r\n");
             }
             return list.ToString();
