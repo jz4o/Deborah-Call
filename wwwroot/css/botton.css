@@ -234,3 +234,19 @@ for details on configuring this project to bundle and minify static web assets. 
   color: white;
   border-radius: 3px;
 }
+
+.next {
+  text-decoration: none;
+  color: white;
+  width: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 60px;
+  background-color: #7b8d42;
+}
+.next:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  background-color: #0068b7;
+}

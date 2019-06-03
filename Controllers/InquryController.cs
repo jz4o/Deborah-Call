@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
 using Deborah_Downloder;
+using Pagenations;
 
 
 namespace InquryController
@@ -27,7 +28,7 @@ namespace InquryController
         
         [AuthorizationFilter]
         [Route("Inqury/Index")]
-        public IActionResult Index()
+        public IActionResult Index(int last_page, string actions)
         {
             clear_session(); //検索結果Sessionを削除する。
             ViewBag.Check = false;
@@ -49,6 +50,7 @@ namespace InquryController
                                     Staff_Flag = tr.Staff_Flag,
                                     Complate_Flag = tr.Complate_Flag
                                 };
+            Pagenation pages = new Pagenation(_result);
             return View(_result);
         }
         
