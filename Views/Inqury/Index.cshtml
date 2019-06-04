@@ -79,8 +79,8 @@
             }
         </table>
         <div class="pager">
-            <a href="#" class="next">PREV</a>
-            <a href="#" class="next">NEXT</a>
+            <a asp-controller="Inqury" asp-asp-action="Index" class="next" asp-route-actions="prev" asp-route-last_page=@ViewBag.max_id>PREV</a>
+            <a asp-controller="Inqury" asp-action="Index" class="next" asp-route-actions="next" asp-route-last_page=@ViewBag.max_id>NEXT</a>
         </div>
     </div>
 </div>

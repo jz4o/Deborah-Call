@@ -36,6 +36,11 @@ namespace Pagenations
             }
             return separate_page;
         }
+        public IQueryable<MyList> Start_List()
+        {
+            IQueryable<MyList> _r = this._inqury.Where(x => x.Id <= this._page_size);
+            return _r;
+        }
         public IQueryable<MyList> Next(int _last_number)
         {
             IQueryable<MyList> _r = this._inqury.Where(x => x.Id > _last_number && x.Id <= (_last_number + this._page_size + 1));
