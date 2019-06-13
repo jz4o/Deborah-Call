@@ -52,18 +52,7 @@ namespace InquryController
                                 };
             //ページネーション処理
             Pagenation pages = new Pagenation(_result);
-            if (actions == "")
-            {
-                _result = pages.Start_List();
-            }
-            else if (actions == "next")
-            {
-                _result = pages.Next(last_page);
-            }
-            else if (actions == "prev")
-            {
-                _result = pages.Prev(last_page);
-            }
+            
             //ここでnullになり、エラーになる。
             //検索機能でも使うため、１つんもメソッドにまとめておく必要あり。
             ViewBag.max_id = Convert.ToInt32(_result.Max(x => x.Id)); 

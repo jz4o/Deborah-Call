@@ -51,5 +51,25 @@ namespace Pagenations
             IQueryable<MyList> _r = this._inqury.Where(x => x.Id < _last_number && x.Id <= (_last_number - this._page_size + 1));
             return _r;
         }
+
+        public IQueryable<MyList> pagenation_action(string actions, int last_page)
+            if (last_page <= this._page_size)
+            {
+                
+            }
+            if (actions == "")
+            {
+                _result = this._inqury.Start_List();
+            }
+            else if (actions == "next")
+            {
+                _result = this._inqury.Next(last_page);
+            }
+            else if (actions == "prev")
+            {
+                _result = this._inqury.Prev(last_page);
+            }
+            return _result;
+        }
     }
 }
