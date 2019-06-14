@@ -28,7 +28,7 @@ namespace InquryController
         
         [AuthorizationFilter]
         [Route("Inqury/Index")]
-        public IActionResult Index(int last_page=0, string actions="")
+        public IActionResult Index(int last_page=1, string actions="")
         {
             clear_session(); //検索結果Sessionを削除する。
             ViewBag.Check = false;
@@ -52,13 +52,12 @@ namespace InquryController
                                 };
             //ページネーション処理
             Pagenation pages = new Pagenation(_result);
-            
-            //ここでnullになり、エラーになる。
-            //検索機能でも使うため、１つんもメソッドにまとめておく必要あり。
-            ViewBag.max_id = Convert.ToInt32(_result.Max(x => x.Id)); 
-            return View(_result);
+            var page_result = pages.ActionSelect(actions, last_page);
+            ViewBag.max_id = Convert.ToInt32(page_result.Max(x => x.Id));
+            ViewBag.pagenation_area = pages.Pager_Area(last_page);
+            return View(page_result);
         }
-        
+
         [AuthorizationFilter]
         [Route("Inqury/Entry/{id}", Name="Entry") ]
         [HttpGet("{id}")]
@@ -391,6 +390,7 @@ namespace InquryController
             var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString()); //文字列をバイナリ化
             return File(result, "text/csv", "inquiry.csv");
         }
+
 
         //sessionに入っている値をクリアします。
         public void clear_session()

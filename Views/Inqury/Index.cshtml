@@ -79,8 +79,10 @@
             }
         </table>
         <div class="pager">
-            <a asp-controller="Inqury" asp-asp-action="Index" class="next" asp-route-actions="prev" asp-route-last_page=@ViewBag.max_id>PREV</a>
-            <a asp-controller="Inqury" asp-action="Index" class="next" asp-route-actions="next" asp-route-last_page=@ViewBag.max_id>NEXT</a>
+            @foreach (var item in ViewBag.pagenation_area)
+            {
+                <a asp-controller="Inqury" asp-asp-action="Index" class="next" asp-route-actions=@item.ToString() asp-route-last_page=@ViewBag.max_id>@item</a>
+            }
         </div>
     </div>
 </div>
