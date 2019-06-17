@@ -16,11 +16,13 @@ namespace Pagenations
     {
         private readonly IQueryable<MyList> _inqury;
         public readonly int _page_size;
+        //private readonly int _bet_separate;
 
-        public Pagenation(IQueryable<MyList> _result)
+        public Pagenation(IQueryable<MyList> _result, int size)
         {
             this._inqury = _result;
-            this._page_size = 2; //１ページあたりの表示件数
+            //this._bet_separate = 5;
+            this._page_size = size; //１ページあたりの表示件数
         }
 
         public List<int> Separate_count()
@@ -28,65 +30,25 @@ namespace Pagenations
             List<int> separate_page = new List<int>();
             int full_page = this._inqury.Count();
             int _rlt = full_page / this._page_size;
-            int _i = 0;
+            int _i = 1;
             while (_rlt > 0)
             {
-                separate_page.Append(_i);
+                separate_page.Add(_i);
                 _i++;
                 _rlt--;
             }
             return separate_page;
         }
-
-        public IQueryable<MyList> Start_List()
+        public IQueryable<MyList> Pager(int separate_now)
         {
-            IQueryable<MyList> _r = this._inqury.Where(x => x.Id <= this._page_size);
-            return _r;
-        }
-        public IQueryable<MyList> Next(int _last_number)
-        {
-            IQueryable<MyList> _r = this._inqury.Where(x => x.Id > _last_number && x.Id <= (_last_number + this._page_size + 1));
-            return _r;
-        }
-        public IQueryable<MyList> Prev(int _last_number)
-        {
-            IQueryable<MyList> _r = this._inqury.Where(x => x.Id < _last_number && x.Id <= (_last_number - this._page_size + 1));
-            return _r;
-        }
-        public IQueryable<MyList> ActionSelect(string actions, int last_page)
-        {
-            IQueryable<MyList> _result = null;
-            if (actions == "next")
-            {
-                _result = Next(last_page);
-            }
-            else if (actions == "prev")
-            {
-                _result = Prev(last_page);
-            }
-            else
-            {
-                return this._inqury;
-            }
+            var _result = this._inqury.Where(x => x.Id <= separate_now * this._page_size);
+            _result = _result.Where(x => x.Id > (separate_now * this._page_size - this._page_size));
             return _result;
         }
-        public List<string> Pager_Area(int last_page)
+        public List<int> Separate_now(int now_page)
         {
-            var _area = new List<string>();
-            var full_separate = Separate_count().Count();
-            if (last_page / this._page_size < 1)
-            {
-                if (this._inqury.Count() > this._page_size)
-                {
-                    _area.Add("Next");
-                }
-            }
-            else
-            {
-                _area.Add("Prev");
-                _area.Add("Next");
-            }
-            return _area;
+            var _list = Separate_count();
+            return _list;
         }
     }
 }

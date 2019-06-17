@@ -28,7 +28,7 @@ namespace InquryController
         
         [AuthorizationFilter]
         [Route("Inqury/Index")]
-        public IActionResult Index(int last_page=1, string actions="")
+        public IActionResult Index(int now_page=1)
         {
             clear_session(); //検索結果Sessionを削除する。
             ViewBag.Check = false;
@@ -51,11 +51,11 @@ namespace InquryController
                                     Complate_Flag = tr.Complate_Flag
                                 };
             //ページネーション処理
-            Pagenation pages = new Pagenation(_result);
-            var page_result = pages.ActionSelect(actions, last_page);
-            ViewBag.max_id = Convert.ToInt32(page_result.Max(x => x.Id));
-            ViewBag.pagenation_area = pages.Pager_Area(last_page);
-            return View(page_result);
+            Pagenation pages = new Pagenation(_result, 20);
+            var _result2 = pages.Pager(now_page);
+            ViewBag.separate = pages.Separate_now(now_page);
+            ViewBag.now_page = now_page;
+            return View(_result2);
         }
 
         [AuthorizationFilter]
