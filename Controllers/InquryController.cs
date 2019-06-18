@@ -51,7 +51,7 @@ namespace InquryController
                                     Complate_Flag = tr.Complate_Flag
                                 };
             //ページネーション処理
-            Pagenation pages = new Pagenation(_result, 2);
+            Pagenation pages = new Pagenation(_result, 20);
             var _result2 = pages.Pager(now_page);
             ViewBag.separate = pages.Separate_now(now_page);
             ViewBag.now_page = now_page;
