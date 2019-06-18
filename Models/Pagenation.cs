@@ -52,13 +52,12 @@ namespace Pagenations
             {
                 if (_list.Count() > now_page)
                 {
-                    return _list.GetRange(now_page - this._bet_separate, this._bet_separate + 1);
+                    return _list.GetRange(now_page - this._bet_separate + 1, this._bet_separate);
                 }
                 else
                 {
-                     return _list.GetRange(now_page - this._bet_separate, now_page);
+                    return _list.GetRange(now_page - this._bet_separate, this._bet_separate);
                 }
-                
             }
             else if (_list.Count() == 0)
             {
