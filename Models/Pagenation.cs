@@ -16,12 +16,12 @@ namespace Pagenations
     {
         private readonly IQueryable<MyList> _inqury;
         public readonly int _page_size;
-        //private readonly int _bet_separate;
+        private readonly int _bet_separate;
 
         public Pagenation(IQueryable<MyList> _result, int size)
         {
             this._inqury = _result;
-            //this._bet_separate = 5;
+            this._bet_separate = 5;
             this._page_size = size; //１ページあたりの表示件数
         }
 
@@ -48,6 +48,26 @@ namespace Pagenations
         public List<int> Separate_now(int now_page)
         {
             var _list = Separate_count();
+            if (now_page >= this._bet_separate)
+            {
+                if (_list.Count() > now_page)
+                {
+                    _list = _list.GetRange(now_page - this._bet_separate, now_page + 1);
+                }
+                else
+                {
+                     _list = _list.GetRange(now_page - this._bet_separate, now_page);
+                }
+                
+            }
+            else if (_list.Count() == 0)
+            {
+                return _list;
+            }
+            else
+            {
+                _list = _list.GetRange(0, this._bet_separate);
+            }
             return _list;
         }
     }
