@@ -52,11 +52,11 @@ namespace Pagenations
             {
                 if (_list.Count() > now_page)
                 {
-                    _list = _list.GetRange(now_page - this._bet_separate, now_page + 1);
+                    return _list.GetRange(now_page - this._bet_separate, this._bet_separate + 1);
                 }
                 else
                 {
-                     _list = _list.GetRange(now_page - this._bet_separate, now_page);
+                     return _list.GetRange(now_page - this._bet_separate, now_page);
                 }
                 
             }
@@ -66,9 +66,8 @@ namespace Pagenations
             }
             else
             {
-                _list = _list.GetRange(0, this._bet_separate);
+                return _list.GetRange(0, this._bet_separate);
             }
-            return _list;
         }
     }
 }
