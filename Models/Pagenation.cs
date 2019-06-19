@@ -15,13 +15,14 @@ namespace Pagenations
     public class Pagenation
     {
         private readonly IQueryable<MyList> _inqury;
+        private IQueryable<MyList> _result;
         public readonly int _page_size;
         private readonly int _bet_separate;
 
         public Pagenation(IQueryable<MyList> _result, int size)
         {
             this._inqury = _result;
-            this._bet_separate = 5;
+            this._bet_separate = 5; //ページネーションのリンクの最大表示個数
             this._page_size = size; //１ページあたりの表示件数
         }
 
@@ -45,8 +46,18 @@ namespace Pagenations
         }
         public IQueryable<MyList> Pager(int separate_now)
         {
-            var _result = this._inqury.Where(x => x.Id <= separate_now * this._page_size);
-            _result = _result.Where(x => x.Id > (separate_now * this._page_size - this._page_size));
+            //var _result = this._inqury.Where(x => x.Id <= separate_now * this._page_size);
+             if (Max_size() - (this._page_size * separate_now) < 0)
+             {
+                _result = this._inqury.Where(x => x.Id >= 1);
+                _result = this._inqury.Where(x => x.Id <= ((Max_size() - (this._page_size * separate_now)) + this._page_size));
+             }
+             else
+             {
+                _result = this._inqury.Where(x => x.Id > Max_size() - (this._page_size * separate_now));
+                _result = _result.Where(x => x.Id <= ((Max_size() - (this._page_size * separate_now)) + this._page_size));
+             }
+            //_result = _result.Where(x => x.Id > (separate_now * this._page_size - this._page_size));
             return _result;
         }
         public List<int> Separate_now(int now_page)
@@ -71,6 +82,11 @@ namespace Pagenations
             {
                 return _list.GetRange(0, _list.Count());
             }
+        }
+
+        public int Max_size()
+        {
+            return this._inqury.Max(x => x.Id);
         }
     }
 }
