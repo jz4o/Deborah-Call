@@ -30,7 +30,7 @@ namespace InquryController
         [Route("Inqury/Index")]
         public IActionResult Index(int now_page=1)
         {
-            clear_session(); //検索結果Sessionを削除する。
+            clear_session(); //検索結果Sessionを削除するぜ。
             ViewBag.Check = false;
             var _result = from tr in this._context.Tra_Inqury
                                 join usr in this._context.Mst_User
