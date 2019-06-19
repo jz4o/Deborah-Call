@@ -298,7 +298,7 @@ namespace InquryController
 
         [AuthorizationFilter]
         [Route("Inqury/Search")]
-        public IActionResult Search(Search_param _params)
+        public IActionResult Search(Search_param _params, int now_page=1)
         {
             clear_session(); //Sessionのクリア
             if (_params.Start_day.ToString("yyyy") != null)
@@ -359,7 +359,11 @@ namespace InquryController
                                                 || x.Tel_No.Contains(_params.Word)
                                         );
             }
-            return View("Index", _result);
+            Pagenation pages = new Pagenation(_result.AsQueryable(), 20);
+            var _result2 = pages.Pager(now_page);
+            ViewBag.separate = pages.Separate_now(now_page);
+            ViewBag.now_page = now_page;
+            return View("Index", _result2);
         }
 
         public IActionResult Export(Search_param _params)
