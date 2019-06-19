@@ -37,6 +37,10 @@ namespace Pagenations
                 _i++;
                 _rlt--;
             }
+            if (full_page % this._page_size > 0)
+            {
+                separate_page.Add(_i);
+            }
             return separate_page;
         }
         public IQueryable<MyList> Pager(int separate_now)
@@ -65,7 +69,7 @@ namespace Pagenations
             }
             else
             {
-                return _list.GetRange(0, this._bet_separate);
+                return _list.GetRange(0, _list.Count());
             }
         }
     }
