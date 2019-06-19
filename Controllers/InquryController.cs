@@ -296,6 +296,7 @@ namespace InquryController
             return kekka;
         }
 
+        //検索用のアクションです。検索条件はsessionに保持します。
         [AuthorizationFilter]
         [Route("Inqury/Search")]
         public IActionResult Search(Search_param _params, int now_page=1)
