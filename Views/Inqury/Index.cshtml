@@ -81,7 +81,15 @@
         <div class="pager">
             @foreach (var item in ViewBag.separate)
             {
-                <a asp-controller="Inqury" asp-asp-action="Index" class="next" asp-route-now_page=@item>@item</a>
+                @if (ViewBag.now_page == item)
+                {
+                    <a asp-controller="Inqury" asp-asp-action="Index" class="now" asp-route-now_page=@item>@item</a>
+                }
+                else
+                {
+                    <a asp-controller="Inqury" asp-asp-action="Index" class="next" asp-route-now_page=@item>@item</a>
+                }
+                
             }
         </div>
     </div>

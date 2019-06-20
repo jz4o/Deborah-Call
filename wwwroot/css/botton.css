@@ -235,18 +235,33 @@ for details on configuring this project to bundle and minify static web assets. 
   border-radius: 3px;
 }
 
+
+/*ページネーションのボタン*/
 .next {
   text-decoration: none;
   color: white;
-  width: 100px;
+  width: 50px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 60px;
-  background-color: #7b8d42;
+  border-radius: 10px;
+  background-color: #c49a6a;
 }
 .next:hover {
   text-decoration: none;
   color: white;
   font-weight: bold;
   background-color: #0068b7;
+}
+
+.now {
+  text-decoration: none;
+  color: #0068b7;
+  width: 50px;
+  padding-top: 10px;
+  border: solid 2px #0068b7;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background-color: #c49a6a;
+  pointer-events: none;
 }

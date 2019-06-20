@@ -174,13 +174,13 @@ body {
 }
 
 .pager {
-  width: 350px;
+  width: 300px;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 20px;
 }
 
