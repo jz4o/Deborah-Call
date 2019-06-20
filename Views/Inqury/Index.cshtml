@@ -3,7 +3,7 @@
 <div class="main_contents">
     <h5 class="page_title">お問合せ一覧</h5>
     <div class="main">
-        <div class="search_area">
+        <div name="search_form" class="search_area">
             <form method="post" action="/Inqury/Search">
                 <input type="date" name="Start_day" value=@ViewBag.date1>  ～  <input type="date" name="End_day" value=@ViewBag.date2>
                 @if (ViewBag.Check)
@@ -26,7 +26,14 @@
                     <img src="../images/download.png" width=18px style="margin-right: 3px;">
                     Excel Download
                 </a>
-                <a asp-controller="Inqury" asp-action="Export" class="dl_c_btn">
+                <a asp-controller="Inqury"
+                   asp-action="Export"
+                   method="get"
+                   asp-route-Start_day=@ViewBag.date1
+                   asp-route-End_day=@ViewBag.date2
+                   asp-route-Check=@ViewBag.Check
+                   asp-route-Word=@ViewBag.freeword
+                   class="dl_c_btn">
                     <img src="../images/download.png" width=18px style="margin-right: 3px;">
                     CSV Download
                 </a>
@@ -83,13 +90,27 @@
             {
                 @if (ViewBag.now_page == item)
                 {
-                    <a asp-controller="Inqury" asp-asp-action="Index" class="now" asp-route-now_page=@item>@item</a>
+                    <a asp-controller="Inqury" 
+                       asp-asp-action="Index"
+                       class="now" 
+                       asp-route-Start_day=@ViewBag.date1
+                       asp-route-End_day=@ViewBag.date2
+                       asp-route-Check=@ViewBag.Check
+                       asp-route-Word=@ViewBag.freeword
+                       asp-route-now_page=@item 
+                       asp-route-search=>@item</a>
                 }
                 else
                 {
-                    <a asp-controller="Inqury" asp-asp-action="Index" class="next" asp-route-now_page=@item>@item</a>
-                }
-                
+                    <a asp-controller="Inqury"
+                       asp-asp-action="Index"
+                       class="next"
+                       asp-route-Start_day=@ViewBag.date1
+                       asp-route-End_day=@ViewBag.date2
+                       asp-route-Check=@ViewBag.Check
+                       asp-route-Word=@ViewBag.freeword
+                       asp-route-now_page=@item>@item</a>
+                } 
             }
         </div>
     </div>

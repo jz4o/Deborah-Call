@@ -12,7 +12,7 @@ using Inqury.Models;
 using Login.Filters;
 using Deborah_Downloder;
 using Pagenations;
-
+using Search;
 
 namespace InquryController
 {
@@ -330,51 +330,28 @@ namespace InquryController
             {
                 HttpContext.Session.SetString("check", "Checked");
             }
-            IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
-                                    join usr in this._context.Mst_User
-                                    on  tr.Login_Id equals usr.Id
-                                    orderby tr.Id descending
-                                    select new MyList
-                                    {
-                                        Id = tr.Id,
-                                        Start_day = tr.Start_day,
-                                        Start_Time = tr.Start_Time,
-                                        Company_Name = tr.Company_Name,
-                                        Tel_No = tr.Tel_No,
-                                        User_Name = usr.User_Name,
-                                        Inqury = tr.Inqury,
-                                        Answer = tr.Answer,
-                                        Tan_Name = tr.Tan_Name,
-                                        Staff_Flag = tr.Staff_Flag,
-                                        Complate_Flag = tr.Complate_Flag
-                                    };
-            _result = (_params.Check) ? _result.Where(x => x.Complate_Flag == false) : _result;
-            _result = (_params.Start_day.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day >= (_params.Start_day));
-            _result = (_params.End_day.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day <= (_params.End_day));
-            if (_params.Word != null)
-            {
-                _result = _result.Where(x => x.Inqury.Contains(_params.Word)
-                                                || x.Answer.Contains(_params.Word)
-                                                || x.Company_Name.Contains(_params.Word)
-                                                || x.Tan_Name.Contains(_params.Word)
-                                                || x.Tel_No.Contains(_params.Word)
-                                        );
-            }
+            var _list = Search_Target();
+            SearchInqury _search_inqury = new SearchInqury(_list, _params.Start_day, _params.End_day, _params.Check, _params.Word);
+            var _result = _search_inqury.Search_start();
             Pagenation pages = new Pagenation(_result.AsQueryable(), 20);
             var _result2 = pages.Pager(now_page);
             ViewBag.separate = pages.Separate_now(now_page);
             ViewBag.now_page = now_page;
             return View("Index", _result2);
         }
-
+        [HttpGet]
         [AuthorizationFilter]
         public IActionResult Export(Search_param _params)
         {
             // Sessionに保持している値を変数に格納する。（後にサブルーチンに渡します）
-            var check = HttpContext.Session.GetString("check");
-            var date1 = Convert.ToDateTime(HttpContext.Session.GetString("date1"));
-            var date2 = Convert.ToDateTime(HttpContext.Session.GetString("date2"));
-            var word = HttpContext.Session.GetString("freeword");
+            var check = _params.Check;
+            var date1 = Convert.ToDateTime(_params.Start_day);
+            var date2 = Convert.ToDateTime(_params.End_day);
+            var word = _params.Word;
+            if (check)
+            {
+                Console.WriteLine("ガンダム");
+            }
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする。
             StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
@@ -406,6 +383,28 @@ namespace InquryController
             HttpContext.Session.Remove("freeword");
             HttpContext.Session.Remove("check");
             return;
+        }
+        public IEnumerable<MyList> Search_Target()
+        {
+            IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
+                                            join usr in this._context.Mst_User
+                                            on  tr.Login_Id equals usr.Id
+                                            orderby tr.Id descending
+                                            select new MyList
+                                            {
+                                                Id = tr.Id,
+                                                Start_day = tr.Start_day,
+                                                Start_Time = tr.Start_Time,
+                                                Company_Name = tr.Company_Name,
+                                                Tel_No = tr.Tel_No,
+                                                User_Name = usr.User_Name,
+                                                Inqury = tr.Inqury,
+                                                Answer = tr.Answer,
+                                                Tan_Name = tr.Tan_Name,
+                                                Staff_Flag = tr.Staff_Flag,
+                                                Complate_Flag = tr.Complate_Flag
+                                            };
+            return _result;
         }
     }
 }
