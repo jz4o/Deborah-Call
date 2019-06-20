@@ -255,13 +255,13 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .now {
   text-decoration: none;
-  color: #0068b7;
+  color: #9079b6;
   width: 50px;
   padding-top: 10px;
-  border: solid 2px #0068b7;
+  border: solid 2px #9079b6;
   font-weight: bold;
   padding-bottom: 10px;
   border-radius: 10px;
-  background-color: #c49a6a;
+  background-color: #ead7a4;
   pointer-events: none;
 }
