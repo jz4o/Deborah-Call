@@ -176,19 +176,18 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .relation_btn {
-  background-color: #9cbb1c;
+  background-color: #618e34;
   color: white;
   border: none;
   font-size: 15px;
   width: 90px;
   padding: 2px 9px;
   height: 30px;
-  box-shadow:2px 2px 2px #777;
   text-decoration: none;
 }
 
 .relation_btn:hover {
-  opacity: 0.8;
+  background-color: #0068b7;
 }
 
 
