@@ -367,6 +367,7 @@ namespace InquryController
             return View("Index", _result2);
         }
 
+        [AuthorizationFilter]
         public IActionResult Export(Search_param _params)
         {
             // Sessionに保持している値を変数に格納する。（後にサブルーチンに渡します）

@@ -86,7 +86,14 @@ namespace Pagenations
 
         public int Max_size()
         {
-            return this._inqury.Max(x => x.Id);
+            try
+            {
+                return this._inqury.Max(x => x.Id);
+            }
+            catch
+            {
+                return 0;
+            }
         }
     }
 }
