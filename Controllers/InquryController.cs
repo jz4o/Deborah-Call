@@ -348,10 +348,6 @@ namespace InquryController
             var date1 = Convert.ToDateTime(_params.Start_day);
             var date2 = Convert.ToDateTime(_params.End_day);
             var word = _params.Word;
-            if (check)
-            {
-                Console.WriteLine("ガンダム");
-            }
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); //SHIFT_JISを使えるようにする。
             StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
