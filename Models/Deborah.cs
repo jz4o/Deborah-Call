@@ -81,9 +81,13 @@ namespace Deborah.Models
         public int Type_Id { get; set; }
         public int Relation_Id { get; set; }
         public bool Staff_Flag { get; set; }
+        [Required(ErrorMessage = "この項目は必須入力です。")]
         public string Company_Name { get; set; }
+        [Required(ErrorMessage = "この項目は必須入力です。")]
         public string Tan_Name { get; set; }
+        [Required(ErrorMessage = "この項目は必須入力です。")]
         [DataType(DataType.PhoneNumber)]
+        [Phone(ErrorMessage = "電話番号として認識できません。")]
         public string Tel_No { get; set; }
         public int Login_Id { get; set; }
         [DataType(DataType.MultilineText)]
@@ -91,6 +95,7 @@ namespace Deborah.Models
         [DataType(DataType.MultilineText)]
         public string Answer { get; set; }
         public bool Complate_Flag { get; set; }
+        [Required(ErrorMessage = "この項目は必須入力です。")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Start_day { get; set; }

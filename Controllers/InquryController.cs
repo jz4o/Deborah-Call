@@ -198,8 +198,10 @@ namespace InquryController
         [Route("Inqury/Registrate")]
         public IActionResult Registrate(Tra_Inqury _param)
         {
-            //if (ModelState.IsValid)
-            //{
+            Console.WriteLine(_param.Start_Time);
+            Console.WriteLine("ガンダム");
+            if (ModelState.IsValid)
+            {
                 if (Request.Headers["Referer"].ToString().Contains("Entry"))
                 {
                     if (Del_Entry(_param.Entry_Id) == false)
@@ -211,17 +213,17 @@ namespace InquryController
                 this._context.Tra_Inqury.Add(_param);
                 this._context.SaveChanges();
                 return RedirectToAction("Index");
-            //}
-            //else
-            //{
-            //    ViewBag.system = Fetch_System();
-            //   ViewBag.com = Fetch_Communication();
-            //    ViewBag.user = Fetch_User();
-            //    ViewBag.type = Fetch_Type();
-            //    ViewBag.login = HttpContext.Session.GetString("login");
-            //    ViewBag.name = Get_User_Name();
-            //    return View("New");
-            //}
+            }
+            else
+            {
+                ViewBag.system = Fetch_System();
+                ViewBag.com = Fetch_Communication();
+                ViewBag.user = Fetch_User();
+                ViewBag.type = Fetch_Type();
+                ViewBag.login = HttpContext.Session.GetString("login");
+                ViewBag.name = Get_User_Name();
+                return View("New");
+            }
         }
 
         //システム名をディクショナリ型で生成します。
