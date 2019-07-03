@@ -53,7 +53,7 @@ namespace TopController
                                 join usr in this._context.Mst_User
                                 on ent.Hostname equals usr.Hostname into entrys
                                 from usr in entrys.DefaultIfEmpty()
-                                where (usr.Login_Id == HttpContext.Session.GetString("login") || ent.Hostname == null)
+                                where (usr.Login_Id == HttpContext.Session.GetString("login") || ent.Hostname == "" || ent.Hostname == null)
                                 where ent.Del_Flag == false
                                 orderby (ent.Id)
                                 orderby (ent.Entry_Time)
