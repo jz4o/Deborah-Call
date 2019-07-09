@@ -1,0 +1,29 @@
+@model IEnumerable<Deborah_User.User>
+
+<div class="main_contents">
+    <h5 class="page_title">ユーザ一覧</h5>
+    <br>
+    <div class="main" style="width:500px;margin:0 auto;">
+        <table class="table table-bordered table-sm table-font">
+            <tr class="heading">
+                <th style="width:40px;">ID</th>
+                <th style="width:100px;">ユーザ名</th>
+                <th style="width:50px;">操作</th>
+            </tr>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.User_Name</td>
+                    <td>
+                        <a asp-action="" asp-route-id="@user.Id" class="edit_btn">変更</a>
+                        @if (user.InquryCount < 1)
+                        {
+                            <a asp-action="" asp-route-id="@user.Id"  class="copy_btn">削除</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
