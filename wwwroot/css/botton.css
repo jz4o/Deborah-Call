@@ -263,3 +263,24 @@ for details on configuring this project to bundle and minify static web assets. 
   background-color: #f5f5f5;
   pointer-events: none;
 }
+
+.new_user_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #65ab31;
+  padding: 6px 5px;
+  font-size: 15px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  width: 120px;
+  box-shadow:2px 2px 2px #777;
+}
+
+.new_user_btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+  border-radius: 3px;
+}

@@ -11,6 +11,7 @@ namespace Deborah_User
     {
         public int Id { get; set; }
         public string User_Name { get; set; }
+        public bool DisconnectableFlag { get; set; }
         public int InquryCount { get; set; }
     }
 }

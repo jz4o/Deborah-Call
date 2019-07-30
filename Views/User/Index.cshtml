@@ -1,21 +1,32 @@
 @model IEnumerable<Deborah_User.User>
 
 <div class="main_contents">
-    <h5 class="page_title">ユーザ一覧</h5>
-    <br>
-    <div class="main" style="width:500px;margin:0 auto;">
+    <h5 class="page_title">ユーザ一覧</h5><br>
+        <div class="centering">
+            <div class="btn_line" style="padding-bottom:10px;">
+                <a asp-controller="Inqury" asp-action="New" class="new_user_btn">
+                    <img src="../images/tel.png" width=18px style="margin-right: 3px;">
+                    新規追加
+                </a>
+            </div>
+        </div>
+    <div class="main" style="width:700px;margin:0 auto;">
         <table class="table table-bordered table-sm table-font">
             <tr class="heading">
                 <th style="width:40px;">ID</th>
-                <th style="width:100px;">ユーザ名</th>
+                <th style="width:110px;">ユーザ名</th>
+                <th style="width:80px;">接続状態</th>
                 <th style="width:50px;">操作</th>
             </tr>
             @foreach (var user in Model)
             {
-                <tr>
+                <tr style="text-align:center;">
                     <td>@user.Id</td>
                     <td>@user.User_Name</td>
                     <td>
+                        @(user.DisconnectableFlag ? "Disconnected" : "Connected")
+                    </td>
+                    <td style="text-align:left;">
                         <a asp-action="" asp-route-id="@user.Id" class="edit_btn">変更</a>
                         @if (user.InquryCount < 1)
                         {

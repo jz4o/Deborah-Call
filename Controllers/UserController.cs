@@ -32,6 +32,7 @@ namespace UserController
                                 {
                                     Id = usr.Id,
                                     User_Name = usr.User_Name,
+                                    DisconnectableFlag = usr.DisconnectableFlag,
                                     InquryCount = this._context.Tra_Inqury
                                                       .Where(x => x.Login_Id == usr.Id)
                                                       .Select(x => x.Id)
