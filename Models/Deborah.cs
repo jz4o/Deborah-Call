@@ -53,6 +53,7 @@ namespace Deborah.Models
         public string Password { get; set; }
         [Required]
         public string Hostname { get; set; }
+        public bool DisconnectableFlag { get; set; }
     }
 
     public class Tra_Entry
