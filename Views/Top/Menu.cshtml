@@ -8,16 +8,17 @@
 }
 else
 {
-    <p>未登録のお問合せがあります。</p>
+    <p style="color:#dc143c;font-weight:bold;">未登録のお問合せがあります。</p>
 }
+<p>@ViewBag.warning</p>
 <table class="table table-bordered table-sm table-font" style="text-align:center;">
     <tr class="heading">
-        <th>会社名</th>
+        <th style="width:250px;">会社名</th>
         <th>担当者名</th>
-        <th>電話番号</th>
-        <th>着信時刻</th>
-        <th>終了時刻</th>
-        <th>登録</th>
+        <th style="width:150px;">電話番号</th>
+        <th style="width:170px;">着信時刻</th>
+        <th style="width:170px;">終了時刻</th>
+        <th style="width:130px;">操作</th>
     </tr>
 
     @await Html.PartialAsync("_Menu_List.cshtml")

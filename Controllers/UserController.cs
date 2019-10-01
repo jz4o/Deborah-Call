@@ -40,5 +40,29 @@ namespace UserController
                                 };
             return View(_result);
         }
+
+        [AuthorizationFilter]
+        [Route("User/New")]
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [AuthorizationFilter]
+        [Route("User/Registrate")]
+        public IActionResult Registrate(Mst_User _param)
+        {
+            if (ModelState.IsValid)
+            {
+                this._context.Mst_User.Add(_param);
+                this._context.SaveChanges();
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                ViewBag.error = "更新に失敗しました。";
+                return View("New");
+            }
+        }
     }
 }

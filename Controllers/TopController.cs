@@ -71,6 +71,25 @@ namespace TopController
             return View(_result);
         }
 
+        //迷惑電話登録アクション
+        [AuthorizationFilter]
+        [Route("Top/MissTel")]
+        public IActionResult MissTel(int id)
+        {
+            Console.WriteLine("ガンダム");
+            var _result = this._context.Tra_Entry.Where(x => x.Id == id).Where(x => x.Del_Flag == false).SingleOrDefault();
+            if (_result == null)
+            {
+                ViewBag.warnning = "既に削除されています。";
+            }
+            else
+            {  
+                _result.Del_Flag = true;
+                this._context.SaveChanges();
+            }
+            return RedirectToAction("Menu", "Top");
+        }
+
         public bool Certification(string login, string password)
         {
             var result = this._context.Mst_User.Where(r => r.Login_Id == login).Where(r => r.Password == password).ToList();

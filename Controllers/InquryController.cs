@@ -198,8 +198,6 @@ namespace InquryController
         [Route("Inqury/Registrate")]
         public IActionResult Registrate(Tra_Inqury _param)
         {
-            Console.WriteLine(_param.Start_Time);
-            Console.WriteLine("ガンダム");
             if (ModelState.IsValid)
             {
                 if (Request.Headers["Referer"].ToString().Contains("Entry"))

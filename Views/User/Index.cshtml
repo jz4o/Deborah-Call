@@ -4,7 +4,7 @@
     <h5 class="page_title">ユーザ一覧</h5><br>
         <div class="centering">
             <div class="btn_line" style="padding-bottom:10px;">
-                <a asp-controller="Inqury" asp-action="New" class="new_user_btn">
+                <a asp-controller="User" asp-action="New" class="new_user_btn">
                     <img src="../images/tel.png" width=18px style="margin-right: 3px;">
                     新規追加
                 </a>
@@ -20,11 +20,11 @@
             </tr>
             @foreach (var user in Model)
             {
-                <tr style="text-align:center;">
+                <tr class="table_back" style="text-align:center;">
                     <td>@user.Id</td>
                     <td>@user.User_Name</td>
                     <td>
-                        @(user.DisconnectableFlag ? "Disconnected" : "Connected")
+                        @(user.DisconnectableFlag ? "接続拒否" : "接続許可")
                     </td>
                     <td style="text-align:left;">
                         <a asp-action="" asp-route-id="@user.Id" class="edit_btn">変更</a>

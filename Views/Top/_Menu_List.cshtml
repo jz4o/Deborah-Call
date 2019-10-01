@@ -7,6 +7,13 @@
         <td>@data.Tel_No</td>
         <td>@data.Entry_Time</td>
         <td>@data.End_Time</td>
-        <td><a asp-route="Entry" asp-route-id="@data.Id" class="select_btn">SELECT</a></td>
+        <td>
+            <a asp-route="Entry" asp-route-id="@data.Id" class="select_btn">登録</a>　
+            <a asp-controller="Top" 
+               asp-action="MissTel" 
+               asp-route-id="@data.Id"
+               class="select_btn" 
+               onclick="return window.confirm('削除してもよろしいですか？');">迷惑</a>
+        </td>
     </tr>
 }
