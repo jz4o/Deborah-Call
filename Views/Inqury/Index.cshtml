@@ -5,7 +5,7 @@
     <div class="main">
         <div name="search_form" class="search_area">
             <form method="post" action="/Inqury/Search">
-                <input type="date" name="Start_day" value=@ViewBag.date1>  ～  <input type="date" name="End_day" value=@ViewBag.date2>
+                <input type="date" id="flatpickr" style="width:120px;" name="Start_day" value=@ViewBag.date1>  ～  <input type="date" id="flatpickr" style="width:120px;" name="End_day" value=@ViewBag.date2>
                 @if (ViewBag.Check)
                 {
                     <input type="checkbox" name="Check" value=true checked>

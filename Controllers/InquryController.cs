@@ -53,7 +53,16 @@ namespace InquryController
             //ページネーション処理
             Pagenation pages = new Pagenation(_result, 20);
             var _result2 = pages.Pager(now_page);
-            ViewBag.separate = pages.Separate_now(now_page);
+            //_srにはページネーションをどこまで出すかをLIST<int>で渡している。
+            var _sr = pages.Separate_now(now_page);
+            if (_sr.Count() <= 1)  //１件未満の場合はViewでは非表示にする。
+            {
+                ViewBag.separate = new List<int>();
+            }
+            else
+            {
+                ViewBag.separate = _sr;
+            }
             ViewBag.now_page = now_page;
             return View(_result2);
         }

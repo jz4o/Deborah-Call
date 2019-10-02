@@ -17,6 +17,10 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/botton.css" />
+    <link rel="stylesheet" href="~/css/flatpickr.min.css" />
+    <link rel="stylesheet" href="~/css/material_orange.css" />
+    <script src="~/js/flatpickr.js"></script>
+    <script src="~/js/ja.js"></script>
 </head>
 <body>
     <header>
@@ -83,5 +87,13 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+
+    <script>
+        flatpickr("#flatpickr", {
+            locale:"ja",
+            dateFormat: "Y/m/d"
+        });
+    </script>
+
 </body>
 </html>
