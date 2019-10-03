@@ -96,8 +96,6 @@ namespace UserController
         [Route("User/Update")]
         public IActionResult Update(Mst_User _params)
         {
-            Console.WriteLine(_params.Id);
-            Console.WriteLine("ガンダム");
             var _r = this._context.Mst_User.SingleOrDefault(x => x.Id == _params.Id);
             if (ModelState.IsValid)
             {

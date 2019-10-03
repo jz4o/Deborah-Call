@@ -1,0 +1,36 @@
+@model IEnumerable<Deborah.Models.Mst_System>
+
+<div class="main_contents">
+    <h5 class="page_title">システム一覧</h5><br>
+        <div class="centering">
+            <div class="btn_line" style="padding-bottom:10px;">
+                <a asp-controller="System" asp-action="New" class="new_user_btn">
+                    <img src="../images/new.png" width=18px style="margin-right: 3px;">
+                    新規追加
+                </a>
+            </div>
+        </div>
+    <div class="main" style="width:700px;margin:0 auto;">
+        <table class="table table-bordered table-sm table-font">
+            <tr class="heading">
+                <th style="width:40px;">ID</th>
+                <th style="width:200px;">システム名</th>
+                <th style="width:50px;">操作</th>
+            </tr>
+            @foreach (var sys in Model)
+            {
+                <tr class="table_back" style="text-align:center;">
+                    <td>@sys.Id</td>
+                    <td>@sys.System_name</td>
+                    <td style="text-align:left;">
+                        <a asp-action="Edit" asp-route-id="@sys.Id" class="edit_btn">変更</a>
+                        <a asp-action="Destroy"
+                            asp-route-id="@sys.Id"
+                            class="copy_btn"
+                            onclick="return window.confirm('削除してもよろしいですか？');">削除</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

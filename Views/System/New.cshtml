@@ -1,0 +1,24 @@
+@model Deborah.Models.Mst_System;
+
+<h5 class="page_title">システム新規登録</h5>
+<br>
+<form method=post action="/System/Registrate">
+    <table class="new_form">
+        <tr class="new_row">
+            <th class="new_title">システム名</th>
+            <td>
+                <span asp-validation-for="System_name" class="text-danger"></span>
+                <input type="text" asp-for="System_name" asp-validation-for="System_name" size=50 required>
+            </td>
+        </tr>
+    </table><br>
+
+    <button type="submit" class="submit_btn">
+        <img src="../images/touroku.png" width=22px style="margin-right: 3px;">
+        登録
+    </button>
+</form>
+<a asp-controller="System" asp-action="Index" class="bk_btn">
+    <img src="../images/back.png" width=22px style="margin-right: 3px;">
+        戻る
+</a>

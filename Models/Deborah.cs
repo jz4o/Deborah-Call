@@ -9,7 +9,7 @@ namespace Deborah.Models
         [Key]
         public int Id {  get; set; }
         [Required]
-        [StringLength(30)]
+        [StringLength(20, ErrorMessage = "20文字以内で登録してください。")]
         public string System_name { get; set; }
     }
 

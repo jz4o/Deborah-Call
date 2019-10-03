@@ -1,0 +1,30 @@
+@model Deborah.Models.Mst_System;
+
+<h5 class="page_title">システム更新</h5>
+<br>
+<form method=post action="/System/Update">
+    <table class="new_form">
+        <tr class="new_row">
+            <th class="new_title">ID</th>
+            <td>
+                <input type="text" asp-for="Id" size=30 readonly=true>
+                　※更新不可能
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">システム名</th>
+            <td>
+                <span asp-validation-for="System_name" class="text-danger"></span>
+                <input type="text" asp-for="System_name" asp-validation-for="System_name" size=50 required>
+            </td>
+        </tr>
+    </table><br>
+    <button type="submit" class="submit_btn">
+        <img src="../images/edit.png" width=22px style="margin-right: 3px;">
+        更新
+    </button>
+</form>
+<a asp-controller="System" asp-action="Index" class="bk_btn">
+    <img src="../images/back.png" width=22px style="margin-right: 3px;">
+        戻る
+</a>
