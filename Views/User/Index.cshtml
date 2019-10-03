@@ -27,7 +27,7 @@
                         @(user.DisconnectableFlag ? "接続拒否" : "接続許可")
                     </td>
                     <td style="text-align:left;">
-                        <a asp-action="" asp-route-id="@user.Id" class="edit_btn">変更</a>
+                        <a asp-action="Edit" asp-route-id="@user.Id" class="edit_btn">変更</a>
                         @if (user.InquryCount < 1)
                         {
                             <a asp-action="Destroy"

@@ -54,14 +54,7 @@ namespace UserController
         {
             var _result = this._context.Mst_User.Single(x => x.Id == id);
             //ログインユーザ以外のパスワード等を変更できないようにする。
-            if (_result.Login_Id != HttpContext.Session.GetString("login")) 
-            {
-                ViewBag.yourself = true;
-            }
-            else
-            {
-                ViewBag.yourself = false;
-            }
+            ViewBag.yourself = YourSelf_Check(_result.Login_Id);
             return View(_result);
         }
 
@@ -97,6 +90,41 @@ namespace UserController
             {
                 ViewBag.error = "更新に失敗しました。";
                 return View("New");
+            }
+        }
+        [AuthorizationFilter]
+        [Route("User/Update")]
+        public IActionResult Update(Mst_User _params)
+        {
+            Console.WriteLine(_params.Id);
+            Console.WriteLine("ガンダム");
+            var _r = this._context.Mst_User.SingleOrDefault(x => x.Id == _params.Id);
+            if (ModelState.IsValid)
+            {
+                _r.Password = _params.Password;
+                _r.User_Name = _params.User_Name;
+                _r.Hostname = _params.Hostname;
+                this._context.SaveChanges();
+            }
+            else
+            {
+                var _result = this._context.Mst_User.Single(x => x.Id == _params.Id);
+                //ログインユーザ以外のパスワード等を変更できないようにする。
+                ViewBag.yourself = YourSelf_Check(_result.Login_Id);
+                return View("Edit", _result);
+            }
+            return RedirectToAction("Index", "User");
+        }
+
+        private bool YourSelf_Check(string _login_id)
+        {
+            if (_login_id != HttpContext.Session.GetString("login")) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
