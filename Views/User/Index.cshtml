@@ -30,7 +30,10 @@
                         <a asp-action="" asp-route-id="@user.Id" class="edit_btn">変更</a>
                         @if (user.InquryCount < 1)
                         {
-                            <a asp-action="" asp-route-id="@user.Id"  class="copy_btn">削除</a>
+                            <a asp-action="Destroy"
+                               asp-route-id="@user.Id"
+                               class="copy_btn"
+                               onclick="return window.confirm('削除してもよろしいですか？');">削除</a>
                         }
                     </td>
                 </tr>

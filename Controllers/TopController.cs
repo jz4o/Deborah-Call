@@ -76,7 +76,6 @@ namespace TopController
         [Route("Top/MissTel")]
         public IActionResult MissTel(int id)
         {
-            Console.WriteLine("ガンダム");
             var _result = this._context.Tra_Entry.Where(x => x.Id == id).Where(x => x.Del_Flag == false).SingleOrDefault();
             if (_result == null)
             {

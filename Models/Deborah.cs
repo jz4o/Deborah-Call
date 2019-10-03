@@ -44,12 +44,14 @@ namespace Deborah.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        [StringLength(10)]
+        [Key]
+        [StringLength(10, ErrorMessage = "3文字以上、10文字以内です。", MinimumLength = 3)]
+        [RegularExpression(@"[a-zA-Z0-9]+", ErrorMessage = "半角英数字のみ入力できます。")]
         public string Login_Id {get; set;}
-        [Required]
+        [StringLength(10, ErrorMessage = "10文字以内です。", MinimumLength = 1)]
         public string User_Name { get; set; }
         [Required]
+        [StringLength(12, ErrorMessage = "Passwordは5文字以上、12文字以内です。", MinimumLength = 5)]
         public string Password { get; set; }
         [Required]
         public string Hostname { get; set; }

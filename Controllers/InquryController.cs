@@ -118,22 +118,36 @@ namespace InquryController
         public IActionResult Update(Tra_Inqury _params)
         {
             var _target = this._context.Tra_Inqury.Single(x => x.Id == _params.Id);
-            _target.Inqury = _params.Inqury;
-            _target.Login_Id = _params.Login_Id;
-            _target.Relation_Id = _params.Relation_Id;
-            _target.Staff_Flag = _params.Staff_Flag;
-            _target.Start_Time = _params.Start_Time;
-            _target.Start_day = _params.Start_day;
-            _target.System_Id = _params.System_Id;
-            _target.Tan_Name = _params.Tan_Name;
-            _target.Tel_No = _params.Tel_No;
-            _target.Type_Id = _params.Type_Id;
-            _target.Answer = _params.Answer;
-            _target.Com_Id = _params.Com_Id;
-            _target.Company_Name = _params.Company_Name;
-            _target.Complate_Flag = _params.Complate_Flag;
-            _target.Fin_Time = _params.Fin_Time;
-            this._context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _target.Inqury = _params.Inqury;
+                _target.Login_Id = _params.Login_Id;
+                _target.Relation_Id = _params.Relation_Id;
+                _target.Staff_Flag = _params.Staff_Flag;
+                _target.Start_Time = _params.Start_Time;
+                _target.Start_day = _params.Start_day;
+                _target.System_Id = _params.System_Id;
+                _target.Tan_Name = _params.Tan_Name;
+                _target.Tel_No = _params.Tel_No;
+                _target.Type_Id = _params.Type_Id;
+                _target.Answer = _params.Answer;
+                _target.Com_Id = _params.Com_Id;
+                _target.Company_Name = _params.Company_Name;
+                _target.Complate_Flag = _params.Complate_Flag;
+                _target.Fin_Time = _params.Fin_Time;
+                this._context.SaveChanges();
+            }
+            else
+            {
+                ViewBag.system = Fetch_System();
+                ViewBag.com = Fetch_Communication();
+                ViewBag.user = Fetch_User();
+                ViewBag.type = Fetch_Type();
+                ViewBag.login = HttpContext.Session.GetString("login");
+                ViewBag.name = Get_User_Name();
+                var _result = this._context.Tra_Inqury.Where(x => x.Id == _params.Id).First();
+                return View("Edit", _result);
+            }
             return RedirectToAction("Index", "Inqury");
         }
 
@@ -344,7 +358,16 @@ namespace InquryController
             var _result = _search_inqury.Search_start();
             Pagenation pages = new Pagenation(_result.AsQueryable(), 20);
             var _result2 = pages.Pager(now_page);
-            ViewBag.separate = pages.Separate_now(now_page);
+            //_srにはページネーションをどこまで出すかをLIST<int>で渡している。
+            var _sr = pages.Separate_now(now_page);
+            if (_sr.Count() <= 1)  //１件未満の場合はViewでは非表示にする。
+            {
+                ViewBag.separate = new List<int>();
+            }
+            else
+            {
+                ViewBag.separate = _sr;
+            }
             ViewBag.now_page = now_page;
             return View("Index", _result2);
         }

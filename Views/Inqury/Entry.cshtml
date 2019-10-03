@@ -58,6 +58,7 @@
         <tr class="new_row">
             <th class="new_title">電話番号</th>
             <td>
+                <span asp-validation-for="Tel_No" class="text-danger"></span><br>
                 <input type="text" name="Tel_No" value=@Model.Tel_No size=50 required>
             </td>
         </tr>

@@ -49,6 +49,41 @@ namespace UserController
         }
 
         [AuthorizationFilter]
+        [Route("User/Edit")]
+        public IActionResult Edit(int id)
+        {
+            var _result = this._context.Mst_User.Single(x => x.Id == id);
+            //ログインユーザ以外のパスワード等を変更できないようにする。
+            if (_result.Login_Id != HttpContext.Session.GetString("login")) 
+            {
+                ViewBag.yourself = true;
+            }
+            else
+            {
+                ViewBag.yourself = false;
+            }
+            return View(_result);
+        }
+
+        [AuthorizationFilter]
+        [Route("User/Destory")]
+        public IActionResult Destroy(int id)
+        {
+            var _r = this._context.Tra_Inqury.Where(x => x.Login_Id == id).Count();
+            if (_r >= 1)
+            {
+                ViewBag.error = "過去に登録した問合せがあるため、削除できません。";
+            }
+            else
+            {
+                Mst_User result_user = this._context.Mst_User.Single(x => x.Id == id);
+                this._context.Remove(result_user);
+                this._context.SaveChanges();
+            }
+            return RedirectToAction("Index", "User");
+        }
+
+        [AuthorizationFilter]
         [Route("User/Registrate")]
         public IActionResult Registrate(Mst_User _param)
         {

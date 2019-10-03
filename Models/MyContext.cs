@@ -9,6 +9,13 @@ namespace Deborah.Models
         {
 
         }
+
+        //複合キー設定
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Mst_User>()
+                .HasKey(c => new {c.Id, c.Login_Id});
+        }
         public DbSet<Mst_System> Mst_System { get; set; }
         public DbSet<Mst_Status> Mst_Status { get; set; }
         public DbSet<Mst_Communication> Mst_Communication { get; set; }

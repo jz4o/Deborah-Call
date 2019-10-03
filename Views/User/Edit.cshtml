@@ -1,6 +1,6 @@
 @model Deborah.Models.Mst_User;
 
-<h5 class="page_title">ユーザ新規登録</h5>
+<h5 class="page_title">ユーザ編集</h5>
 <br>
 <form method=post action="/User/Registrate">
     <table class="new_form">
@@ -8,27 +8,27 @@
             <th class="new_title">ユーザ名</th>
             <td>
                 <span asp-validation-for="User_Name" class="text-danger"></span><br>
-                <input type="text" asp-for="User_Name" asp-validation-for="User_Name" size=50 required>
+                <input type="text" asp-for="User_Name" asp-validation-for="User_Name" size=50 readonly=@ViewBag.yourself required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">ホスト名</th>
             <td>
-                <input type="text" asp-for="Hostname" asp-validation-for="Hostname" size=50 required>
+                <input type="text" asp-for="Hostname" asp-validation-for="Hostname" size=50 readonly=@ViewBag.yourself required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">ログインID</th>
             <td>
                 <span asp-validation-for="Login_Id" class="text-danger"></span><br>
-                <input type="text" asp-for="Login_Id" asp-validation-for="Login_Id" size=50 required>
+                <input type="text" asp-for="Login_Id" asp-validation-for="Login_Id" size=50 readonly=true required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">パスワード</th>
             <td>
                 <span asp-validation-for="Password" class="text-danger"></span><br>
-                <input type="password" asp-for="Password" asp-validation-for="Password" size=50 required>
+                <input type="password" asp-for="Password" asp-validation-for="Password" size=50 readonly=@ViewBag.yourself required>
             </td>
         </tr>
     </table><br>
