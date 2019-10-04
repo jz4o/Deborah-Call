@@ -10,6 +10,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
+using OfficeOpenXml;
 using Deborah_Downloder;
 using Pagenations;
 using Search;
@@ -376,7 +377,7 @@ namespace InquryController
         }
         [HttpGet]
         [AuthorizationFilter]
-        public IActionResult Export(Search_param _params)
+        public IActionResult Export(Search_param _params, bool excel=false)
         {
             // Sessionに保持している値を変数に格納する。（後にサブルーチンに渡します）
             var check = _params.Check;
@@ -401,6 +402,13 @@ namespace InquryController
             }
             csv.Append("\r\n");
             csv.Append(_downloader.Get_Inqury(header, _length, date1, date2, check, word));
+            if (excel)  //Excelのダウンロードの際に使用する。
+            {
+                //Excelファイル名定義
+                String file_name = String.Format(@"問合せ表（{0}）", DateTime.Today.ToString("M月dd日"));
+                byte[] excel_file = _downloader.Create_Excel(file_name, csv);
+                return File(excel_file, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", file_name + ".xlsx");
+            }
             var result = Encoding.GetEncoding("Shift_JIS").GetBytes(csv.ToString()); //文字列をバイナリ化
             return File(result, "text/csv", "inquiry.csv");
         }
@@ -415,6 +423,7 @@ namespace InquryController
             HttpContext.Session.Remove("check");
             return;
         }
+
         public IEnumerable<MyList> Search_Target()
         {
             IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury

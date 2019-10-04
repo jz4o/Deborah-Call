@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,8 @@ using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace Deborah_Downloder
 {
@@ -135,6 +138,35 @@ namespace Deborah_Downloder
                 list.Append("\r\n");
             }
             return list.ToString();
+        }
+
+        public byte[] Create_Excel(string file_name, StringBuilder csv)
+        {
+            var output_file = new FileInfo(file_name);
+            var excel = new ExcelPackage(output_file);
+            var sheet = excel.Workbook.Worksheets.Add(file_name);
+            CreateFile(sheet, csv);
+            return excel.GetAsByteArray();
+        }
+        public void CreateFile(ExcelWorksheet sheet, StringBuilder csv)
+        {
+            string[] del = {"\r\n"};
+            //int cnt = 0;
+            int _x = 1; //行
+            int _y = 5; //列
+            var csv_split_rn = csv.ToString().Split(del, StringSplitOptions.None).ToList();
+            foreach (var clm in csv_split_rn) //改行で区切ってLIST化する。
+            {
+                var csv_split_kanma = clm.Split(",").ToList();　//更にLIST化する。（カンマで）
+                //cnt = csv_split_kanma.Count(); //要素数を取得
+                foreach (var val in csv_split_kanma)
+                {
+                    var cell = sheet.Cells[_x, _y];
+                    cell.Value = val;
+                    _x++;
+                }
+                _y++;
+            }
         }
     }
 

@@ -22,8 +22,16 @@
 
         <div class="centering">
             <div class="btn_line">
-                <a asp-controller="Inqury" asp-action="Download" class="dl_e_btn">
-                    <img src="../images/download.png" width=18px style="margin-right: 3px;">
+                <a asp-controller="Inqury"
+                   asp-action="Export"
+                   method="get"
+                   asp-route-Start_day=@ViewBag.date1
+                   asp-route-End_day=@ViewBag.date2
+                   asp-route-Check=@ViewBag.Check
+                   asp-route-Word=@ViewBag.freeword
+                   asp-route-Excel=true
+                   class="dl_e_btn">
+                   <img src="../images/download.png" width=18px style="margin-right: 3px;">
                     Excel Download
                 </a>
                 <a asp-controller="Inqury"
