@@ -50,11 +50,12 @@ namespace Deborah_Downloder
                                 Inqury = inq.Inqury,
                                 Answer = inq.Answer,
                                 Complate_Flag = inq.Complate_Flag,
+                                Check_Flag = inq.Check_Flag,
                                 Start_day = inq.Start_day,
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
                             };
-            _result = check ? _result.Where(x => x.Complate_Flag == false) : _result;
+            _result = check ? _result.Where(x => x.Check_Flag == false) : _result;
             _result = date1.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day >= date1);
             _result = date2.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day <= date2);
             if (word != null)
@@ -81,7 +82,7 @@ namespace Deborah_Downloder
                     {
                         if (typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString() != "")
                         {
-                            if (clm.Set_Format != null) //Set_Forrmatにデータが入っている場合は、その形式を使用する。
+                            if (clm.Set_Format != null) //Set_Formatにデータが入っている場合は、その形式を使用する。
                             {
                                 list.Append(Convert.ToDateTime(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item)).ToString(clm.Set_Format));
                             }
@@ -98,6 +99,17 @@ namespace Deborah_Downloder
                                 else
                                 {
                                     list.Append("受注者");
+                                }
+                            }
+                            if (clm.Column_Name == "Complate_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
+                            {
+                                if (item.Complate_Flag)
+                                {
+                                    list.Append("完了");
+                                }
+                                else
+                                {
+                                    list.Append("未完了");
                                 }
                             }
                         }
@@ -141,6 +153,7 @@ namespace Deborah_Downloder
         public string Inqury { get; set; }
         public string Answer { get; set; }
         public bool Complate_Flag { get; set; }
+        public bool Check_Flag { get; set; }
         public DateTime Start_day { get; set; }
         public DateTime Start_Time { get; set; }
         public DateTime Fin_Time { get; set; }

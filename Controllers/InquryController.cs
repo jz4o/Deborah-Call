@@ -48,7 +48,8 @@ namespace InquryController
                                     Answer = tr.Answer,
                                     Tan_Name = tr.Tan_Name,
                                     Staff_Flag = tr.Staff_Flag,
-                                    Complate_Flag = tr.Complate_Flag
+                                    Complate_Flag = tr.Complate_Flag,
+                                    Check_Flag = tr.Check_Flag
                                 };
             //ページネーション処理
             Pagenation pages = new Pagenation(_result, 20);
@@ -135,6 +136,7 @@ namespace InquryController
                 _target.Company_Name = _params.Company_Name;
                 _target.Complate_Flag = _params.Complate_Flag;
                 _target.Fin_Time = _params.Fin_Time;
+                _target.Check_Flag = _params.Check_Flag;
                 this._context.SaveChanges();
             }
             else
@@ -181,6 +183,7 @@ namespace InquryController
                                 Inqury = inq.Inqury,
                                 Answer = inq.Answer,
                                 Complate_Flag = inq.Complate_Flag,
+                                Check_Flag = inq.Check_Flag,
                                 Start_day = inq.Start_day,
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time
@@ -194,10 +197,10 @@ namespace InquryController
         {
             var _result = this._context.Tra_Inqury
                             .Where(x => x.Id == id)
-                            .Where(x => x.Complate_Flag == false).First();
+                            .Where(x => x.Check_Flag == false).First();
             if (_result.Id == id)
             {
-                _result.Complate_Flag = true;
+                _result.Check_Flag = true;
                 this._context.SaveChanges();
             }
             return RedirectToAction("Index", "Inqury");
@@ -430,7 +433,8 @@ namespace InquryController
                                                 Answer = tr.Answer,
                                                 Tan_Name = tr.Tan_Name,
                                                 Staff_Flag = tr.Staff_Flag,
-                                                Complate_Flag = tr.Complate_Flag
+                                                Complate_Flag = tr.Complate_Flag,
+                                                Check_Flag = tr.Check_Flag
                                             };
             return _result;
         }

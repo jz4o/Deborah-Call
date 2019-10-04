@@ -32,7 +32,7 @@ namespace Search
         public IEnumerable<MyList> Search_start()
         {
             IEnumerable<MyList> _result = this._inqury;
-            _result = (this._check) ? _result.Where(x => x.Complate_Flag == false) : _result;
+            _result = (this._check) ? _result.Where(x => x.Check_Flag == false) : _result;
             _result = (this._date1.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day >= (this._date1));
             _result = (this._date2.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day <= (this._date2));
             if (this._word != null)

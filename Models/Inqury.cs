@@ -17,6 +17,7 @@ namespace Inqury.Models
         public string Answer { get; set; }
         public bool Staff_Flag { get; set; }
         public bool Complate_Flag { get; set; }
+        public bool Check_Flag { get; set; }
     }
 
     public class Entry
@@ -37,6 +38,7 @@ namespace Inqury.Models
         public string Type_Name { get; set; }
         public int Relation_Id { get; set; }
         public bool Staff_Flag { get; set; }
+        public bool Check_Flag { get; set; }
         public string Company_Name { get; set; }
         public string Tan_Name { get; set; }
         public string Tel_No { get; set; }

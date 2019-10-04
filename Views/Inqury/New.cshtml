@@ -107,6 +107,15 @@
             </td>
         </tr>
         <tr class="new_row">
+            <th class="new_title">完了</th>
+            <td>
+                <select asp-for="Complate_Flag">
+                    <option value=false>未完了</option>
+                    <option value=true selected>完了</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
             <th class="new_title">問合せ分類</th>
             <td>
                 <select asp-for="Type_Id">
@@ -122,7 +131,7 @@
             <td><input type='text' asp-for='Relation_Id' value=0></td>
         </tr>
     </table><br>
-    <input type='hidden' asp-for='Complate_Flag' value="false">
+    <input type='hidden' asp-for='Check_Flag' value="false">
     <button type="submit" class="submit_btn">
         <img src="../images/touroku.png" width=22px style="margin-right: 3px;">
         登録

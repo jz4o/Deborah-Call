@@ -96,6 +96,15 @@
             </td>
         </tr>
         <tr class="new_row">
+            <th class="new_title">完了</th>
+            <td>
+                <select name="Complate_Flag">
+                        <option value=false selected>未完了</option>
+                        <option value=true>完了</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="new_row">
             <th class="new_title">問合せ分類</th>
             <td>
                 <select name="Type_Id">
@@ -113,7 +122,7 @@
             </td>
         </tr>
     </table><br>
-    <input type='hidden' name='Complate_Flag' value="false">
+    <input type='hidden' name='Check_Flag' value="false">
     <input type='hidden' name='Entry_Id' value=@Model.Id>
     <button type="submit" class="submit_btn">
         <img src="../../images/touroku.png" width=22px style="margin-right: 3px;">

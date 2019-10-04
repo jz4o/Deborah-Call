@@ -84,6 +84,7 @@ namespace Deborah.Models
         public int Type_Id { get; set; }
         public int Relation_Id { get; set; }
         public bool Staff_Flag { get; set; }
+        public bool Check_Flag { get; set; }
         [Required(ErrorMessage = "この項目は必須入力です。")]
         public string Company_Name { get; set; }
         [Required(ErrorMessage = "この項目は必須入力です。")]
