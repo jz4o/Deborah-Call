@@ -97,11 +97,11 @@ namespace Deborah_Downloder
                             {
                                 if (item.Staff_Flag)
                                 {
-                                    list.Append("発注者");
+                                    list.Append("職員");
                                 }
                                 else
                                 {
-                                    list.Append("受注者");
+                                    list.Append("業者");
                                 }
                             }
                             if (clm.Column_Name == "Complate_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
@@ -148,25 +148,71 @@ namespace Deborah_Downloder
             CreateFile(sheet, csv);
             return excel.GetAsByteArray();
         }
-        public void CreateFile(ExcelWorksheet sheet, StringBuilder csv)
+        private void CreateFile(ExcelWorksheet sheet, StringBuilder csv)
         {
             string[] del = {"\r\n"};
-            //int cnt = 0;
+            int cnt = 0;
             int _x = 1; //行
             int _y = 5; //列
+            Fixed_Character(sheet); //固定文字を挿入→整形する。
             var csv_split_rn = csv.ToString().Split(del, StringSplitOptions.None).ToList();
             foreach (var clm in csv_split_rn) //改行で区切ってLIST化する。
             {
                 var csv_split_kanma = clm.Split(",").ToList();　//更にLIST化する。（カンマで）
-                //cnt = csv_split_kanma.Count(); //要素数を取得
+                cnt = csv_split_kanma.Count(); //要素数を取得
                 foreach (var val in csv_split_kanma)
                 {
                     var cell = sheet.Cells[_y, _x];
                     cell.Value = val;
                     _x++;
                 }
-                _y++;
+                _y = HeaderEdit(sheet, cnt, _y);
+                //_y++;
                 _x = 1;
+            }
+        }
+
+        private int HeaderEdit(ExcelWorksheet sheet, int cnt, int _y)
+        {
+            if (_y == 5)
+            {
+                for (int i=1; i <= cnt; i++)
+                {
+                    sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
+                    sheet.Cells[_y, i].Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
+                }
+                return _y + 2;
+            }
+            return _y + 1;
+        }
+
+        //固定文字の挿入
+        public void Fixed_Character(ExcelWorksheet sheet)
+        {
+            sheet.Cells[2,1].Value = _Year(DateTime.Today);
+            sheet.Cells[2,1].Style.Font.Bold = true;
+            sheet.Cells[2,1].Style.Font.UnderLine = true;
+            sheet.Cells[2,1].Style.Font.Size = 14;
+            sheet.Cells[2,1,2,2].Merge = true;
+            sheet.Cells[2,1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center; //中央寄せ
+            sheet.Cells[2,1].Style.Font.Name = "ＭＳ Ｐゴシック";
+            sheet.Cells[2,3].Value = "電子調達共同利用システム問い合わせ一覧";
+            sheet.Cells[2,3].Style.Font.Bold = true;
+            sheet.Cells[2,3].Style.Font.UnderLine = true;
+            sheet.Cells[2,3].Style.Font.Size = 14;
+            sheet.Cells[2,1].Style.Font.Name = "ＭＳ Ｐゴシック";
+        }
+
+        private string _Year(DateTime nendo)
+        {
+            var _y = nendo.Year;
+            if (nendo.Month >= 4 && nendo.Month <= 12)
+            {
+                return _y.ToString() + "年度";
+            }
+            else
+            {
+                return (_y - 1).ToString() + "年度";
             }
         }
     }
