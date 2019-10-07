@@ -52,6 +52,8 @@ namespace SystemController
             if (_r >= 1)
             {
                 ViewBag.error = "過去に登録した問合せがあるため、削除できません。";
+                var _result = this._context.Mst_System.OrderBy(x => x.Id);
+                return View("Index", _result);
             }
             else
             {

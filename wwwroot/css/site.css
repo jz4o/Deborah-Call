@@ -184,3 +184,8 @@ body {
   margin-bottom: 20px;
 }
 
+/*----------------------------*/
+
+.error_msg {
+  color: #ed6d35;
+}

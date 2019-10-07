@@ -79,7 +79,7 @@ namespace TopController
             var _result = this._context.Tra_Entry.Where(x => x.Id == id).Where(x => x.Del_Flag == false).SingleOrDefault();
             if (_result == null)
             {
-                ViewBag.warnning = "既に削除されています。";
+                ViewBag.error = "既に削除されています。";
             }
             else
             {  

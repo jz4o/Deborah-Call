@@ -66,6 +66,19 @@ namespace UserController
             if (_r >= 1)
             {
                 ViewBag.error = "過去に登録した問合せがあるため、削除できません。";
+                var _result = from usr in this._context.Mst_User
+                    orderby usr.Id
+                    select new User
+                    {
+                        Id = usr.Id,
+                        User_Name = usr.User_Name,
+                        DisconnectableFlag = usr.DisconnectableFlag,
+                        InquryCount = this._context.Tra_Inqury
+                                            .Where(x => x.Login_Id == usr.Id)
+                                            .Select(x => x.Id)
+                                            .Count()
+                    };
+                return View("Index", _result);
             }
             else
             {
