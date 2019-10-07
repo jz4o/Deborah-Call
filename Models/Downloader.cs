@@ -18,10 +18,13 @@ namespace Deborah_Downloder
     public class Downloader
     {
         private readonly MyContext _context;
-        
+        private readonly System.Drawing.Color _color1; //Excelヘッダー色
+        private readonly System.Drawing.Color _color2; //Excelの一番左側色
         public Downloader(MyContext context)
         {
             this._context = context;
+            this._color1 = System.Drawing.ColorTranslator.FromHtml("#31869b");
+            this._color2 = System.Drawing.ColorTranslator.FromHtml("#b7dee8");
         }
 
         public string Get_Inqury(IQueryable<Mst_Download> header, int _length, DateTime date1, DateTime date2, bool check, string word="")
@@ -153,7 +156,7 @@ namespace Deborah_Downloder
             string[] del = {"\r\n"};
             int cnt = 0;
             int _x = 1; //行
-            int _y = 5; //列
+            int _y = 3; //列
             Fixed_Character(sheet); //固定文字を挿入→整形する。
             var csv_split_rn = csv.ToString().Split(del, StringSplitOptions.None).ToList();
             foreach (var clm in csv_split_rn) //改行で区切ってLIST化する。
@@ -170,17 +173,21 @@ namespace Deborah_Downloder
                 //_y++;
                 _x = 1;
             }
+            sheet.Cells[3, 1, _y, _x].Style.Border.BorderAround(ExcelBorderStyle.Thin); //罫線を引く。
         }
 
         private int HeaderEdit(ExcelWorksheet sheet, int cnt, int _y)
         {
-            if (_y == 5)
+            
+            if (_y == 3)
             {
                 for (int i=1; i <= cnt; i++)
                 {
                     sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
                     sheet.Cells[_y, i].Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
                 }
+                sheet.Cells[_y, 1, _y, cnt].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                sheet.Cells[_y, 1, _y, cnt].Style.Fill.BackgroundColor.SetColor(this._color1);
                 return _y + 2;
             }
             return _y + 1;
