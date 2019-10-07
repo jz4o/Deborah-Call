@@ -161,11 +161,12 @@ namespace Deborah_Downloder
                 //cnt = csv_split_kanma.Count(); //要素数を取得
                 foreach (var val in csv_split_kanma)
                 {
-                    var cell = sheet.Cells[_x, _y];
+                    var cell = sheet.Cells[_y, _x];
                     cell.Value = val;
                     _x++;
                 }
                 _y++;
+                _x = 1;
             }
         }
     }
