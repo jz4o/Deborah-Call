@@ -190,10 +190,10 @@ namespace Deborah_Downloder
                     sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
                     var allcells = sheet.Cells[_y, i];
                     allcells.Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
+                    allcells.Style.Font.Color.SetColor(this._color3);
                 }
                 sheet.Cells[_y, 1, _y, cnt].Style.Fill.PatternType = ExcelFillStyle.Solid;
                 sheet.Cells[_y, 1, _y, cnt].Style.Fill.BackgroundColor.SetColor(this._color1);
-                sheet.Cells[_y, 1].Style.Font.Color.SetColor(this._color3);
                 return _y + 2;
             }
             return _y + 1;
