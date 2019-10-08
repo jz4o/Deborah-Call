@@ -20,11 +20,13 @@ namespace Deborah_Downloder
         private readonly MyContext _context;
         private readonly System.Drawing.Color _color1; //Excelヘッダー色
         private readonly System.Drawing.Color _color2; //Excelの一番左側色
+        private readonly System.Drawing.Color _color3; //Excelの一番左側色
         public Downloader(MyContext context)
         {
             this._context = context;
             this._color1 = System.Drawing.ColorTranslator.FromHtml("#31869b");
             this._color2 = System.Drawing.ColorTranslator.FromHtml("#b7dee8");
+            this._color3 = System.Drawing.ColorTranslator.FromHtml("#ffffff");
         }
 
         public string Get_Inqury(IQueryable<Mst_Download> header, int _length, DateTime date1, DateTime date2, bool check, string word="")
@@ -158,7 +160,8 @@ namespace Deborah_Downloder
             int _x = 1; //行
             int _y = 3; //列
             Fixed_Character(sheet); //固定文字を挿入→整形する。
-            var csv_split_rn = csv.ToString().Split(del, StringSplitOptions.None).ToList();
+            String str_csv = csv.ToString();
+            var csv_split_rn = str_csv.TrimEnd('\r', '\n').Split(del, StringSplitOptions.None).ToList();
             foreach (var clm in csv_split_rn) //改行で区切ってLIST化する。
             {
                 var csv_split_kanma = clm.Split(",").ToList();　//更にLIST化する。（カンマで）
@@ -167,13 +170,13 @@ namespace Deborah_Downloder
                 {
                     var cell = sheet.Cells[_y, _x];
                     cell.Value = val;
+                    AddBorder(cell);
                     _x++;
                 }
                 _y = HeaderEdit(sheet, cnt, _y);
                 //_y++;
                 _x = 1;
             }
-            sheet.Cells[3, 1, _y, _x].Style.Border.BorderAround(ExcelBorderStyle.Thin); //罫線を引く。
         }
 
         private int HeaderEdit(ExcelWorksheet sheet, int cnt, int _y)
@@ -183,11 +186,14 @@ namespace Deborah_Downloder
             {
                 for (int i=1; i <= cnt; i++)
                 {
+                    AddBorder(sheet.Cells[_y, i, _y + 1, i]);
                     sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
-                    sheet.Cells[_y, i].Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
+                    var allcells = sheet.Cells[_y, i];
+                    allcells.Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
                 }
                 sheet.Cells[_y, 1, _y, cnt].Style.Fill.PatternType = ExcelFillStyle.Solid;
                 sheet.Cells[_y, 1, _y, cnt].Style.Fill.BackgroundColor.SetColor(this._color1);
+                sheet.Cells[_y, 1].Style.Font.Color.SetColor(this._color3);
                 return _y + 2;
             }
             return _y + 1;
@@ -221,6 +227,14 @@ namespace Deborah_Downloder
             {
                 return (_y - 1).ToString() + "年度";
             }
+        }
+        private void AddBorder(ExcelRange cells)
+        {
+            cells.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+            cells.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+            cells.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+            cells.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+            return;
         }
     }
 
