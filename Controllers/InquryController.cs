@@ -38,7 +38,7 @@ namespace InquryController
                                 join usr in this._context.Mst_User
                                 on tr.Login_Id equals usr.Id
                                 where tr.Start_day == _today
-                                where tr.Check_Flag == true
+                                where tr.Check_Flag == false
                                 orderby tr.Id descending
                                 select new MyList
                                 {
