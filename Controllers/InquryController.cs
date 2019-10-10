@@ -32,10 +32,13 @@ namespace InquryController
         public IActionResult Index(int now_page=1)
         {
             clear_session(); //検索結果Sessionを削除するぜ。
+            DateTime _today = DateTime.Today; //今日の日付
             ViewBag.Check = false;
             var _result = from tr in this._context.Tra_Inqury
                                 join usr in this._context.Mst_User
                                 on tr.Login_Id equals usr.Id
+                                where tr.Start_day == _today
+                                where tr.Check_Flag == true
                                 orderby tr.Id descending
                                 select new MyList
                                 {
@@ -66,6 +69,9 @@ namespace InquryController
                 ViewBag.separate = _sr;
             }
             ViewBag.now_page = now_page;
+            ViewBag.date1 = _today;
+            ViewBag.date2 = _today;
+            ViewBag.check = true;
             return View(_result2);
         }
 
