@@ -46,8 +46,11 @@ namespace Deborah_Downloder
                             select new Download_List
                             {
                                 Id = inq.Id,
+                                System_Id = inq.System_Id,
                                 System_Name = sys.System_name,
+                                Com_Id = inq.Com_Id,
                                 Com_Name = com.Com_Name,
+                                Type_Id = inq.Type_Id,
                                 Type_Name = ty.Type_Name,
                                 Relation_Id = inq.Relation_Id,
                                 Staff_Flag = inq.Staff_Flag,
@@ -241,8 +244,11 @@ namespace Deborah_Downloder
     public class Download_List
     {
         public int Id { get; set; }
+        public int System_Id { get; set; }
         public string System_Name { get; set; }
+        public int Com_Id { get; set; }
         public string Com_Name { get; set; }
+        public int Type_Id  { get; set; }
         public string Type_Name { get; set; }
         public int Relation_Id { get; set; }
         public bool Staff_Flag { get; set; }
