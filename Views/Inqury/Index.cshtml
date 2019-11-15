@@ -16,7 +16,7 @@
                 }
                 未確認のみ
                 <input type="text" size="40" name="Word" placeholder=" フリーワード" value=@ViewBag.freeword>
-                <button type="submit" class="search_btn">Search</button>
+                <button type="submit" class="search_btn">検索</button>
             </form>
         </div>
         <partial name="../Shared/_errors.cshtml" />
@@ -32,7 +32,7 @@
                    asp-route-Excel=true
                    class="dl_e_btn">
                    <img src="../images/download.png" width=18px style="margin-right: 3px;">
-                    Excel Download
+                    EXCELファイル
                 </a>
                 <a asp-controller="Inqury"
                    asp-action="Export"
@@ -43,7 +43,7 @@
                    asp-route-Word=@ViewBag.freeword
                    class="dl_c_btn">
                     <img src="../images/download.png" width=18px style="margin-right: 3px;">
-                    CSV Download
+                    CSVファイル
                 </a>
                 <a asp-controller="Inqury" asp-action="New" class="new_btn">
                     <img src="../images/new.png" width=18px style="margin-right: 3px;">
