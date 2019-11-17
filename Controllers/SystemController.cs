@@ -68,6 +68,8 @@ namespace SystemController
         [Route("System/Registrate")]
         public IActionResult Registrate(Mst_System _param)
         {
+            Console.WriteLine("ガンダム");
+            Console.WriteLine(_param.Id);
             if (ModelState.IsValid)
             {
                 this._context.Mst_System.Add(_param);

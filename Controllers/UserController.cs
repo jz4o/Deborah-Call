@@ -82,7 +82,7 @@ namespace UserController
             }
             else
             {
-                Mst_User result_user = this._context.Mst_User.Single(x => x.Id == id);
+                Mst_User result_user = this._context.Mst_User.FirstOrDefault(x => x.Id == id);
                 this._context.Remove(result_user);
                 this._context.SaveChanges();
             }

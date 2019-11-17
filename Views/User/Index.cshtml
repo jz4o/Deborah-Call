@@ -27,7 +27,7 @@
                     <td>
                         @(user.DisconnectableFlag ? "接続拒否" : "接続許可")
                     </td>
-                    <td style="text-align:left;">
+                    <td style="text-align:center;">
                         <a asp-action="Edit" asp-route-id="@user.Id" class="edit_btn">変更</a>
                         @if (user.InquryCount < 1)
                         {
@@ -35,6 +35,10 @@
                                asp-route-id="@user.Id"
                                class="copy_btn"
                                onclick="return window.confirm('削除してもよろしいですか？');">削除</a>
+                        }
+                        else
+                        {
+                            <span>　　　</span>
                         }
                     </td>
                 </tr>

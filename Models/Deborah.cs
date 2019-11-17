@@ -42,7 +42,8 @@ namespace Deborah.Models
 
     public class Mst_User
     {
-        [Key]
+
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Key]
         [StringLength(10, ErrorMessage = "3文字以上、10文字以内です。", MinimumLength = 3)]
