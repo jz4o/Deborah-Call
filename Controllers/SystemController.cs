@@ -26,6 +26,7 @@ namespace SystemController
         public IActionResult Index()
         {
             var _result = this._context.Mst_System.OrderBy(x => x.Id);
+            //if (_result != null) this._context.Entry(_result).Reload();
             return View(_result);
         }
 
@@ -68,8 +69,6 @@ namespace SystemController
         [Route("System/Registrate")]
         public IActionResult Registrate(Mst_System _param)
         {
-            Console.WriteLine("ガンダム");
-            Console.WriteLine(_param.Id);
             if (ModelState.IsValid)
             {
                 this._context.Mst_System.Add(_param);
@@ -90,6 +89,8 @@ namespace SystemController
             if (ModelState.IsValid)
             {
                 _r.System_name = _params.System_name;
+                _r.OmmitName = _params.OmmitName;
+                this._context.Entry(_r).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 this._context.SaveChanges();
             }
             else
@@ -97,7 +98,7 @@ namespace SystemController
                 var _result = this._context.Mst_System.Single(x => x.Id == _params.Id);
                 return View("Edit", _result);
             }
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Index", "System");
         }
     }
 }

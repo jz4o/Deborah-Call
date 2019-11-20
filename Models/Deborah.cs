@@ -7,10 +7,12 @@ namespace Deborah.Models
     public class Mst_System
     {
         [Key]
-        public int Id {  get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(20, ErrorMessage = "20文字以内で登録してください。")]
         public string System_name { get; set; }
+        [StringLength(15, ErrorMessage = "15文字以内で登録してください。")]
+        public string OmmitName { get; set; }
     }
 
     public class Mst_Status
