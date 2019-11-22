@@ -87,7 +87,7 @@ namespace TopController
                 _result.Del_Flag = true;
                 this._context.SaveChanges();
             }
-            return RedirectToAction("Sammary", "Top");
+            return RedirectToAction("Menu", "Top");
         }
 
         public bool Certification(string login, string password)
