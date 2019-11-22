@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/css/material_orange.css" />
     <script src="~/js/flatpickr.js"></script>
     <script src="~/js/ja.js"></script>
+    <script src="~/js/chart/chart.js"></script>
 </head>
 <body>
     <header>
@@ -28,13 +29,16 @@
         {
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light theme_color border-bottom box-shadow mb-3">
                 <div class="container">
-                    <a class="navbar-brand " asp-area="" asp-controller="Top" asp-action="Menu" style="color: white;">Deborah Call</a>
+                    <a class="navbar-brand " asp-area="" asp-controller="Top" asp-action="Sammary" style="color: white;">Deborah Call</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Top" asp-action="Menu">着信情報</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="Inqury" asp-action="Index">お問合せ管理</a>
                             </li>
@@ -62,7 +66,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - Deborah Call
+            &copy; 2020 - Deborah Call
         </div>
     </footer>
 

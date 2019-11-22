@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using Login.Filters;
+using Sammarys.Models;
 
 namespace TopController
 {
@@ -35,7 +36,7 @@ namespace TopController
         {
             if (Certification(login, password))
             {
-                return Redirect("Menu");
+                return Redirect("Sammary");
             }
             else
             {
@@ -86,7 +87,7 @@ namespace TopController
                 _result.Del_Flag = true;
                 this._context.SaveChanges();
             }
-            return RedirectToAction("Menu", "Top");
+            return RedirectToAction("Sammary", "Top");
         }
 
         public bool Certification(string login, string password)
@@ -105,6 +106,18 @@ namespace TopController
             HttpContext.Session.SetString("login", "");
             ViewBag.error = "ログアウトしました";
             return View("Login");
+        }
+
+        [AuthorizationFilter]
+        public IActionResult Sammary()
+        {
+            Sammary smy = new Sammary(this._context);
+            ViewBag.total = smy.get_sammary_total();
+            var system = smy.get_sammary_system();
+            if (system != null) ViewBag.max = system.Max(x => x.Id);
+            ViewBag.staff = smy.get_sammary_Staff();
+            ViewBag.juchusha = ViewBag.total - ViewBag.staff;
+            return View("Sammary", system);
         }
     }
 }
