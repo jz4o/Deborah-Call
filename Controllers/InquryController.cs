@@ -145,6 +145,7 @@ namespace InquryController
                 _target.Fin_Time = _params.Fin_Time;
                 _target.Check_Flag = _params.Check_Flag;
                 this._context.SaveChanges();
+                //EntryUpdate(_params.Tel_No, _params.Company_Name, _params.Tan_Name);
             }
             else
             {
@@ -158,6 +159,23 @@ namespace InquryController
                 return View("Edit", _result);
             }
             return RedirectToAction("Index", "Inqury");
+        }
+
+        //Tra_Entryにある削除されていないレコードを更新する処理。
+        public void EntryUpdate(string tel, string company_name, string tan_name)
+        {
+            var _result = this._context.Tra_Entry
+                            .Where(x => x.Del_Flag == false)
+                            .Where(x => x.Company_Name == "" || x.Company_Name == null)
+                            .Where(x => x.Tan_Name == "" || x.Tan_Name == null)
+                            .Where(x => x.Tel_No == tel);
+            if (_result == null) { return; }
+            foreach (var val in _result)
+            {
+                val.Company_Name = company_name;
+                val.Tan_Name = tan_name;
+            }
+            this._context.SaveChanges();
         }
 
         [AuthorizationFilter]
@@ -243,6 +261,7 @@ namespace InquryController
                 }
                 this._context.Tra_Inqury.Add(_param);
                 this._context.SaveChanges();
+                EntryUpdate(_param.Tel_No, _param.Company_Name, _param.Tan_Name);
                 return RedirectToAction("Index");
             }
             else
