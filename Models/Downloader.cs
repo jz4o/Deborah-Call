@@ -94,7 +94,7 @@ namespace Deborah_Downloder
                     {
                         if (typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString() != "")
                         {
-                            if (clm.Set_Format != null) //Set_Formatにデータが入っている場合は、その形式を使用する。
+                            if ((clm.Set_Format != null || clm.Set_Format != "") && clm.Set_Format.Length > 0) //Set_Formatにデータが入っている場合は、その形式を使用する。
                             {
                                 list.Append(Convert.ToDateTime(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item)).ToString(clm.Set_Format));
                             }
@@ -102,7 +102,7 @@ namespace Deborah_Downloder
                             {
                                 list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
                             }
-                            if (clm.Column_Name == "Staf_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
+                            if (clm.Set_Inqury == "Staff_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
                             {
                                 if (item.Staff_Flag)
                                 {
@@ -113,7 +113,7 @@ namespace Deborah_Downloder
                                     list.Append("業者");
                                 }
                             }
-                            if (clm.Column_Name == "Complate_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
+                            if (clm.Set_Inqury == "Complate_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
                             {
                                 if (item.Complate_Flag)
                                 {
