@@ -48,6 +48,7 @@ namespace Deborah_Downloder
                                 Id = inq.Id,
                                 System_Id = inq.System_Id,
                                 System_Name = sys.System_name,
+                                Ommit_Name = sys.OmmitName,
                                 Com_Id = inq.Com_Id,
                                 Com_Name = com.Com_Name,
                                 Type_Id = inq.Type_Id,
@@ -246,6 +247,7 @@ namespace Deborah_Downloder
         public int Id { get; set; }
         public int System_Id { get; set; }
         public string System_Name { get; set; }
+        public string Ommit_Name { get; set; }
         public int Com_Id { get; set; }
         public string Com_Name { get; set; }
         public int Type_Id  { get; set; }
