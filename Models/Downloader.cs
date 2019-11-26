@@ -113,7 +113,7 @@ namespace Deborah_Downloder
                                     list.Append("業者");
                                 }
                             }
-                            if (clm.Set_Inqury == "Complate_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
+                            if (clm.Set_Inqury == "Complate_Flag")
                             {
                                 if (item.Complate_Flag)
                                 {
