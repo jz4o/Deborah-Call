@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -95,7 +97,15 @@ namespace UserController
         {
             if (ModelState.IsValid)
             {
-                this._context.Mst_User.Add(_param);
+                byte[] _salt = Generate_Salt();
+                string password = Generate_Password(_param.Password, _salt);
+                this._context.Mst_User.Add(new Mst_User{
+                    Login_Id = _param.Login_Id,
+                    User_Name = _param.User_Name,
+                    Hostname = _param.Hostname,
+                    Password = password,
+                    Password_Salt = _salt
+                });
                 this._context.SaveChanges();
                 return RedirectToAction("Index", "User");
             }
@@ -112,9 +122,12 @@ namespace UserController
             var _r = this._context.Mst_User.SingleOrDefault(x => x.Id == _params.Id);
             if (ModelState.IsValid)
             {
-                _r.Password = _params.Password;
+                byte[] _salt = Generate_Salt();
+                string password = Generate_Password(_params.Password, _salt);
+                _r.Password = password;
                 _r.User_Name = _params.User_Name;
                 _r.Hostname = _params.Hostname;
+                _r.Password_Salt = _salt;
                 this._context.SaveChanges();
             }
             else
@@ -126,6 +139,34 @@ namespace UserController
             }
             return RedirectToAction("Index", "User");
         }
+
+
+        //暗号化されたパスワードを生成する。
+        private string Generate_Password(string password, byte[] salt)
+        {
+            string hash_pass = Convert.ToBase64String(
+                KeyDerivation.Pbkdf2(
+                    password: password,
+                    salt: salt,
+                    prf: KeyDerivationPrf.HMACSHA512,
+                    iterationCount: 10000,
+                    numBytesRequested: 256/8
+                )
+            );
+            return hash_pass;
+
+        }
+        private byte[] Generate_Salt()
+        {
+            byte[] salt = new byte[128 / 8];
+            //暗号乱数ジェネレーターのインスタンス
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+                return salt;
+            }
+        }
+
 
         private bool YourSelf_Check(string _login_id)
         {

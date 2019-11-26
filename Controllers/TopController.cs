@@ -6,9 +6,12 @@ using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Inqury.Models;
 using Login.Filters;
 using Sammarys.Models;
+//using UserController;
 
 namespace TopController
 {
@@ -90,15 +93,33 @@ namespace TopController
             return RedirectToAction("Menu", "Top");
         }
 
-        public bool Certification(string login, string password)
+        private bool Certification(string login, string password)
         {
-            var result = this._context.Mst_User.Where(r => r.Login_Id == login).Where(r => r.Password == password).ToList();
-            if (result.Any())
+            var result = this._context.Mst_User.Where(r => r.Login_Id == login).SingleOrDefault();
+            if (result == null) return false;
+            byte[] salt = result.Password_Salt;
+            string hash_pass = Generate_Password(password, salt);
+            
+            if (result.Password == hash_pass)
             {
                 HttpContext.Session.SetString("login", login);
                 return true;
             }
             return false;
+        }
+        
+        private string Generate_Password(string password, byte[] salt)
+        {
+            string hash_pass = Convert.ToBase64String(
+                KeyDerivation.Pbkdf2(
+                    password: password,
+                    salt: salt,
+                    prf: KeyDerivationPrf.HMACSHA512,
+                    iterationCount: 10000,
+                    numBytesRequested: 256/8
+                )
+            );
+            return hash_pass;
         }
 
         public IActionResult Logout()
