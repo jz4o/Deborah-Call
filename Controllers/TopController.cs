@@ -97,6 +97,7 @@ namespace TopController
         {
             var result = this._context.Mst_User.Where(r => r.Login_Id == login).SingleOrDefault();
             if (result == null) return false;
+            if (result.Password_Salt == null) return false;
             byte[] salt = result.Password_Salt;
             string hash_pass = Generate_Password(password, salt);
             
