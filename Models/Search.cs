@@ -37,8 +37,14 @@ namespace Search
             _result = (this._date2.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day <= (this._date2));
 
             if (this._word != null)
-            {      
-                _result = _result.Where(x => x.Inqury.Contains(this._word)
+            {   
+                _result = _result.Where(x => x.Inqury != null
+                                        && x.Answer != null
+                                        && x.Company_Name != null
+                                        && x.Tan_Name != null
+                                        && x.Tel_No != null
+                                )
+                                .Where(x => x.Inqury.Contains(this._word)
                                         || x.Answer.Contains(this._word) 
                                         || x.Company_Name.Contains(this._word) 
                                         || x.Tan_Name.Contains(this._word) 
