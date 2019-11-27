@@ -35,14 +35,15 @@ namespace Search
             _result = (this._check) ? _result.Where(x => x.Check_Flag == false) : _result;
             _result = (this._date1.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day >= (this._date1));
             _result = (this._date2.ToString("yyyy") == "0001") ? _result : _result.Where(x => x.Start_day <= (this._date2));
+
             if (this._word != null)
-            {
+            {      
                 _result = _result.Where(x => x.Inqury.Contains(this._word)
-                                                || x.Answer.Contains(this._word)
-                                                || x.Company_Name.Contains(this._word)
-                                                || x.Tan_Name.Contains(this._word)
-                                                || x.Tel_No.Contains(this._word)
-                                        );
+                                        || x.Answer.Contains(this._word) 
+                                        || x.Company_Name.Contains(this._word) 
+                                        || x.Tan_Name.Contains(this._word) 
+                                        || x.Tel_No.Contains(this._word)
+                            );
             }
             return _result;
         }
