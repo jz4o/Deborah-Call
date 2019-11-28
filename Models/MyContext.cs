@@ -15,6 +15,12 @@ namespace Deborah.Models
         {
             modelBuilder.Entity<Mst_User>()
             .HasKey(c => new {c.Id, c.Login_Id});
+            modelBuilder.Entity<Mst_User>()
+            .HasIndex(b => b.Hostname)
+            .IsUnique();
+            modelBuilder.Entity<Mst_User>()
+            .HasIndex(b => b.Login_Id)
+            .IsUnique();
         }
         public DbSet<Mst_System> Mst_System { get; set; }
         public DbSet<Mst_Status> Mst_Status { get; set; }

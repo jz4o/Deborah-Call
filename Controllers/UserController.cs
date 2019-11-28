@@ -99,14 +99,22 @@ namespace UserController
             {
                 byte[] _salt = Generate_Salt();
                 string password = Generate_Password(_param.Password, _salt);
-                this._context.Mst_User.Add(new Mst_User{
-                    Login_Id = _param.Login_Id,
-                    User_Name = _param.User_Name,
-                    Hostname = _param.Hostname,
-                    Password = password,
-                    Password_Salt = _salt,
-                    DisconnectableFlag = true
-                });
+                try
+                {
+                    this._context.Mst_User.Add(new Mst_User{
+                        Login_Id = _param.Login_Id,
+                        User_Name = _param.User_Name,
+                        Hostname = _param.Hostname,
+                        Password = password,
+                        Password_Salt = _salt,
+                        DisconnectableFlag = true
+                    });
+                }
+                catch 
+                {
+                    ViewBag.error = "一意制約違反の可能性があります。";
+                    return View("New");
+                }
                 this._context.SaveChanges();
                 return RedirectToAction("Index", "User");
             }
