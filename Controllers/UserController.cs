@@ -109,13 +109,13 @@ namespace UserController
                         Password_Salt = _salt,
                         DisconnectableFlag = true
                     });
+                    this._context.SaveChanges();
                 }
                 catch 
                 {
                     ViewBag.error = "一意制約違反の可能性があります。";
                     return View("New");
                 }
-                this._context.SaveChanges();
                 return RedirectToAction("Index", "User");
             }
             else
@@ -133,11 +133,22 @@ namespace UserController
             {
                 byte[] _salt = Generate_Salt();
                 string password = Generate_Password(_params.Password, _salt);
-                _r.Password = password;
-                _r.User_Name = _params.User_Name;
-                _r.Hostname = _params.Hostname;
-                _r.Password_Salt = _salt;
-                this._context.SaveChanges();
+                try
+                {
+                    _r.Password = password;
+                    _r.User_Name = _params.User_Name;
+                    _r.Hostname = _params.Hostname;
+                    _r.Password_Salt = _salt;
+                    this._context.SaveChanges();
+                }
+                catch
+                {
+                    ViewBag.error = "一意制約違反の可能性があります。";
+                    var _result = this._context.Mst_User.Single(x => x.Id == _params.Id);
+                    //ログインユーザ以外のパスワード等を変更できないようにする。
+                    ViewBag.yourself = YourSelf_Check(_result.Login_Id);
+                    return View("EDIT", _result);
+                }
             }
             else
             {

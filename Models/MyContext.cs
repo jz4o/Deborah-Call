@@ -15,7 +15,7 @@ namespace Deborah.Models
         {
             modelBuilder.Entity<Mst_User>()
             .HasKey(c => new {c.Id, c.Login_Id});
-            modelBuilder.Entity<Mst_User>()
+            modelBuilder.Entity<Mst_User>() //一意制約設定
             .HasIndex(b => b.Hostname)
             .IsUnique();
             modelBuilder.Entity<Mst_User>()
