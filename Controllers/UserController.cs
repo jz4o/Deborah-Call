@@ -64,8 +64,9 @@ namespace UserController
         [Route("User/Destory")]
         public IActionResult Destroy(int id)
         {
+            var _login = this._context.Mst_User.FirstOrDefault(x => x.Id == id);
             var _r = this._context.Tra_Inqury.Where(x => x.Login_Id == id).Count();
-            if (_r >= 1)
+            if (_r >= 1 && !YourSelf_Check(_login.Login_Id))
             {
                 ViewBag.error = "過去に登録した問合せがあるため、削除できません。";
                 var _result = from usr in this._context.Mst_User
@@ -84,9 +85,15 @@ namespace UserController
             }
             else
             {
-                Mst_User result_user = this._context.Mst_User.FirstOrDefault(x => x.Id == id);
-                this._context.Remove(result_user);
-                this._context.SaveChanges();
+                if (YourSelf_Check(_login.Login_Id))
+                {
+                    this._context.Remove(_login);
+                    this._context.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.error = "ログインユーザ自身を削除することはできません。";
+                }
             }
             return RedirectToAction("Index", "User");
         }
