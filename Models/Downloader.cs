@@ -98,11 +98,7 @@ namespace Deborah_Downloder
                             {
                                 list.Append(Convert.ToDateTime(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item)).ToString(clm.Set_Format));
                             }
-                            else
-                            {
-                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
-                            }
-                            if (clm.Set_Inqury == "Staff_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
+                            else if (clm.Set_Inqury == "Staff_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
                             {
                                 if (item.Staff_Flag)
                                 {
@@ -113,7 +109,7 @@ namespace Deborah_Downloder
                                     list.Append("業者");
                                 }
                             }
-                            if (clm.Set_Inqury == "Complate_Flag")
+                            else if (clm.Set_Inqury == "Complate_Flag")
                             {
                                 if (item.Complate_Flag)
                                 {
@@ -123,6 +119,16 @@ namespace Deborah_Downloder
                                 {
                                     list.Append("未完了");
                                 }
+                            }
+                            else if (clm.Column_Name == "受付番号")
+                            {
+                                string str = typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString();
+                                Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                                list.Append(String.Format("問-{0}", str));
+                            }
+                            else
+                            {
+                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
                             }
                         }
                         else
@@ -175,12 +181,14 @@ namespace Deborah_Downloder
                     var cell = sheet.Cells[_y, _x];
                     cell.Value = val;
                     AddBorder(cell);
+                    //cell.Style.WrapText = true; //折り返して全体表示
                     _x++;
                 }
                 _y = HeaderEdit(sheet, cnt, _y);
                 //_y++;
                 _x = 1;
             }
+            sheet.Cells.AutoFitColumns(8);
         }
 
         private int HeaderEdit(ExcelWorksheet sheet, int cnt, int _y)

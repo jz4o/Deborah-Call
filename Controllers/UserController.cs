@@ -104,7 +104,8 @@ namespace UserController
                     User_Name = _param.User_Name,
                     Hostname = _param.Hostname,
                     Password = password,
-                    Password_Salt = _salt
+                    Password_Salt = _salt,
+                    DisconnectableFlag = true
                 });
                 this._context.SaveChanges();
                 return RedirectToAction("Index", "User");
