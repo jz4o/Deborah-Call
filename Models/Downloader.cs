@@ -130,7 +130,7 @@ namespace Deborah_Downloder
                             }
                             else
                             {
-                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString().Replace("\r", "").Replace("\n", ""));
                             }
                         }
                         else
@@ -182,6 +182,7 @@ namespace Deborah_Downloder
                 {
                     var cell = sheet.Cells[_y, _x];
                     cell.Value = val;
+                    cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                     AddBorder(cell);
                     if (_x > 1) //先頭行以外
                     {
