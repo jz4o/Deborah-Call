@@ -93,7 +93,7 @@ namespace Deborah_Downloder
                     }
                     try
                     {
-                        Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString());
+                        //Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString());
                         if (typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString() != "")
                         {
                             if ((clm.Set_Format != null || clm.Set_Format != "") && clm.Set_Format.Length > 0) //Set_Formatにデータが入っている場合は、その形式を使用する。
