@@ -50,20 +50,20 @@
         <tr class="new_row">
             <th class="new_title">会社名</th>
             <td>
-                <input type="text" asp-for="Company_Name" asp-validation-for="Company_Name" size=50 required>
+                <input type="text" asp-for="Company_Name" maxlength="30" asp-validation-for="Company_Name" size=50 required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">担当者名</th>
             <td>
-                <input type="text" asp-for="Tan_Name" asp-validation-for="Tan_Name" size=50 required>
+                <input type="text" asp-for="Tan_Name" maxlength="10" asp-validation-for="Tan_Name" size=50 required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">電話番号</th>
             <td>
                 <span asp-validation-for="Tel_No" class="text-danger" style="word-wrap: break-word;"></span>
-                <input type="text" asp-for="Tel_No" asp-validation-for="Tel_No" size=50 required>
+                <input type="text" asp-for="Tel_No" asp-validation-for="Tel_No" size=50 maxlength="13" required>
             </td>
         </tr>
         <tr class="new_row">
@@ -88,13 +88,13 @@
         <tr class="new_row">
             <th class="new_title">お問合せ内容</th>
             <td>
-                <textarea rows=3 cols=85 asp-for="Inqury" asp-validation-for="Inqury" required></textarea>
+                <textarea rows=3 cols=85 asp-for="Inqury" maxlength="500" asp-validation-for="Inqury" required></textarea>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">回答内容</th>
             <td>
-                <textarea rows=3 cols=85 asp-for="Answer" asp-validation-for="Answer" required></textarea>
+                <textarea rows=3 cols=85 asp-for="Answer" maxlength="500" asp-validation-for="Answer" required></textarea>
             </td>
         </tr>
         <tr class="new_row">

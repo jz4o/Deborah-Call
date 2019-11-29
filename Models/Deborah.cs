@@ -99,8 +99,10 @@ namespace Deborah.Models
         public string Tel_No { get; set; }
         public int Login_Id { get; set; }
         [DataType(DataType.MultilineText)]
+        [StringLength(500, ErrorMessage = "1文字以上、500文字以内です。", MinimumLength = 1)]
         public string Inqury { get; set; }
         [DataType(DataType.MultilineText)]
+        [StringLength(500, ErrorMessage = "1文字以上、500文字以内です。", MinimumLength = 1)]
         public string Answer { get; set; }
         public bool Complate_Flag { get; set; }
         [Required(ErrorMessage = "この項目は必須入力です。")]

@@ -46,20 +46,20 @@
         <tr class="new_row">
             <th class="new_title">会社名</th>
             <td>
-                <input type="text" name="Company_Name" value=@Model.Company_Name size=50 required>
+                <input type="text" name="Company_Name" value=@Model.Company_Name size=50 maxlength="30" required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">担当者名</th>
             <td>
-                <input type="text" name="Tan_Name" value=@Model.Tan_Name size=50 required>
+                <input type="text" name="Tan_Name" value=@Model.Tan_Name size=50 maxlength="10" required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">電話番号</th>
             <td>
                 <span asp-validation-for="Tel_No" class="text-danger"></span>
-                <input type="text" name="Tel_No" value=@Model.Tel_No size=50 required>
+                <input type="text" name="Tel_No" value=@Model.Tel_No size=50 maxlength="13" required>
             </td>
         </tr>
         <tr class="new_row">
@@ -68,7 +68,14 @@
                 <select name="Login_Id">
                     @foreach (KeyValuePair<int, string> user in ViewBag.user)
                     {
-                        <option value=@user.Key>@user.Value</option>
+                        if (ViewBag.name == @user.Value)
+                        {
+                            <option value=@user.Key selected>@user.Value</option>
+                        }
+                        else
+                        {
+                            <option value=@user.Key>@user.Value</option>
+                        }
                     }
                 </select>   
             </td>
@@ -77,13 +84,13 @@
         <tr class="new_row">
             <th class="new_title">お問合せ内容</th>
             <td>
-                <textarea rows=3 cols=85 name="Inqury" required></textarea>
+                <textarea rows=3 cols=85 name="Inqury" maxlength="500" required></textarea>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">回答内容</th>
             <td>
-                <textarea rows=3 cols=85 name="Answer" required></textarea>
+                <textarea rows=3 cols=85 name="Answer" maxlength="500"required></textarea>
             </td>
         </tr>
         <tr class="new_row">
@@ -99,8 +106,8 @@
             <th class="new_title">完了</th>
             <td>
                 <select name="Complate_Flag">
-                        <option value=false selected>未完了</option>
-                        <option value=true>完了</option>
+                        <option value=false>未完了</option>
+                        <option value=true selected>完了</option>
                 </select>
             </td>
         </tr>
