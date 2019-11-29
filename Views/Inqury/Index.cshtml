@@ -15,8 +15,8 @@
                     <input type="checkbox" name="Check" value=true>
                 }
                 未確認のみ
-                <input type="text" size="40" name="Word" placeholder=" フリーワード" value=@ViewBag.freeword>
-                <button type="submit" class="search_btn">検索</button>
+                <input type="text" size="40" name="Word" placeholder=" フリーワード" maxlength="40" value=@ViewBag.freeword>
+                <button type="submit" class="search_btn">検 索</button>
             </form>
         </div>
         <partial name="../Shared/_errors.cshtml" />
