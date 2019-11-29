@@ -221,6 +221,10 @@ namespace Deborah_Downloder
                 {
                     AddBorder(sheet.Cells[_y, i, _y + 1, i]);
                     sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
+                    sheet.Cells[_y, i, _y + 1, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    sheet.Row(_y).Height = 26.5;
+                    sheet.Row(_y + 1).Height = 26.5;
+
                     var allcells = sheet.Cells[_y, i];
                     allcells.Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
                     allcells.Style.Font.Color.SetColor(this._color3);
