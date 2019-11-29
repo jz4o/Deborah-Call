@@ -163,6 +163,16 @@ namespace InquryController
             return RedirectToAction("Index", "Inqury");
         }
 
+        [AuthorizationFilter]
+        [Route("Inqury/Destory")]
+        public IActionResult Destory(int id)
+        {
+            var _result = this._context.Tra_Inqury.FirstOrDefault(x => x.Id == id);
+            _result.Del_Flag = true;
+            this._context.SaveChanges();
+            return Redirect("Index");
+        }
+
         //Tra_Entryにある削除されていないレコードを更新する処理。
         public void EntryUpdate(string tel, string company_name, string tan_name)
         {

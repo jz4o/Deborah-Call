@@ -53,21 +53,19 @@
         </div><br>
         <table class="table table-bordered table-sm table-font table_width">
             <tr class="heading">
-                <th style="width:60px;">ID</th>
-                <th style="width:120px;">着信日時</th>
-                <th style="width:150px">会社名</th>
+                <th style="width:110px;">着信日時</th>
+                <th style="width:160px">会社名</th>
                 <th style="width:110px">電話番号</th>
                 <th style="width:70px">回答者</th>
                 <th style="width:340px;">質問</th>
                 <th style="width:40px">確認</th>
-                <th style="width:160px">操作</th>
+                <th style="width:200px">操作</th>
             </tr>
             @if (Model.Count() >= 1)
             {
                 @foreach (var data in Model)
                 {
                     <tr class="table_back">
-                        <td style="text-align:center;">@data.Id</td>
                         <td style="text-align:center;">
                             @data.Start_day.ToString("yy/MM/dd")
                             @data.Start_Time.ToString("HH:mm")
@@ -88,6 +86,10 @@
                             <a asp-action="Show" asp-route-id="@data.Id" class="show_btn">詳細</a>
                             <a asp-action="Edit" asp-route-id="@data.Id" class="edit_btn">編集</a>
                             <a asp-action="Copy" asp-route-id="@data.Id"  class="copy_btn">引用</a>
+                            <a asp-action="Destory"
+                               asp-route-id="@data.Id"
+                               class="delete_btn"
+                               onclick="return window.confirm('削除してもよろしいですか？');">削除</a>
                         </td>
                     </tr>
                 }
