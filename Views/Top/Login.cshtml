@@ -9,6 +9,13 @@
             <input type="password" name="password" size="40" placeholder=" Password" class="login_form"><br><br>
 
             <input type="submit" value="SIGN IN" class="login_btn">
+            @if(ViewBag.first == true)
+            {
+                <br>
+                <br>
+                <a asp-controller="Top" asp-action="FirstUser" class="first_user">初回ユーザ登録</a>
+
+            }   
         </form>
     </div>
 </div>
