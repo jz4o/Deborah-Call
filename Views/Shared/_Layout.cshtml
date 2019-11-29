@@ -49,7 +49,10 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="System" asp-action="Index">システム管理</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Top" asp-action="logout">ログアウト</a>
+                                <a class="nav-link text-light"
+                                    asp-area="" asp-controller="Top"
+                                    asp-action="logout"
+                                    onclick="return window.confirm('ログアウトします。よろしいですか？');">ログアウト</a>
                             </li>
                         </ul>
                     </div>
