@@ -39,6 +39,7 @@ namespace InquryController
                                 on tr.Login_Id equals usr.Id
                                 where tr.Start_day == _today
                                 where tr.Check_Flag == false
+                                where tr.Del_Flag == false
                                 orderby tr.Id descending
                                 select new MyList
                                 {
@@ -144,6 +145,7 @@ namespace InquryController
                 _target.Complate_Flag = _params.Complate_Flag;
                 _target.Fin_Time = _params.Fin_Time;
                 _target.Check_Flag = _params.Check_Flag;
+                _target.Del_Flag = false;
                 this._context.SaveChanges();
                 //EntryUpdate(_params.Tel_No, _params.Company_Name, _params.Tan_Name);
             }
@@ -193,6 +195,7 @@ namespace InquryController
                                 join com in this._context.Mst_Communication
                                 on inq.Com_Id equals com.Id
                             where inq.Id == id
+                            where inq.Del_Flag == false
                             select new Show_List
                             {
                                 Id = inq.Id,
@@ -222,6 +225,7 @@ namespace InquryController
         {
             var _result = this._context.Tra_Inqury
                             .Where(x => x.Id == id)
+                            .Where(x => x.Del_Flag == false)
                             .Where(x => x.Check_Flag == false).First();
             if (_result.Id == id)
             {
@@ -454,6 +458,7 @@ namespace InquryController
             IEnumerable<MyList> _result = from tr in this._context.Tra_Inqury
                                             join usr in this._context.Mst_User
                                             on  tr.Login_Id equals usr.Id
+                                            where tr.Del_Flag == false
                                             orderby tr.Id descending
                                             select new MyList
                                             {

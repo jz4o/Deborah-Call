@@ -40,6 +40,7 @@ namespace Deborah_Downloder
                             on inq.Type_Id equals ty.Id
                             join com in this._context.Mst_Communication
                             on inq.Com_Id equals com.Id
+                            where inq.Del_Flag == false
                             orderby inq.Start_day
                             orderby inq.Start_Time
                             orderby inq.Id
@@ -181,14 +182,32 @@ namespace Deborah_Downloder
                     var cell = sheet.Cells[_y, _x];
                     cell.Value = val;
                     AddBorder(cell);
-                    //cell.Style.WrapText = true; //折り返して全体表示
+                    if (_x > 1) //先頭行以外
+                    {
+                        cell.Style.WrapText = true; //折り返して全体表示
+                    }
                     _x++;
                 }
                 _y = HeaderEdit(sheet, cnt, _y);
                 //_y++;
                 _x = 1;
             }
-            sheet.Cells.AutoFitColumns(8);
+            WidthChange(sheet);
+        }
+
+        private void WidthChange(ExcelWorksheet sheet)
+        {
+            var _result = this._context.Mst_Download.OrderBy(x => x.Order_No).OrderBy(x => x.Id);
+            int i = 1;
+            foreach (var w in _result)
+            {
+                if (w.WidthCell < 1)
+                {
+                    break;
+                }
+                sheet.Column(i).Width = w.WidthCell;
+                i++;
+            }
         }
 
         private int HeaderEdit(ExcelWorksheet sheet, int cnt, int _y)
