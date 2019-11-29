@@ -26,7 +26,7 @@ namespace TopController
         public IActionResult FirstUser()
         {
             byte[] _salt = Generate_Salt();
-            string password = Generate_Password("deborah_" + DateTime.Now.ToString("yyyy"), _salt);
+            string password = Generate_Password("password", _salt);
             try
             {
                 this._context.Mst_User.Add(new Mst_User{
