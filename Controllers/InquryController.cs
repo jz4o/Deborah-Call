@@ -40,6 +40,8 @@ namespace InquryController
                                 where tr.Start_day == _today
                                 where tr.Check_Flag == false
                                 where tr.Del_Flag == false
+                                orderby tr.Start_day descending
+                                orderby tr.Start_Time descending
                                 orderby tr.Id descending
                                 select new MyList
                                 {
@@ -468,6 +470,8 @@ namespace InquryController
                                             join usr in this._context.Mst_User
                                             on  tr.Login_Id equals usr.Id
                                             where tr.Del_Flag == false
+                                            orderby tr.Start_day descending
+                                            orderby tr.Start_Time descending
                                             orderby tr.Id descending
                                             select new MyList
                                             {

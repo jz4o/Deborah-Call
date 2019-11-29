@@ -31,7 +31,7 @@ namespace Deborah_Downloder
 
         public string Get_Inqury(IQueryable<Mst_Download> header, int _length, DateTime date1, DateTime date2, bool check, string word="")
         {
-            var _result = from inq in this._context.Tra_Inqury
+            var _result = (from inq in this._context.Tra_Inqury
                             join usr in this._context.Mst_User
                             on inq.Login_Id equals usr.Id
                             join sys in this._context.Mst_System
@@ -67,7 +67,7 @@ namespace Deborah_Downloder
                                 Start_day = inq.Start_day,
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
-                            };
+                            }).Take(1000);
             _result = check ? _result.Where(x => x.Check_Flag == false) : _result;
             _result = date1.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day >= date1);
             _result = date2.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day <= date2);

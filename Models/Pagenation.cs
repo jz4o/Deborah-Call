@@ -80,7 +80,15 @@ namespace Pagenations
             }
             else
             {
-                return _list.GetRange(0, _list.Count());
+                if (_list.Count() <= this._bet_separate)
+                {
+                    return _list.GetRange(0, _list.Count());
+                }
+                else
+                {
+                    return _list.GetRange(0, this._bet_separate);
+                }
+                //return _list.GetRange(0, _list.Count());
             }
         }
 
@@ -88,7 +96,7 @@ namespace Pagenations
         {
             try
             {
-                return this._inqury.Max(x => x.Id);
+                return this._inqury.Count();
             }
             catch
             {
