@@ -93,6 +93,7 @@ namespace Deborah_Downloder
                     }
                     try
                     {
+                        Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString());
                         if (typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString() != "")
                         {
                             if ((clm.Set_Format != null || clm.Set_Format != "") && clm.Set_Format.Length > 0) //Set_Formatにデータが入っている場合は、その形式を使用する。
@@ -101,7 +102,7 @@ namespace Deborah_Downloder
                             }
                             else if (clm.Set_Inqury == "Staff_Flag") //受発注区分がTrueの場合は、発注者を入れる。falseなら受注者を入れる。
                             {
-                                if (item.Staff_Flag)
+                                if (item.Staff_Flag) 
                                 {
                                     list.Append("職員");
                                 }
