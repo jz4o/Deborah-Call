@@ -23,6 +23,29 @@ namespace TopController
             this._context = context;
         }
 
+        public IActionResult FirstUser()
+        {
+            byte[] _salt = Generate_Salt();
+            string password = Generate_Password("deborah_" + DateTime.Now.ToString("yyyy"), _salt);
+            try
+            {
+                this._context.Mst_User.Add(new Mst_User{
+                    Login_Id = "admin",
+                    User_Name = "管理者",
+                    Hostname = "test_hostname",
+                    Password = password,
+                    Password_Salt = _salt,
+                    DisconnectableFlag = true
+                });
+                this._context.SaveChanges();
+            }
+            catch
+            {
+                ViewBag.error = "初回ユーザ登録に失敗しました";
+            }
+            return Redirect("Login");
+        }
+
         
         [Route("Top/Login")]
         public IActionResult Login(int code=0)
@@ -31,6 +54,8 @@ namespace TopController
             {
                 ViewBag.error = "この先はログインが必要です";
             }
+            int cnt = this._context.Mst_User.Count();
+            if (cnt < 1) { ViewBag.first = true; }
             return View();
         }
 
@@ -109,6 +134,17 @@ namespace TopController
             return false;
         }
         
+
+        private byte[] Generate_Salt()
+        {
+            byte[] salt = new byte[128 / 8];
+            //暗号乱数ジェネレーターのインスタンス
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+                return salt;
+            }
+        }
         private string Generate_Password(string password, byte[] salt)
         {
             string hash_pass = Convert.ToBase64String(

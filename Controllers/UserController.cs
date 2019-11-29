@@ -131,6 +131,7 @@ namespace UserController
                 return View("New");
             }
         }
+
         [AuthorizationFilter]
         [Route("User/Update")]
         public IActionResult Update(Mst_User _params)
