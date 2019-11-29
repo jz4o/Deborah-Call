@@ -54,10 +54,11 @@ namespace Deborah.Models
         [StringLength(10, ErrorMessage = "10文字以内です。", MinimumLength = 1)]
         public string User_Name { get; set; }
         [Required]
-        [StringLength(50, ErrorMessage = "Passwordは5文字以上、12文字以内です。", MinimumLength = 5)]
+        [StringLength(50, ErrorMessage = "Passwordは5文字以上、50文字以内です。", MinimumLength = 5)]
         public string Password { get; set; }
         public byte[] Password_Salt { get; set; }
         [Required]
+        [StringLength(20, ErrorMessage = "1文字以上、20文字以内です。", MinimumLength = 1)]
         public string Hostname { get; set; }
         public bool DisconnectableFlag { get; set; }
     }

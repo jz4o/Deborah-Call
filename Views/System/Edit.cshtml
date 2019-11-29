@@ -15,14 +15,14 @@
             <th class="new_title">システム名</th>
             <td>
                 <span asp-validation-for="System_name" class="text-danger"></span>
-                <input type="text" asp-for="System_name" asp-validation-for="System_name" size=50 required>
+                <input type="text" asp-for="System_name" asp-validation-for="System_name" size=50 maxlength="20" required>
             </td>
         </tr>
         <tr class="new_row">
             <th class="new_title">略　　称</th>
             <td>
                 <span asp-validation-for="OmmitName" class="text-danger"></span>
-                <input type="text" asp-for="OmmitName" asp-validation-for="OmmitName" size=50 required>
+                <input type="text" asp-for="OmmitName" asp-validation-for="OmmitName" size=50 maxlength="15" required>
             </td>
         </tr>
     </table><br>
