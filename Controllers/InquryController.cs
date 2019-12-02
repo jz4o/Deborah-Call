@@ -60,7 +60,7 @@ namespace InquryController
                                     Check_Flag = tr.Check_Flag
                                 };
             //ページネーション処理
-            Pagenation pages = new Pagenation(_result, 20);
+            Pagenation pages = new Pagenation(_result.AsNoTracking(), 20);
             var _result2 = pages.Pager(now_page);
             //_srにはページネーションをどこまで出すかをLIST<int>で渡している。
             var _sr = pages.Separate_now(now_page);

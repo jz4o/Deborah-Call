@@ -185,13 +185,22 @@ namespace Deborah_Downloder
                     cell.Value = val;
                     cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                     AddBorder(cell);
-                    if (_x > 1) //先頭行以外
+                    if (_y > 3) //先頭行以外
                     {
                         cell.Style.WrapText = true; //折り返して全体表示
+                        if (_x == 1)
+                        {
+                            cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            cell.Style.Fill.BackgroundColor.SetColor(this._color2);
+                        }
+                        else if (_x == 2)
+                        {
+                            cell.Style.Font.Bold = true;
+                        }
                     }
                     _x++;
                 }
-                if (_x > 1)
+                if (_y > 3)
                 {
                     Centering(sheet, _y);
                 }
@@ -200,6 +209,7 @@ namespace Deborah_Downloder
                 _x = 1;
             }
             WidthChange(sheet);
+
         }
 
         private void WidthChange(ExcelWorksheet sheet)
@@ -216,6 +226,8 @@ namespace Deborah_Downloder
                 i++;
             }
         }
+
+
 
         private int HeaderEdit(ExcelWorksheet sheet, int cnt, int _y)
         {
