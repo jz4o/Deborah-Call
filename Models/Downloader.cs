@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -67,7 +68,7 @@ namespace Deborah_Downloder
                                 Start_day = inq.Start_day,
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
-                            }).Take(1000);
+                            }).Take(1000).AsNoTracking();
             _result = check ? _result.Where(x => x.Check_Flag == false) : _result;
             _result = date1.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day >= date1);
             _result = date2.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day <= date2);
@@ -190,6 +191,10 @@ namespace Deborah_Downloder
                     }
                     _x++;
                 }
+                if (_x > 1)
+                {
+                    Centering(sheet, _y);
+                }
                 _y = HeaderEdit(sheet, cnt, _y);
                 //_y++;
                 _x = 1;
@@ -251,6 +256,31 @@ namespace Deborah_Downloder
             sheet.Cells[2,3].Style.Font.UnderLine = true;
             sheet.Cells[2,3].Style.Font.Size = 14;
             sheet.Cells[2,1].Style.Font.Name = "ＭＳ Ｐゴシック";
+        }
+
+        private void Centering(ExcelWorksheet sheet, int _y)
+        {
+            var _result = this._context.Mst_Download.AsNoTracking();
+            int i = 1;
+            foreach (var v in _result)
+            {
+                switch (v.Positon)
+                {
+                    case "Center":
+                        sheet.Cells[_y, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        break;
+                    case "Left":
+                        sheet.Cells[_y, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                        break;
+                    case "Right":
+                        sheet.Cells[_y, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Right;
+                        break;
+                    default:
+                        sheet.Cells[_y, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        break;
+                }
+                i++;
+            }
         }
 
         private string _Year(DateTime nendo)

@@ -9,6 +9,7 @@ using Deborah.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Inqury.Models;
+
 //ページネーション機能です。。
 namespace Pagenations
 {
