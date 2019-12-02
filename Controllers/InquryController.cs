@@ -401,7 +401,7 @@ namespace InquryController
             var _list = Search_Target();
             SearchInqury _search_inqury = new SearchInqury(_list, _params.Start_day, _params.End_day, _params.Check, _params.Word);
             var _result = _search_inqury.Search_start();
-            Pagenation pages = new Pagenation(_result.AsQueryable(), 20);
+            Pagenation pages = new Pagenation(_result.AsQueryable().AsNoTracking(), 20);
             var _result2 = pages.Pager(now_page);
             //_srにはページネーションをどこまで出すかをLIST<int>で渡している。
             var _sr = pages.Separate_now(now_page);
