@@ -49,7 +49,9 @@ namespace Search
                                         || x.Company_Name.Contains(this._word) 
                                         || x.Tan_Name.Contains(this._word) 
                                         || x.Tel_No.Contains(this._word)
-                            );
+                            ).OrderByDescending(x => x.Start_day)
+                            .OrderByDescending(x => x.Start_Time)
+                            .OrderByDescending(x => x.Id);
             }
             return _result;
         }
