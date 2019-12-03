@@ -126,7 +126,7 @@ namespace Deborah.Models
         public string Set_Inqury { get; set; }
         //日付データのみ適用されるフォーマット（例： yyyy/MM/ddなど）
         public string Set_Format { get; set; }
-        public int WidthCell { get; set;}
+        public double WidthCell { get; set;}
         public int Order_No { get; set; }
         public string Positon { get; set; }
     }

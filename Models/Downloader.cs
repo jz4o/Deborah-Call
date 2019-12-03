@@ -123,6 +123,17 @@ namespace Deborah_Downloder
                                     list.Append("未完了");
                                 }
                             }
+                            else if (clm.Set_Inqury == "Relation_Id") //ゼロを表示させない
+                            {
+                                if (item.Relation_Id == 0)
+                                {
+                                    list.Append(" ");
+                                }
+                                else
+                                {
+                                    list.Append(item.Relation_Id.ToString());
+                                }
+                            }
                             else if (clm.Column_Name == "受付番号")
                             {
                                 string str = typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString();
