@@ -249,8 +249,8 @@ namespace Deborah_Downloder
                 {
                     AddBorder(sheet.Cells[_y, i, _y + 1, i]);
                     sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
-                    sheet.Cells[_y, i, _y + 1, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     sheet.Cells[_y, i, _y + 1, i].Style.WrapText = true; //ヘッダー部分の折り返し
+                    sheet.Cells[_y, i, _y + 1, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center; //横中央ぞろえ
                     sheet.Row(_y).Height = 26.5;
                     sheet.Row(_y + 1).Height = 26.5;
 
