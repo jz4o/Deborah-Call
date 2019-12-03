@@ -263,7 +263,7 @@ namespace Deborah_Downloder
             sheet.Cells[2,1,2,2].Merge = true;
             sheet.Cells[2,1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center; //中央寄せ
             sheet.Cells[2,1].Style.Font.Name = "ＭＳ Ｐゴシック";
-            sheet.Cells[2,3].Value = "問い合わせ一覧";
+            sheet.Cells[2,3].Value = "電子調達共同利用システム問い合わせ一覧";
             sheet.Cells[2,3].Style.Font.Bold = true;
             sheet.Cells[2,3].Style.Font.UnderLine = true;
             sheet.Cells[2,3].Style.Font.Size = 14;
