@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Inqury.Models;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using OfficeOpenXml.Utils;
 
 namespace Deborah_Downloder
 {
@@ -220,9 +221,20 @@ namespace Deborah_Downloder
                 _x = 1;
             }
             WidthChange(sheet);
-
+            PrintSetting(sheet, _x, _y);
         }
 
+        private void PrintSetting(ExcelWorksheet sheet, int _x, int _y)
+        {
+            sheet.PrinterSettings.Orientation = eOrientation.Landscape; //印刷横向き
+            // 余白設定 上下左右
+            sheet.PrinterSettings.TopMargin = 0;
+            sheet.PrinterSettings.LeftMargin = 0;
+            sheet.PrinterSettings.RightMargin = 0;
+            sheet.PrinterSettings.BottomMargin = 0;
+            // 改ページ設定
+            sheet.PrinterSettings.PrintArea = sheet.Cells[1, 1, _y, _x];
+        }
         private void WidthChange(ExcelWorksheet sheet)
         {
             var _result = this._context.Mst_Download.OrderBy(x => x.Order_No).OrderBy(x => x.Id);
