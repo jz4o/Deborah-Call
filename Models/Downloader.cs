@@ -221,7 +221,7 @@ namespace Deborah_Downloder
                 _x = 1;
             }
             WidthChange(sheet);
-            PrintSetting(sheet, _x, _y);
+            PrintSetting(sheet, this._context.Mst_Download.Count(), _y);
         }
 
         private void PrintSetting(ExcelWorksheet sheet, int _x, int _y)
