@@ -232,6 +232,8 @@ namespace Deborah_Downloder
             sheet.PrinterSettings.LeftMargin = 0;
             sheet.PrinterSettings.RightMargin = 0;
             sheet.PrinterSettings.BottomMargin = 0;
+            sheet.PrinterSettings.HeaderMargin = 0;
+            sheet.PrinterSettings.FooterMargin = 0;
             // 改ページ設定
             sheet.PrinterSettings.PrintArea = sheet.Cells[1, 1, _y, _x];
         }
