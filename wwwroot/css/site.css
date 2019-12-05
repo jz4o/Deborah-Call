@@ -201,3 +201,47 @@ body {
   border-bottom: 3px double #ccc;
 }
 
+
+
+
+.navbar-nav * {
+  box-sizing: border-box;
+}
+.navbar-nav li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1.5em;
+  padding: 0;
+}
+.navbar-nav a {
+  padding: 0.5em 0;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.navbar-nav a:before,
+.navbar-nav a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.navbar-nav a:before {
+  bottom: 0;
+  display: block;
+  height: 1px;
+  width: 0%;
+  left:0;
+  content: "";
+  background-color: #f2f2f2;
+}
+
+.navbar-nav a:hover:before,
+.navbar-nav .current a:before {
+  opacity: 1;
+  width: 100%;
+}
+.navbar-nav a:hover:after,
+.navbar-nav .current a:after {
+  max-width: 100%;
+}
