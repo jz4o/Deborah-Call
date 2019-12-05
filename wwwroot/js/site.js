@@ -13,8 +13,17 @@ function Unknown() {
     elm.value = "9999-99-9999";
 }
 
-//function CopySammary() {
-//    var textarea = document.getElementById("smy");
-//    textarea.select();
-//    document.execCommand("copy");
-//}
+function CopySammary() {
+    let range = document.createRange();
+    let span = document.getElementById('smy');
+    range.selectNodeContents(span);
+  
+    //指定した範囲を選択状態にする
+    let selection = document.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  
+    //コピー
+    document.execCommand('copy');
+    selection.empty(range);
+}
