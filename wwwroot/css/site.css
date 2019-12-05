@@ -103,7 +103,9 @@ body {
   border-left: solid 5px #bb5535;/*左線（実線 太さ 色）*/
 }
 
-
+.table tr:nth-child(odd) td{
+  background-color: #fef9fb;
+}
 
 /* 登録フォーム用 */
 .new_form {
