@@ -265,8 +265,8 @@ namespace Deborah_Downloder
                     sheet.Cells[_y, i, _y + 1, i].Merge = true; //セルの結合
                     sheet.Cells[_y, i, _y + 1, i].Style.WrapText = true; //ヘッダー部分の折り返し
                     sheet.Cells[_y, i, _y + 1, i].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center; //横中央ぞろえ
-                    sheet.Row(_y).Height = 26.5;
-                    sheet.Row(_y + 1).Height = 26.5;
+                    sheet.Row(_y).Height = 26.8;
+                    sheet.Row(_y + 1).Height = 26.8;
 
                     var allcells = sheet.Cells[_y, i];
                     allcells.Style.VerticalAlignment = ExcelVerticalAlignment.Center; //縦位置の中央揃え
