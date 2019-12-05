@@ -59,7 +59,15 @@
             <th class="new_title">電話番号</th>
             <td>
                 <span asp-validation-for="Tel_No" class="text-danger"></span>
-                <input type="text" name="Tel_No" value=@Model.Tel_No size=50 maxlength="13" required>
+                @if (@Model.Tel_No.IndexOf("-") < 0)
+                {
+                    <input type="text" id="Tel_No" name="Tel_No" value="" size=50 maxlength="13" required>
+                }
+                else
+                {
+                    <input type="text" id="Tel_No" name="Tel_No" value=@Model.Tel_No size=50 maxlength="13" required>
+                }
+                <input type='button' class="relation_btn" value="番号不明" onClick="Unknown()">
             </td>
         </tr>
         <tr class="new_row">
