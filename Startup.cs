@@ -36,6 +36,7 @@ namespace DeborahCall
             });
             services.AddSession(options => {
                 options.Cookie.Name = "session";
+                options.IdleTimeout = TimeSpan.FromHours(2);
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<MyContext>(options => options.UseNpgsql(Configuration.GetConnectionString("MyContext")));
