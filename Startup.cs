@@ -34,6 +34,10 @@ namespace DeborahCall
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.Configure<IISServerOptions>(options => 
+            {
+                options.AutomaticAuthentication = false;
+            });
             services.AddSession(options => {
                 options.Cookie.Name = "session";
                 options.IdleTimeout = TimeSpan.FromHours(2);
