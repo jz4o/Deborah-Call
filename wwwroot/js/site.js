@@ -26,4 +26,6 @@ function CopySammary() {
     //コピー
     document.execCommand('copy');
     selection.empty(range);
+    var ok = document.getElementById('copy_ok');
+    ok.innerText = "　クリップボードにコピーしました。";
 }
