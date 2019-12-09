@@ -322,3 +322,10 @@ for details on configuring this project to bundle and minify static web assets. 
   color: white;
   border-radius: 3px;
 }
+
+
+.copy_msg {
+  color: #556b2f;
+  border-bottom:1px solid #556b2f;
+  margin-left:30px;
+}
