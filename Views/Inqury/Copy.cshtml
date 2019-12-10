@@ -70,10 +70,17 @@
             </td>
         </tr>
         <tr class="new_row">
-            <th class="new_title">電話番号</th>
+            <th class="new_title">電話番号（優先）</th>
             <td>
                 <span asp-validation-for="Tel_No" class="text-danger"></span>
                 <input type="text" asp-for="Tel_No" maxlength="13" size=50 required value=@Model.Tel_No>
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">電話番号（予備）</th>
+            <td>
+                <span asp-validation-for="Spare_Tel_No" class="text-danger"></span>
+                <input type="text" asp-for="Spare_Tel_No" maxlength="13" size=50 value=@Model.Spare_Tel_No>
             </td>
         </tr>
         <tr class="new_row">

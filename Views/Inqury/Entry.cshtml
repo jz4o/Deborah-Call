@@ -56,7 +56,7 @@
             </td>
         </tr>
         <tr class="new_row">
-            <th class="new_title">電話番号</th>
+            <th class="new_title">電話番号（優先）</th>
             <td>
                 <span asp-validation-for="Tel_No" class="text-danger"></span>
                 @if (@Model.Tel_No.IndexOf("-") < 0)
@@ -68,6 +68,13 @@
                 {
                     <input type="text" id="Tel_No" name="Tel_No" value=@Model.Tel_No size=50 maxlength="13" required>
                 }
+            </td>
+        </tr>
+        <tr class="new_row">
+            <th class="new_title">電話番号（予備）</th>
+            <td>
+                <span asp-validation-for="Tel_No" class="text-danger"></span>
+                <input type="text" id="Spare_Tel_No" name="Spare_Tel_No" size=50 maxlength="13">
             </td>
         </tr>
         <tr class="new_row">

@@ -97,7 +97,12 @@ namespace Deborah.Models
         [Required(ErrorMessage = "この項目は必須入力です。")]
         [DataType(DataType.PhoneNumber)]
         [Phone(ErrorMessage = "電話番号として認識できません。")]
+        //[RegularExpression(@"^0\d{1,4}-\d{1,4}-\d{4}$", ErrorMessage = "電話番号として認識できません。")]
         public string Tel_No { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [Phone(ErrorMessage = "電話番号として認識できません。")]
+        //[RegularExpression(@"^0\d{1,4}-\d{1,4}-\d{4}$", ErrorMessage = "電話番号として認識できません。")]
+        public string Spare_Tel_No { get; set; }
         public int Login_Id { get; set; }
         [DataType(DataType.MultilineText)]
         [StringLength(500, ErrorMessage = "1文字以上、500文字以内です。", MinimumLength = 1)]

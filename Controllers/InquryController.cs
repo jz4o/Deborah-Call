@@ -53,9 +53,9 @@ namespace InquryController
                                     Tel_No = tr.Tel_No,
                                     User_Name = usr.User_Name,
                                     Inqury = tr.Inqury,
-                                    Answer = tr.Answer,
-                                    Tan_Name = tr.Tan_Name,
-                                    Staff_Flag = tr.Staff_Flag,
+                                    //Answer = tr.Answer,
+                                    //Tan_Name = tr.Tan_Name,
+                                    //Staff_Flag = tr.Staff_Flag,
                                     Complate_Flag = tr.Complate_Flag,
                                     Check_Flag = tr.Check_Flag
                                 };
@@ -73,8 +73,8 @@ namespace InquryController
                 ViewBag.separate = _sr;
             }
             ViewBag.now_page = now_page;
-            ViewBag.date1 = _today;
-            ViewBag.date2 = _today;
+            //ViewBag.date1 = _today;
+            //ViewBag.date2 = _today;
             ViewBag.check = true;
             return View(_result2);
         }
@@ -141,6 +141,7 @@ namespace InquryController
                 _target.System_Id = _params.System_Id;
                 _target.Tan_Name = _params.Tan_Name;
                 _target.Tel_No = _params.Tel_No;
+                _target.Spare_Tel_No = _params.Spare_Tel_No;
                 _target.Type_Id = _params.Type_Id;
                 _target.Answer = _params.Answer;
                 _target.Com_Id = _params.Com_Id;
@@ -219,7 +220,9 @@ namespace InquryController
                                 Company_Name = inq.Company_Name,
                                 Tan_Name = inq.Tan_Name,
                                 Tel_No = inq.Tel_No,
+                                Spare_Tel_No = inq.Spare_Tel_No,
                                 User_Name = usr.User_Name,
+                                Login_Id = usr.Login_Id,
                                 Inqury = inq.Inqury,
                                 Answer = inq.Answer,
                                 Complate_Flag = inq.Complate_Flag,
@@ -228,6 +231,11 @@ namespace InquryController
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time
                             }).First();
+            //ログインユーザは確認ボタンを押せない。
+            if (show_data.Login_Id == HttpContext.Session.GetString("login"))
+            {
+                ViewBag.self = "true";
+            }
             return View(show_data);
         }
 
