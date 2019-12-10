@@ -493,8 +493,8 @@ namespace InquryController
                                                 Inqury = tr.Inqury,
                                                 Answer = tr.Answer,
                                                 Tan_Name = tr.Tan_Name,
-                                                Staff_Flag = tr.Staff_Flag,
-                                                Complate_Flag = tr.Complate_Flag,
+                                                //Staff_Flag = tr.Staff_Flag,
+                                                //Complate_Flag = tr.Complate_Flag,
                                                 Check_Flag = tr.Check_Flag
                                             };
             return _result;

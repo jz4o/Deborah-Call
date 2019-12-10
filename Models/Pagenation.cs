@@ -50,7 +50,6 @@ namespace Pagenations
             //var _result = this._inqury.Where(x => x.Id <= separate_now * this._page_size);
              if (Max_size() - (this._page_size * separate_now) < 0)
              {
-                 Console.WriteLine(separate_now);
                 //_result = this._inqury.Where(x => x.Id >= 1);
                 _result = this._inqury.Take((Max_size() - (this._page_size * separate_now)) + this._page_size);
              }
@@ -58,8 +57,9 @@ namespace Pagenations
              {
                 //_result = this._inqury.Where(x => x.Id > Max_size() - (this._page_size * separate_now));
                 _result = this._inqury.Skip(Max_size() - (this._page_size * separate_now));
-                //_result = _result.Where(x => x.Id <= ((Max_size() - (this._page_size * separate_now)) + this._page_size));
-                _result = _result.Take((Max_size() - (this._page_size * separate_now)) + this._page_size);
+                //OLD _result = _result.Where(x => x.Id <= ((Max_size() - (this._page_size * separate_now)) + this._page_size));
+                //OLD _result = _result.Take((Max_size() - (this._page_size * separate_now)) + this._page_size);
+                _result = _result.Take(this._page_size);
              }
             //_result = _result.Where(x => x.Id > (separate_now * this._page_size - this._page_size));
             return _result;
