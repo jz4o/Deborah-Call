@@ -27,7 +27,7 @@
         @if (!(Context.Request.Path.ToString().Contains("Login") || Context.Request.Path.ToString().Contains("Top/Create") || Context.Request.Path.ToString().Contains("Logout")))
         {
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light theme_color border-bottom box-shadow mb-3">
-                <div class="container" style="width:85%;">
+                <div class="container">
                     <span style="color:#ffffff;" class="navbar-brand " style="color: white;">Deborah Call</span>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@
             </nav>
         }
     </header>
-    <div class="container"  style="width:85%;">
+    <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3" >
             @RenderBody()

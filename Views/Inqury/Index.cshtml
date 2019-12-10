@@ -53,11 +53,12 @@
         </div><br>
         <table class="table table-bordered table-sm table-font table_width">
             <tr class="heading">
+                <th style="width:60px;">ID</th>
                 <th style="width:110px;">着 信 日 時</th>
-                <th style="width:160px">問 合 せ 元</th>
+                <th style="width:150px">問 合 せ 元</th>
                 <th style="width:110px">電 話 番 号</th>
-                <th style="width:70px">回 答 者</th>
-                <th style="width:340px;">質　問</th>
+                <th style="width:60px">回 答 者</th>
+                <th style="width:300px;">質　問</th>
                 <th style="width:40px">確認</th>
                 <th style="width:200px">操　作</th>
             </tr>
@@ -66,6 +67,7 @@
                 @foreach (var data in Model)
                 {
                     <tr class="table_back">
+                        <td style="text-align:center;word-wrap:break-word;">@data.Id</td>
                         <td style="text-align:center;">
                             @data.Start_day.ToString("yy/MM/dd")
                             @data.Start_Time.ToString("HH:mm")

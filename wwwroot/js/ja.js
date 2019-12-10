@@ -54,13 +54,13 @@
       },
       time_24hr: true,
       rangeSeparator: " から ",
-      firstDayOfWeek: 1
+      firstDayOfWeek: 0
   };
   fp.l10ns.ja = Japanese;
   var ja = fp.l10ns;
 
   exports.Japanese = Japanese;
-  exports.default = ja;
+  //exports.default = ja;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
