@@ -236,6 +236,10 @@ namespace InquryController
             {
                 ViewBag.self = "true";
             }
+            else
+            {
+                ViewBag.self = "false";
+            }
             return View(show_data);
         }
 
