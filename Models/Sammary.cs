@@ -52,7 +52,7 @@ namespace Sammarys.Models
         public int get_sammary_Staff()
         {
             string today = DateTime.Today.ToString("yyyy-MM-dd");
-            var _result = this._context.Tra_Inqury.Where(x => x.Staff_Flag == true).Count();
+            var _result = this._inqury.Where(x => x.Staff_Flag == true).Count();
             //if (_result > 0) this._context.Entry(_result).Reload();
             return _result;
         }

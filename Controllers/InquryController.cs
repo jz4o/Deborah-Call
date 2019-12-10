@@ -38,7 +38,7 @@ namespace InquryController
             var _result = from tr in this._context.Tra_Inqury
                                 join usr in this._context.Mst_User
                                 on tr.Login_Id equals usr.Id
-                                where tr.Start_day == _today
+                                //where tr.Start_day == _today
                                 where tr.Check_Flag == false
                                 where tr.Del_Flag == false
                                 orderby tr.Start_day descending
