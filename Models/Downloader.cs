@@ -69,7 +69,7 @@ namespace Deborah_Downloder
                                 Start_day = inq.Start_day,
                                 Start_Time = inq.Start_Time,
                                 Fin_Time = inq.Fin_Time,
-                            }).Take(1000).AsNoTracking();
+                            }).AsNoTracking();
             _result = check ? _result.Where(x => x.Check_Flag == false) : _result;
             _result = date1.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day >= date1);
             _result = date2.ToString("yyyy") == "0001" ? _result : _result.Where(x => x.Start_day <= date2);
