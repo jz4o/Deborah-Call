@@ -22,7 +22,7 @@ namespace Pagenations
 
         public Pagenation(IQueryable<MyList> _result, int size)
         {
-            this._inqury = _result;
+            this._inqury = _result.OrderBy(x => x.Start_day).OrderBy(x => x.Start_Time).OrderBy(x => x.Id);
             this._bet_separate = 5; //ページネーションのリンクの最大表示個数
             this._page_size = size; //１ページあたりの表示件数
         }
@@ -62,7 +62,7 @@ namespace Pagenations
                 _result = _result.Take(this._page_size);
              }
             //_result = _result.Where(x => x.Id > (separate_now * this._page_size - this._page_size));
-            return _result;
+            return _result.OrderByDescending(x => x.Start_day).OrderByDescending(x => x.Start_Time).OrderByDescending(x => x.Id);
         }
         public List<int> Separate_now(int now_page)
         {
