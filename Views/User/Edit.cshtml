@@ -3,6 +3,10 @@
 <h5 class="page_title">ユーザ更新</h5>
 <br>
 <p class="error_msg">@ViewBag.error</p>
+@if (@ViewBag.yourself != false)
+{
+    <span>※下記ユーザでログインしないとユーザ情報の変更はできません。</span>
+}
 <form method=post action="/User/Update">
     <table class="new_form">
         <tr class="new_row">
