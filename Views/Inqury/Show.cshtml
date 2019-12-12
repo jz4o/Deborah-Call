@@ -141,7 +141,7 @@
 </table><br>
 @if (!@Model.Check_Flag && ViewBag.self == "false")
 {
-    <a asp-controller="Inqury" asp-action="Complate" asp-route-id="@Model.Id" class="submit_btn" onclick="return window.confirm('内容を確認しましたか？');">
+    <a asp-controller="Inqury" asp-action="Complate" asp-route-id="@Model.Id" class="submit_btn" onclick="return window.confirm('この内容で確認します。よろしいですか？');">
         <img src="../../images/good.png" width=22px style="margin-right: 3px;">
             確認
     </a>
