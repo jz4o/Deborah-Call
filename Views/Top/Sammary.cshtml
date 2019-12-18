@@ -4,7 +4,7 @@
     <h5 class="title_line">@(DateTime.Today.ToString("yyyy年MM月dd日") + "のサマリー")</h5>
     <br>
     <div class="main" style="width:800px;margin:0 auto;">
-        <p id="smy" style="line-height:35px;">問い合わせ件数： @(ViewBag.total.ToString().ToUpper()) 件<br>　
+        <p id="smy" style="line-height:35px;">問い合わせ件数： @(ViewBag.total.ToString().ToUpper()) 件<br>　　　　
         @foreach (var v in Model)
         {
             @if (ViewBag.max == v.Id)
@@ -17,7 +17,7 @@
             }
             
         }
-        <br>　 業者； @(ViewBag.juchusha.ToString()) 件、職員； @(ViewBag.staff.ToString()) 件</p>
+        <br>　　　　 業者； @(ViewBag.juchusha.ToString()) 件、職員； @(ViewBag.staff.ToString()) 件</p>
         <input type='button' class="copy_sammary_btn" value="コピー" onClick="CopySammary()">      
         <span id="copy_ok" class="copy_msg"></span>
     </div>
