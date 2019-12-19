@@ -197,9 +197,12 @@ namespace Deborah_Downloder
                     cell.Value = val;
                     cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                     AddBorder(cell);
+                    cell.Style.Font.Name = "ＭＳ Ｐゴシック"; //フォント指定　表部
+                    cell.Style.Font.Size = 12;
                     if (_y > 3) //先頭行以外
                     {
                         cell.Style.WrapText = true; //折り返して全体表示
+                        cell.Style.Font.Size = 10;
                         if (_x == 1)
                         {
                             cell.Style.Fill.PatternType = ExcelFillStyle.Solid;
@@ -228,14 +231,23 @@ namespace Deborah_Downloder
         {
             sheet.PrinterSettings.Orientation = eOrientation.Landscape; //印刷横向き
             // 余白設定 上下左右
-            sheet.PrinterSettings.TopMargin = 0;
-            sheet.PrinterSettings.LeftMargin = 0;
-            sheet.PrinterSettings.RightMargin = 0;
-            sheet.PrinterSettings.BottomMargin = 0;
-            sheet.PrinterSettings.HeaderMargin = 0;
-            sheet.PrinterSettings.FooterMargin = 0;
+            // デフォルトがインチのため、cmにするため、2.54Mで割る
+            sheet.PrinterSettings.TopMargin = (decimal)2 / 2.54M;
+            sheet.PrinterSettings.LeftMargin = (decimal)0.5 / 2.54M;
+            sheet.PrinterSettings.RightMargin = (decimal)0.5 / 2.54M;
+            sheet.PrinterSettings.BottomMargin = (decimal)1 / 2.54M;
+            sheet.PrinterSettings.HeaderMargin = (decimal)0 / 2.54M;
+            sheet.PrinterSettings.FooterMargin = (decimal)0 / 2.54M;
             // 改ページ設定
             sheet.PrinterSettings.PrintArea = sheet.Cells[1, 1, _y, _x];
+            //用紙サイズ（A4）
+            sheet.PrinterSettings.PaperSize = ePaperSize.A4;
+            //ページ番号追加
+            sheet.HeaderFooter.OddFooter.CenteredText = string.Format(
+                "{0}/{1}",
+                ExcelHeaderFooter.PageNumber,
+                ExcelHeaderFooter.NumberOfPages
+            );
         }
         private void WidthChange(ExcelWorksheet sheet)
         {
