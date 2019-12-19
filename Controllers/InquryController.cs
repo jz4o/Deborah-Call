@@ -459,10 +459,13 @@ namespace InquryController
             {
                 string date = "";
                 //Excelファイル名定義
-                Console.WriteLine(_params.Start_day.ToString());
-                if (_params.Start_day.ToString() == "0001/01/01 0:00:00")
+                if (_params.Start_day.ToString() == "0001/01/01 0:00:00" && _params.End_day.ToString() == "0001/01/01 0:00:00")
                 {
                     date = DateTime.Today.ToString("M月dd日");
+                }
+                else if (_params.Start_day.ToString() == "0001/01/01 0:00:00")
+                {
+                    date = _params.End_day.ToString("M月dd日");
                 }
                 else
                 {
