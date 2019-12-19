@@ -198,11 +198,10 @@ namespace Deborah_Downloder
                     cell.Style.VerticalAlignment = ExcelVerticalAlignment.Center;
                     AddBorder(cell);
                     cell.Style.Font.Name = "ＭＳ Ｐゴシック"; //フォント指定　表部
-                    cell.Style.Font.Size = 12;
+                    cell.Style.Font.Size = 10;
                     if (_y > 3) //先頭行以外
                     {
                         cell.Style.WrapText = true; //折り返して全体表示
-                        cell.Style.Font.Size = 10;
                         if (_x == 1)
                         {
                             cell.Style.Fill.PatternType = ExcelFillStyle.Solid;

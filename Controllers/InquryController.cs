@@ -413,6 +413,10 @@ namespace InquryController
             var _list = Search_Target();
             SearchInqury _search_inqury = new SearchInqury(_list, _params.Start_day, _params.End_day, _params.Check, _params.Word);
             var _result = _search_inqury.Search_start();
+            if (_result.Count() == 0)
+            {
+                ViewBag.error = "　該当データはありません";
+            }
             Pagenation pages = new Pagenation(_result.AsQueryable().AsNoTracking(), 20);
             var _result2 = pages.Pager(now_page);
             //_srにはページネーションをどこまで出すかをLIST<int>で渡している。

@@ -17,9 +17,9 @@
                 未確認のみ
                 <input type="text" size="40" name="Word" placeholder=" フリーワード" maxlength="40" value=@ViewBag.freeword title="フリーワードは問合せ元、担当者、電話番号、問合せ内容、回答内容を検索対象としています。">
                 <button type="submit" class="search_btn">検 索</button>
+                <span class="error_msg" style="font-weight:bold;">@ViewBag.error</span>
             </form>
         </div>
-        <partial name="../Shared/_errors.cshtml" />
         <div class="centering">
             <div class="btn_line">
                 <a asp-controller="Inqury"
@@ -97,6 +97,7 @@
                 }
             }
         </table>
+        
         <div class="pager">
             @foreach (var item in ViewBag.separate)
             {

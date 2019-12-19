@@ -164,7 +164,8 @@ body {
 .search_area {
   padding-top: 15px;
   padding-bottom: 15px;
-  text-align: center;
+  margin-left: 60px;
+  width:100%;
 }
 
 .btn_line {
