@@ -457,8 +457,18 @@ namespace InquryController
             csv.Append(_downloader.Get_Inqury(header, _length, date1, date2, check, word));
             if (excel)  //Excelのダウンロードの際に使用する。
             {
+                string date = "";
                 //Excelファイル名定義
-                String file_name = String.Format(@"問合せ表（{0}）", DateTime.Today.ToString("M月dd日"));
+                Console.WriteLine(_params.Start_day.ToString());
+                if (_params.Start_day.ToString() == "0001/01/01 0:00:00")
+                {
+                    date = DateTime.Today.ToString("M月dd日");
+                }
+                else
+                {
+                    date = _params.Start_day.ToString("M月dd日");
+                }
+                String file_name = String.Format(@"問合せ表（{0}）", date);
                 byte[] excel_file = _downloader.Create_Excel(file_name, csv);
                 return File(excel_file, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", file_name + ".xlsx");
             }
