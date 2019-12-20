@@ -242,7 +242,7 @@ namespace Deborah_Downloder
             //用紙サイズ（A4）
             sheet.PrinterSettings.PaperSize = ePaperSize.A4;
             //次ページに合わせて印刷
-            //sheet.PrinterSettings.Scale = 0;
+            sheet.PrinterSettings.FitToPage = true;
             sheet.PrinterSettings.FitToHeight = 0;
             sheet.PrinterSettings.FitToWidth = 1;
             //ページ番号追加
