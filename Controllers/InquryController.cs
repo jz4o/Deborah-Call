@@ -91,6 +91,12 @@ namespace InquryController
             ViewBag.login = HttpContext.Session.GetString("login");
             ViewBag.name = Get_User_Name();
             var _result = this._context.Tra_Entry.Where(x => x.Id == id).Where(x => x.Del_Flag == false).First();
+            ViewBag.staff = this._context.Tra_Inqury.Where(x => x.Tel_No == _result.Tel_No)
+                                .OrderByDescending(x => x.Start_day)
+                                .OrderByDescending(x => x.Start_Time)
+                                .OrderByDescending(x => x.Id)
+                                .Select(x => x.Staff_Flag)
+                                .FirstOrDefault();
             return View(_result);
         }
 

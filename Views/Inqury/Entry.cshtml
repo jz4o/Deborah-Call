@@ -112,8 +112,16 @@
             <th class="new_title">受注者／発注者</th>
             <td>
                 <select name="Staff_Flag">
+                @if (ViewBag.staff)
+                {
                         <option value=false>受注者</option>
+                        <option value=true selected>発注者</option>
+                }
+                else
+                {
+                        <option value=false selected>受注者</option>
                         <option value=true>発注者</option>
+                }
                 </select>
             </td>
         </tr>
