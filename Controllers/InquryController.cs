@@ -423,6 +423,10 @@ namespace InquryController
             {
                 ViewBag.error = "　該当データはありません";
             }
+            else
+            {
+                ViewBag.error = String.Format("　{0}件ヒット", _result.Count().ToString());
+            }
             Pagenation pages = new Pagenation(_result.AsQueryable().AsNoTracking(), 20);
             var _result2 = pages.Pager(now_page);
             //_srにはページネーションをどこまで出すかをLIST<int>で渡している。
