@@ -143,12 +143,12 @@ namespace Deborah_Downloder
                             }
                             else
                             {
-                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString().Replace("\r", "").Replace("\n", ""));
+                                list.Append(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString().Replace("\r", "").Replace("\n", "").Replace(",", "、"));
                             }
                         }
                         else
                         {
-                            list.Append(clm.Set_Inqury);
+                            list.Append(clm.Set_Inqury.Replace(",", "、"));
                         }
                     }
                     catch(NullReferenceException) //Nullの場合は、半角スぺ―スを入れる。
