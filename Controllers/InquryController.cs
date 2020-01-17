@@ -444,7 +444,7 @@ namespace InquryController
         }
         [HttpGet]
         [AuthorizationFilter]
-        public IActionResult Export(Search_param _params, bool excel=false)
+        public async Task<IActionResult> Export(Search_param _params, bool excel=false)
         {
             // Sessionに保持している値を変数に格納する。（後にサブルーチンに渡します）
             var check = _params.Check;
@@ -455,9 +455,9 @@ namespace InquryController
             StringBuilder csv = new StringBuilder("");
             Downloader _downloader = new Downloader(this._context);
             //CSVのヘッダー情報を取得する。
-            var header = this._context.Mst_Download
+            IQueryable<Mst_Download> header = await Task.Run(() => this._context.Mst_Download
                             .OrderBy(x => x.Order_No)
-                            .OrderBy(x => x.Id).AsQueryable();
+                            .OrderBy(x => x.Id).AsQueryable());
             int _length = header.Select(x => x.Column_Name).Count(); //要素数を取得する。
             foreach(var v in header)
             {
