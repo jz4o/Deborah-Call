@@ -443,8 +443,8 @@ namespace InquryController
             return View("Index", _result2);
         }
         [HttpGet]
-        [AuthorizationFilter]
-        public async Task<IActionResult> Export(Search_param _params, bool excel=false)
+        //[AuthorizationFilter] Excelファイルをダウンロードさせるため、ログイン必須を解除
+        public async Task<IActionResult> Export(Search_param _params, bool excel=false, bool monthly_report = false)
         {
             // Sessionに保持している値を変数に格納する。（後にサブルーチンに渡します）
             var check = _params.Check;
@@ -471,21 +471,26 @@ namespace InquryController
             csv.Append(_downloader.Get_Inqury(header, _length, date1, date2, check, word));
             if (excel)  //Excelのダウンロードの際に使用する。
             {
-                string date = "";
+                //string date = "";
+                string file_name = "";
                 //Excelファイル名定義
-                if (_params.Start_day.ToString() == "0001/01/01 0:00:00" && _params.End_day.ToString() == "0001/01/01 0:00:00")
+                if (monthly_report) //月報の場合
                 {
-                    date = DateTime.Today.ToString("M月dd日");
+                    file_name = _params.Start_day.ToString("yyyy年M月月報");
+                }
+                else if (_params.Start_day.ToString() == "0001/01/01 0:00:00" && _params.End_day.ToString() == "0001/01/01 0:00:00")
+                {
+                    file_name = String.Format(@"問合せ表（{0}）", DateTime.Today.ToString("M月dd日"));
                 }
                 else if (_params.Start_day.ToString() == "0001/01/01 0:00:00")
                 {
-                    date = _params.End_day.ToString("M月dd日");
+                    file_name = String.Format(@"問合せ表（{0}）", _params.End_day.ToString("M月dd日"));
                 }
                 else
                 {
-                    date = _params.Start_day.ToString("M月dd日");
+                    file_name = String.Format(@"問合せ表（{0}）", _params.Start_day.ToString("M月dd日"));
                 }
-                String file_name = String.Format(@"問合せ表（{0}）", date);
+
                 byte[] excel_file = _downloader.Create_Excel(file_name, csv);
                 return File(excel_file, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", file_name + ".xlsx");
             }
