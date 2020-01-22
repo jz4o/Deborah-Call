@@ -139,6 +139,12 @@ namespace Deborah_Downloder
                             {
                                 string str = typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item).ToString();
                                 Console.WriteLine(typeof(Download_List).GetProperty(clm.Set_Inqury).GetValue(item));
+                                //5桁未満の場合、5桁になるようゼロで埋める。
+                                if (str.Length < 5)
+                                {
+                                    int len = 5 - str.Length;
+                                    str = String.Concat(Enumerable.Repeat("0", len)) + str;
+                                }
                                 list.Append(String.Format("問-{0}", str));
                             }
                             else
